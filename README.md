@@ -1,2 +1,3 @@
-# hmpps-feature-flags
-Flipt container for handling feature flags in HMPPS
+# HMPPS Feature Flags
+
+A self-hosted instance of [Flipt](https://www.flipt.io/), for controlling feature flags.

@@ -13,4 +13,5 @@ generic-service:
     FLIPT_AUTHENTICATION_METHODS_GITHUB_REDIRECT_ADDRESS: https://feature-flags-temp-dev.hmpps.service.justice.gov.uk
 
 generic-prometheus-alerts:
+  alertSeverity: NON_PROD_ALERTS_SEVERITY_LABEL
   businessHoursOnly: true

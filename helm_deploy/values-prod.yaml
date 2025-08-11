@@ -5,3 +5,6 @@ generic-service:
   env:
     FLIPT_AUTHENTICATION_SESSION_DOMAIN: feature-flags-temp.hmpps.service.justice.gov.uk
     FLIPT_AUTHENTICATION_METHODS_GITHUB_REDIRECT_ADDRESS: https://feature-flags-temp.hmpps.service.justice.gov.uk
+
+generic-prometheus-alerts:
+  alertSeverity: PROD_ALERTS_SEVERITY_LABEL

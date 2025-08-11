@@ -26,6 +26,7 @@ generic-service:
   startupProbe:
     httpGet:
       path: /health
+      port: http
 
   ingress:
     tlsSecretName: feature-flags-cert

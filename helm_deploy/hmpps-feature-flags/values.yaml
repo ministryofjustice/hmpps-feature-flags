@@ -4,7 +4,26 @@ generic-service:
 
   image:
     repository: ghcr.io/ministryofjustice/hmpps-feature-flags
+    tag: app_version # override at deployment time
     port: 8080
+
+  ingress:
+    enabled: true
+    host: app-hostname.local # override per environment
+    tlsSecretName: hmpps-feature-flags-cert
+
+  readinessProbe:
+    httpGet:
+      path: /health
+
+  livenessProbe:
+    httpGet:
+      path: /health
+
+  startupProbe:
+    httpGet:
+      path: /health
+      port: http
 
   resources:
     requests:
@@ -16,20 +35,6 @@ generic-service:
 
   securityContext:
     runAsUser: 100 # flipt
-
-  readinessProbe:
-    httpGet:
-      path: /health
-  livenessProbe:
-    httpGet:
-      path: /health
-  startupProbe:
-    httpGet:
-      path: /health
-      port: http
-
-  ingress:
-    tlsSecretName: feature-flags-cert
 
   env:
     FLIPT_AUTHENTICATION_REQUIRED: 'true'

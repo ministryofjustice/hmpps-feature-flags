@@ -1,4 +1,6 @@
 generic-service:
+  replicaCount: 2
+
   ingress:
     host: feature-flags-temp-dev.hmpps.service.justice.gov.uk
 

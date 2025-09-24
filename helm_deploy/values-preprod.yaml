@@ -1,6 +1,6 @@
 generic-service:
   ingress:
-    host: feature-flags-temp-preprod.hmpps.service.justice.gov.uk
+    host: feature-toggles-preprod.hmpps.service.justice.gov.uk
 
   scheduledDowntime:
     # Startup slightly earlier and shutdown slightly later than other services
@@ -9,8 +9,8 @@ generic-service:
     enabled: true
 
   env:
-    FLIPT_AUTHENTICATION_SESSION_DOMAIN: feature-flags-temp-preprod.hmpps.service.justice.gov.uk
-    FLIPT_AUTHENTICATION_METHODS_GITHUB_REDIRECT_ADDRESS: https://feature-flags-temp-preprod.hmpps.service.justice.gov.uk
+    FLIPT_AUTHENTICATION_SESSION_DOMAIN: feature-toggles-preprod.hmpps.service.justice.gov.uk
+    FLIPT_AUTHENTICATION_METHODS_GITHUB_REDIRECT_ADDRESS: https://feature-toggles-preprod.hmpps.service.justice.gov.uk
 
 generic-prometheus-alerts:
   alertSeverity: NON_PROD_ALERTS_SEVERITY_LABEL

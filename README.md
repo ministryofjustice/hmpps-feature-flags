@@ -32,6 +32,6 @@ When using the flipt web interface, ensure you have the correct namespace select
 
 ### Feature flag evaluation
 
-There are Typescript and Kotlin clients currently under devlopment for the hmpps-typescript and hmpps-kotlin libraries. 
-In the meantime it is advised to use the rest api to interact with the toggle service
+It is advised to use the rest api to interact with the toggle service. There is an SDK available on the flipt.io site,
+however many of the clients look to be moving towards deprecation
 

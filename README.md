@@ -33,6 +33,6 @@ When using the flipt web interface, ensure you have the correct namespace select
 ### Feature flag evaluation
 
 There are SDKs available on the flipt.io site,
-[flipt-client-sdks](https://github.com/flipt-io/flipt-client-sdks) Client evaluation includes caching
-[flipt-server-sdks](https://github.com/flipt-io/flipt-server-sdks) Server evaluation maybe faster
+- [flipt-client-sdks](https://github.com/flipt-io/flipt-client-sdks) Client evaluation includes caching
+- [flipt-server-sdks](https://github.com/flipt-io/flipt-server-sdks) Server evaluation maybe faster
 

@@ -32,6 +32,7 @@ When using the flipt web interface, ensure you have the correct namespace select
 
 ### Feature flag evaluation
 
-It is advised to use the rest api to interact with the toggle service. There is an SDK available on the flipt.io site,
-however many of the clients look to be moving towards deprecation
+There are SDKs available on the flipt.io site,
+[flipt-client-sdks](https://github.com/flipt-io/flipt-client-sdks) Client evaluation includes caching
+[flipt-server-sdks](https://github.com/flipt-io/flipt-server-sdks) Server evaluation maybe faster
 

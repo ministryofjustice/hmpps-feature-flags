@@ -32,7 +32,7 @@ has_correct_team if has_flipt_namespace_in_teams
 
 default allow := false
 
-allow if "hmpps-feature-flag-admins" in teams
+# allow if "hmpps-feature-flag-admins" in teams
 
 allow if {
 	policy_input.request.resource == "namespace"

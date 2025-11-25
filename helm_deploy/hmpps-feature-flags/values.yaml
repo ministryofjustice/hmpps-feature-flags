@@ -47,11 +47,11 @@ generic-service:
     FLIPT_AUTHORIZATION_LOCAL_POLICY_PATH: /mnt/opa_authorisations/namespace.rego
 
   volumeMounts:
-    - name: opa_authorisations
+    - name: opa-authorisations
       mountPath: /mnt/opa_authorisations
       readOnly: true
   volumes:
-    - name: opa_authorisations
+    - name: opa-authorisations
       configMap:
         name: authorisation-policies
 

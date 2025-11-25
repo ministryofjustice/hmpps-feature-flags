@@ -3,19 +3,8 @@ package flipt.authz.v1
 
 import rego.v1
 
-# This is here just as a legacy mapping for existing namespaces that dont map onto teams.
-# People should create Flipt namespaces that map a team they're part of, which is what
-# has_flipt_namespace_in_teams does
-allowed_teams := {
-	"ProbationInCourt": ["hmpps-probation-in-court"],
-	"ManageAWorkforce": ["manage-a-workforce"],
-	"community-accomodation": ["hmpps-community-accommodation"],
-	"probation-integration": ["probation-integration"],
-	"manage-people-on-probation": ["hmpps-manage-people-on-probation"],
-	"assess-risks-needs": ["hmpps-assess-risks-and-needs"],
-	"consider-a-recall": ["making-recall-decision"],
-	"hmpps-digital-prison-reporting-mi": ["hmpps-digital-prison-reporting"],
-}
+# Teams configuration loaded from teams.json via data.teams
+allowed_teams := data.teams.allowed_teams
 
 policy_input := input
 

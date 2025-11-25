@@ -7,3 +7,5 @@ metadata:
 data:
   namespace.rego: |
 {{ .Files.Get "authorisation_policies/namespace.rego" | nindent 4 }}
+  teams.json: |
+{{ .Files.Get "data/teams.json" | nindent 4 }}

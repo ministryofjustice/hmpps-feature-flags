@@ -23,16 +23,28 @@ permissions:
 
 jobs:
   helm_lint:
-    name: helm lint
-    uses: ministryofjustice/hmpps-github-actions/.github/workflows/test_helm_lint.yml@v2 # WORKFLOW_VERSION
-    secrets: inherit
-    with:
-      environment: ${{ inputs.environment }}
+    name: Helm lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install hcl2json
+        run: brew install hcl2json
+
+      - name: Convert teams HCL to JSON and copy to Helm chart
+        run: |
+          mkdir -p helm_deploy/hmpps-feature-flags/data
+          hcl2json teams-${{ inputs.environment }}.tf > helm_deploy/hmpps-feature-flags/data/teams.json
+      - uses: azure/setup-helm@v4
+      - name: Helm lint
+        run: |
+          helm dependency build helm_deploy/hmpps-feature-flags
+          helm lint helm_deploy/hmpps-feature-flags -f helm_deploy/values-${{ inputs.environment }}.yaml
+
   deploy_env:
     name: Deploy to environment
     needs:
       - helm_lint
-    uses: ministryofjustice/hmpps-github-actions/.github/workflows/deploy_env.yml@v2 # WORKFLOW_VERSION
+    uses: ./.github/workflows/deploy_env.yml
     secrets: inherit
     with:
       environment: ${{ inputs.environment }}

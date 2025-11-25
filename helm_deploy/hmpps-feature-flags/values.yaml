@@ -37,12 +37,23 @@ generic-service:
     runAsUser: 100 # flipt
 
   env:
-    FLIPT_AUTHENTICATION_REQUIRED: 'true'
-    FLIPT_AUTHENTICATION_SESSION_SECURE: 'true'
-    FLIPT_AUTHENTICATION_METHODS_TOKEN_ENABLED: 'true'
-    FLIPT_AUTHENTICATION_METHODS_GITHUB_ENABLED: 'true'
-    FLIPT_AUTHENTICATION_METHODS_GITHUB_ALLOWED_ORGANISATIONS: ministryofjustice
-    FLIPT_META_TELEMETRY_ENABLED: 'false'
+    FLIPT_AUTHENTICATION_REQUIRED: "true"
+    FLIPT_AUTHENTICATION_SESSION_SECURE: "true"
+    FLIPT_AUTHENTICATION_METHODS_TOKEN_ENABLED: "true"
+    FLIPT_AUTHENTICATION_METHODS_GITHUB_ENABLED: "true"
+    FLIPT_META_TELEMETRY_ENABLED: "false"
+    FLIPT_AUTHORIZATION_REQUIRED: "true"
+    FLIPT_AUTHORIZATION_BACKEND: "local"
+    FLIPT_AUTHORIZATION_LOCAL_POLICY_PATH: /mnt/opa_authorisations/namespace.rego
+
+  volumeMounts:
+    - name: opa_authorisations
+      mountPath: /mnt/opa_authorisations
+      readOnly: true
+  volumes:
+    - name: opa_authorisations
+      configMap:
+        name: authorisation-policies
 
   namespace_secrets:
     flipt-bootstrap-token:

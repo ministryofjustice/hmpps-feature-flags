@@ -5,5 +5,5 @@ metadata:
   labels:
     app.kubernetes.io/name: hmpps-feature-flags
 data:
-  namespace.rego: |-
-    {{ .Files.Get "authorisation_policies/namespace.rego" }}
+  namespace.rego: |
+{{ .Files.Get "authorisation_policies/namespace.rego" | nindent 4 }}

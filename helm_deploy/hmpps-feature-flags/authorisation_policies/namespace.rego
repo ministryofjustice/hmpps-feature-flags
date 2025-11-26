@@ -22,6 +22,8 @@ policy_input := input
 org_teams := json.unmarshal(policy_input.authentication.metadata["io.flipt.auth.github.teams"])
 teams := org_teams.ministryofjustice
 
+token_namespace := policy_input.authentication.metadata["io.flipt.auth.token.namespace"]
+
 in_explicitly_allowed_teams if {
 	some team in allowed_teams[policy_input.request.namespace]
 	team in teams
@@ -35,7 +37,9 @@ has_correct_team if has_flipt_namespace_in_teams
 
 default allow := false
 
-allow if "hmpps-feature-flag-admins" in teams
+# allow if "hmpps-feature-flag-admins" in teams
+
+allow if token_namespace == policy_input.request.namespace
 
 allow if {
 	policy_input.request.resource == "namespace"

@@ -39,7 +39,16 @@ default allow := false
 
 allow if "hmpps-feature-flag-admins" in teams
 
-allow if token_namespace == policy_input.request.namespace
+allow if {
+	token_namespace == policy_input.request.namespace
+	policy_input.request.resource != "namespace"
+}
+
+allow if {
+	token_namespace == policy_input.request.namespace
+	policy_input.request.resource == "namespace"
+	policy_input.request.action in ["read", "update", "create"]
+}
 
 allow if {
 	policy_input.request.resource == "namespace"

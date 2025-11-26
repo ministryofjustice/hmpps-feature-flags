@@ -37,6 +37,8 @@ has_correct_team if has_flipt_namespace_in_teams
 
 default allow := false
 
+# METADATA
+# entrypoint: true
 allow if "hmpps-feature-flag-admins" in teams
 
 allow if {

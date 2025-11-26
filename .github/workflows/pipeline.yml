@@ -54,7 +54,7 @@ jobs:
         run: |
           curl -L -o regal "https://github.com/open-policy-agent/regal/releases/latest/download/regal_Linux_x86_64"
           chmod +x regal
-          ./regal regal lint .
+          ./regal lint .
 
   build:
     name: Build docker image from hmpps-github-actions

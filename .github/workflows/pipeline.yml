@@ -3,13 +3,13 @@ name: Pipeline [test -> build -> deploy]
 on:
   push:
     branches:
-      - '**'
+      - "**"
   workflow_dispatch:
     inputs:
       additional_docker_tag:
         description: Additional docker tag that can be used to specify stable or testing tags
         required: false
-        default: ''
+        default: ""
         type: string
       push:
         description: Push docker image to registry flag
@@ -33,19 +33,36 @@ jobs:
   helm_lint:
     strategy:
       matrix:
-        environments: ['dev', 'preprod', 'prod']
+        environments: ["dev", "preprod", "prod"]
     name: helm lint
     uses: ministryofjustice/hmpps-github-actions/.github/workflows/test_helm_lint.yml@v2 # WORKFLOW_VERSION
     secrets: inherit
     with:
       environment: ${{ matrix.environments }}
+  opa_test:
+    runs-on: ubuntu-latest
+    steps:
+      - shell: bash
+        run: |
+          curl -L -o opa https://openpolicyagent.org/downloads/latest/opa_linux_amd64
+          chmod 755 ./opa
+          ./opa test . -v
+  opa_lint:
+    runs-on: ubuntu-latest
+    steps:
+      - shell: bash
+        run: |
+          curl -L -o regal "https://github.com/open-policy-agent/regal/releases/latest/download/regal_Linux_x86_64"
+          chmod +x regal
+          ./regal lint .
+
   build:
     name: Build docker image from hmpps-github-actions
     if: github.ref == 'refs/heads/main'
     uses: ministryofjustice/hmpps-github-actions/.github/workflows/docker_build.yml@v2 # WORKFLOW_VERSION
     with:
-      docker_registry: 'ghcr.io'
-      registry_org: 'ministryofjustice'
+      docker_registry: "ghcr.io"
+      registry_org: "ministryofjustice"
       additional_docker_tag: ${{ inputs.additional_docker_tag }}
       push: ${{ inputs.push || true }}
       docker_multiplatform: false
@@ -54,11 +71,13 @@ jobs:
     needs:
       - build
       - helm_lint
+      - opa_lint
+      - opa_test
     uses: ministryofjustice/hmpps-github-actions/.github/workflows/deploy_env.yml@v2 # WORKFLOW_VERSION
     secrets: inherit
     with:
-      environment: 'dev'
-      app_version: '${{ needs.build.outputs.app_version }}'
+      environment: "dev"
+      app_version: "${{ needs.build.outputs.app_version }}"
   deploy_preprod:
     name: Deploy to pre-production environment
     needs:
@@ -67,8 +86,8 @@ jobs:
     uses: ministryofjustice/hmpps-github-actions/.github/workflows/deploy_env.yml@v2 # WORKFLOW_VERSION
     secrets: inherit
     with:
-      environment: 'preprod'
-      app_version: '${{ needs.build.outputs.app_version }}'
+      environment: "preprod"
+      app_version: "${{ needs.build.outputs.app_version }}"
   deploy_prod:
     name: Deploy to production environment
     needs:
@@ -77,5 +96,5 @@ jobs:
     uses: ministryofjustice/hmpps-github-actions/.github/workflows/deploy_env.yml@v2 # WORKFLOW_VERSION
     secrets: inherit
     with:
-      environment: 'prod'
-      app_version: '${{ needs.build.outputs.app_version }}'
+      environment: "prod"
+      app_version: "${{ needs.build.outputs.app_version }}"

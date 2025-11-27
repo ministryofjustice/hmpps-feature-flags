@@ -12,14 +12,16 @@ Documentation from flipt.io [docs](https://docs.flipt.io/introduction)
 ## Pre-requisites for usage at HMPPS
 
 - github account member of MOJ org
+- member of the github team linked to the Flipt namespace you need access to
 
 ### Getting started
 
 When onboarding your team, ensure that you either have a namespace for the team or you will need to create one.
-The namespace should take the form of your team name, eg. 'ManageAWorkforce'
+The namespace should take the form of your github team name, eg. 'manage-a-workforce'
 The namespace should be created/exist in all environments
 All the artifacts you create for your team's use should be stored under this namespace.
 You should next generate an api-token, for your namespace, in each of the environments (this will be used for flag evaluation)
+Only API tokens scoped to an individual namespace will be authenticated to work.
 It is suggested that the secrets are named as below for consistency
 
 `kubectl create secret generic pic-flipt \
@@ -29,6 +31,11 @@ It is suggested that the secrets are named as below for consistency
 
 With the namespace created, you are good to create your artifacts (flags, segments etc)
 When using the flipt web interface, ensure you have the correct namespace selected (top left corner)
+
+### Authentication
+GitHub SSO and API token auth are both supported. You are able to do CRUD operations on everything within namespaces you have access to, and CRU (minus delete) on namespaces you have access to. Namespaces you have access to are limited to ones that exactly match github teams you are part of. There is a special mapping in the [policy file](./helm_deploy/hmpps-feature-flags/authorisation_policies/namespace.rego) for legacy purposes, but you should not rely on this going forward.
+
+API token auth is secured via the namespace associated with the token, and within that namespace, the token can do anything - there are no fine grained permissions on tokens. If needed, it would be possible to write fine-grained permissions via Rego using token names, but that would be very maintenance-heavy.
 
 ### Feature flag evaluation
 

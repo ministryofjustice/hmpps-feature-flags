@@ -14,7 +14,6 @@ allowed_teams := {
 	"manage-people-on-probation": ["hmpps-manage-people-on-probation"],
 	"assess-risks-needs": ["hmpps-assess-risks-and-needs"],
 	"consider-a-recall": ["making-recall-decision"],
-	"hmpps-digital-prison-reporting-mi": ["hmpps-digital-prison-reporting"],
 }
 
 policy_input := input

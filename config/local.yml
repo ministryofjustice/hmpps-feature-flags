@@ -1,0 +1,20 @@
+version: "2.0"
+
+authentication:
+  required: false
+
+authorization:
+  required: false
+
+storage:
+  main:
+    backend:
+      type: local
+      path: "/workspace"
+
+environments:
+  dev:
+    name: "Development"
+    storage: "main"
+    default: true
+    directory: "flags/dev"

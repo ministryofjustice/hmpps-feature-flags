@@ -1,0 +1,37 @@
+namespace:
+  key: community-accommodation
+  name: community-accommodation
+  description: Community Accommodation Services (CAS)
+
+flags:
+- key: allow-sufficient-information-request-without-confirmation
+  name: allow-sufficient-information-request-without-confirmation
+  type: BOOLEAN_FLAG_TYPE
+  description: 'AP: Allows users to request more information on an application without
+    seeing the confirmation page in Assess'
+  enabled: true
+  
+- key: cas1-provide-offline-application-events-in-personal-timeline
+  name: cas1-provide-offline-application-events-in-personal-timeline
+  type: BOOLEAN_FLAG_TYPE
+  enabled: true
+
+- key: my-flag
+  name: my-flag
+  type: BOOLEAN_FLAG_TYPE
+  enabled: false
+
+- key: show-both-arrival-dates
+  name: show-both-arrival-dates
+  type: BOOLEAN_FLAG_TYPE
+  enabled: true
+
+- key: show-search-by-CRN-timeline-navigation
+  name: show search by CRN timeline-navigation
+  type: BOOLEAN_FLAG_TYPE
+  enabled: true
+
+- key: test-flag
+  name: test-flag
+  type: BOOLEAN_FLAG_TYPE
+  enabled: true

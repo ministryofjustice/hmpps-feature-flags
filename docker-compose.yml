@@ -1,0 +1,12 @@
+services:
+  flipt:
+    image: ghcr.io/flipt-io/flipt:v2.5.0
+    command: ["/flipt", "server"]
+    user: root
+    ports:
+      - "9090:8080"
+    volumes:
+      - ./:/workspace
+      - ./config/local.yml:/etc/flipt/config/default.yml:ro
+    environment:
+      - FLIPT_LOG_LEVEL=debug

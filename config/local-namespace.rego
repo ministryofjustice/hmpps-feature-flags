@@ -3,9 +3,17 @@ package flipt.authz.v2
 
 import rego.v1
 
-# This is here just as a legacy mapping for existing namespaces that dont map onto teams.
-# People should create Flipt namespaces that map a team they're part of, which is what
-# has_flipt_namespace_in_teams does
+# Local auth metadata shim:
+# - Production metadata keys (io.flipt.*) are emitted by Flipt auth integrations.
+# - Local static token metadata uses simple keys to avoid dot-key parsing issues.
+auth_metadata := object.get(input.authentication, "metadata", {})
+
+teams_json := object.get(auth_metadata, "io.flipt.auth.github.teams", object.get(auth_metadata, "github_teams", "{\"ministryofjustice\":[]}"))
+org_teams := json.unmarshal(teams_json)
+teams := object.get(org_teams, "ministryofjustice", [])
+
+token_namespace := object.get(auth_metadata, "io.flipt.auth.token.namespace", object.get(auth_metadata, "token_namespace", ""))
+
 allowed_teams := {
 	"ProbationInCourt": ["hmpps-probation-in-court"],
 	"ManageAWorkforce": ["manage-a-workforce"],
@@ -16,33 +24,21 @@ allowed_teams := {
 	"consider-a-recall": ["making-recall-decision"],
 }
 
-policy_input := input
-
-org_teams := json.unmarshal(policy_input.authentication.metadata["io.flipt.auth.github.teams"])
-teams := org_teams.ministryofjustice
-
-token_namespace := policy_input.authentication.metadata["io.flipt.auth.token.namespace"]
-
 in_explicitly_allowed_teams if {
-	some team in allowed_teams[policy_input.request.namespace]
+	some team in allowed_teams[input.request.namespace]
 	team in teams
 }
 
-has_flipt_namespace_in_teams if policy_input.request.namespace in teams
+has_flipt_namespace_in_teams if input.request.namespace in teams
 
 has_correct_team if in_explicitly_allowed_teams
-
 has_correct_team if has_flipt_namespace_in_teams
 
 default allow := false
 
-# Prod guardrail:
-# - Production is read-only through Flipt regardless of auth method.
-# - Match both short key (`prod`) and display key (`Production`).
-# - Mutations must go through Git PRs to `flags/prod/**`.
-is_prod_environment if lower(policy_input.request.environment) in {"prod", "production"}
+is_prod_environment if lower(input.request.environment) in {"prod", "production"}
 
-is_mutating_action if policy_input.request.action in {"create", "update", "delete"}
+is_mutating_action if input.request.action in {"create", "update", "delete"}
 
 is_prod_mutation if {
 	is_prod_environment
@@ -57,15 +53,15 @@ allow if {
 }
 
 allow if {
-	policy_input.request.scope == "namespace"
-	token_namespace == policy_input.request.namespace
+	input.request.scope == "namespace"
+	token_namespace == input.request.namespace
 	not is_prod_mutation
 }
 
 allow if {
-	policy_input.request.scope == "namespace"
+	input.request.scope == "namespace"
 	has_correct_team
-	policy_input.request.action != "delete"
+	input.request.action != "delete"
 	not is_prod_mutation
 }
 
@@ -74,17 +70,11 @@ viewable_namespaces(_env) := ["*"] if {
 }
 
 viewable_namespaces(_env) := namespaces if {
-	# regal ignore: external-reference
 	not "hmpps-feature-flag-admins" in teams
-
-	# regal ignore: external-reference
 	direct_teams := [t | some t in teams]
 	legacy_namespaces := [ns |
-		# regal ignore: external-reference
 		some ns, mapped_teams in allowed_teams
 		some t in mapped_teams
-
-		# regal ignore: external-reference
 		t in teams
 	]
 	namespaces := array.concat(direct_teams, legacy_namespaces)

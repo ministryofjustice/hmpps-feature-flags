@@ -1,0 +1,26 @@
+namespace:
+  key: consider-a-recall
+  name: consider-a-recall
+  description: Consider a Recall (CaR)
+
+flags:
+- key: PPUD-Oct-2025-Rollout
+  name: PPUD Oct 2025 Rollout
+  type: BOOLEAN_FLAG_TYPE
+  description: For aligning with PPUD's October 2025 rollout of new changes
+  enabled: false
+  rollouts:
+  - segment:
+      key: PPUD-Oct-2025-rollout
+      value: true
+
+segments:
+- key: PPUD-Oct-2025-rollout
+  name: PPUD Oct 2025 rollout
+  description: For aligning with PPUD's October 2025 rollout of new changes
+  constraints:
+  - type: DATETIME_COMPARISON_TYPE
+    property: currentDateTime
+    operator: gte
+    value: '2025-10-31T00:00:00Z'
+  match_type: ALL_MATCH_TYPE

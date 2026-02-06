@@ -1,72 +1,123 @@
 # regal ignore: directory-package-mismatch
-package flipt.authz.v1_test
+package flipt.authz.v2_test
 
-import data.flipt.authz.v1 as flipt
+import data.flipt.authz.v2 as flipt
 import rego.v1
 
-test_basics_allowed[resource_type][action] if {
-	some resource_type in ["segment", "authentication", "flag"]
-	some action in ["create", "update", "delete", "read"]
+github_input(namespace, action, teams_json) := github_input_in_env(namespace, action, teams_json, "dev")
 
-	# regal ignore: line-length
-	flipt.allow with input as {"authentication": {"metadata": {"io.flipt.auth.github.organizations": "[\"ministryofjustice\"]", "io.flipt.auth.github.teams": "{\"ministryofjustice\":[\"a-team\",\"another-team\"]}"}}, "request": {"namespace": "a-team", "resource": resource_type, "subject": resource_type, "action": action, "status": "success"}}
+github_input_in_env(namespace, action, teams_json, environment) := {
+	"authentication": {"metadata": {"io.flipt.auth.github.teams": teams_json}},
+	"request": {"scope": "namespace", "environment": environment, "namespace": namespace, "action": action},
 }
 
-test_basics_not_allowed[resource_type][action] if {
-	some resource_type in ["segment", "flag", "namespace"]
-	some action in ["create", "update", "delete", "read"]
+token_input(namespace, action, token_namespace) := token_input_in_env(namespace, action, token_namespace, "dev")
 
-	# regal ignore: line-length
-	not flipt.allow with input as {"authentication": {"metadata": {"io.flipt.auth.github.organizations": "[\"ministryofjustice\"]", "io.flipt.auth.github.teams": "{\"ministryofjustice\":[\"a-team\",\"another-team\"]}"}}, "request": {"namespace": "random-namespace", "resource": resource_type, "subject": resource_type, "action": action, "status": "success"}}
+token_input_in_env(namespace, action, token_namespace, environment) := {
+	"authentication": {"metadata": {"io.flipt.auth.token.namespace": token_namespace}},
+	"request": {"scope": "namespace", "environment": environment, "namespace": namespace, "action": action},
 }
 
-test_basics_allowed_using_allowed_teams_map[resource_type][action] if {
-	some resource_type in ["segment", "authentication", "flag"]
-	some action in ["create", "update", "delete", "read"]
-
-	# regal ignore: line-length
-	flipt.allow with input as {"authentication": {"metadata": {"io.flipt.auth.github.organizations": "[\"ministryofjustice\"]", "io.flipt.auth.github.teams": "{\"ministryofjustice\":[\"hmpps-probation-in-court\"]}"}}, "request": {"namespace": "ProbationInCourt", "resource": resource_type, "subject": resource_type, "action": action, "status": "success"}}
-}
-
-test_namespaces_allowed_using_allowed_teams_map[action] if {
+test_team_namespace_allowed[action] if {
 	some action in ["create", "update", "read"]
 
 	# regal ignore: line-length
-	flipt.allow with input as {"authentication": {"metadata": {"io.flipt.auth.github.organizations": "[\"ministryofjustice\"]", "io.flipt.auth.github.teams": "{\"ministryofjustice\":[\"hmpps-probation-in-court\"]}"}}, "request": {"namespace": "ProbationInCourt", "resource": "namespace", "subject": "namespace", "action": action, "status": "success"}}
+	flipt.allow with input as github_input("a-team", action, "{\"ministryofjustice\":[\"a-team\",\"another-team\"]}")
 }
 
-test_basics_allowed_basic_token[resource_type][action] if {
-	some resource_type in ["segment", "authentication", "flag"]
+test_team_namespace_delete_not_allowed if {
+	# regal ignore: line-length
+	not flipt.allow with input as github_input("a-team", "delete", "{\"ministryofjustice\":[\"a-team\",\"another-team\"]}")
+}
+
+test_team_namespace_not_allowed[resource_action] if {
+	some resource_action in ["create", "update", "delete", "read"]
+	some action in ["create", "update", "delete", "read"]
+	action == resource_action
+
+	# regal ignore: line-length
+	not flipt.allow with input as github_input("random-namespace", action, "{\"ministryofjustice\":[\"a-team\",\"another-team\"]}")
+}
+
+test_legacy_mapping_allowed[action] if {
+	some action in ["create", "update", "read"]
+
+	# regal ignore: line-length
+	flipt.allow with input as github_input("ProbationInCourt", action, "{\"ministryofjustice\":[\"hmpps-probation-in-court\"]}")
+}
+
+test_legacy_mapping_delete_not_allowed if {
+	# regal ignore: line-length
+	not flipt.allow with input as github_input("ProbationInCourt", "delete", "{\"ministryofjustice\":[\"hmpps-probation-in-court\"]}")
+}
+
+test_token_namespace_allowed[action] if {
 	some action in ["create", "update", "delete", "read"]
 
 	# regal ignore: line-length
-	flipt.allow with input as {"authentication": {"metadata": {"io.flipt.auth.token.namespace": "a-team"}}, "request": {"namespace": "a-team", "resource": resource_type, "subject": resource_type, "action": action, "status": "success"}}
+	flipt.allow with input as token_input("a-team", action, "a-team")
 }
 
-test_namespaces_allowed_basic_token[action] if {
-	some action in ["create", "update", "read"]
+test_token_namespace_not_allowed[action] if {
+	some action in ["create", "update", "delete", "read"]
 
 	# regal ignore: line-length
-	flipt.allow with input as {"authentication": {"metadata": {"io.flipt.auth.token.namespace": "ProbationInCourt"}}, "request": {"namespace": "ProbationInCourt", "resource": "namespace", "subject": "namespace", "action": action, "status": "success"}}
+	not flipt.allow with input as token_input("a-team", action, "another-team")
 }
 
-test_namespaces_not_allowed_basic_token[action] if {
-	action := "delete"
+test_admin_allowed[action] if {
+	some action in ["create", "update", "delete", "read"]
 
 	# regal ignore: line-length
-	not flipt.allow with input as {"authentication": {"metadata": {"io.flipt.auth.token.namespace": "ProbationInCourt"}}, "request": {"namespace": "ProbationInCourt", "resource": "namespace", "subject": "namespace", "action": action, "status": "success"}}
+	flipt.allow with input as github_input("random-namespace", action, "{\"ministryofjustice\":[\"hmpps-feature-flag-admins\"]}")
 }
 
-test_namespaces_allowed[action] if {
-	some action in ["create", "update", "read"]
-
+test_prod_team_namespace_read_allowed if {
 	# regal ignore: line-length
-	flipt.allow with input as {"authentication": {"metadata": {"io.flipt.auth.github.organizations": "[\"ministryofjustice\"]", "io.flipt.auth.github.teams": "{\"ministryofjustice\":[\"a-team\",\"another-team\"]}"}}, "request": {"namespace": "a-team", "resource": "namespace", "subject": "namespace", "action": action, "status": "success"}}
+	flipt.allow with input as github_input_in_env("a-team", "read", "{\"ministryofjustice\":[\"a-team\",\"another-team\"]}", "prod")
 }
 
-test_namespaces_not_allowed[action] if {
-	action := "delete"
-
+test_prod_team_namespace_update_not_allowed if {
 	# regal ignore: line-length
-	not flipt.allow with input as {"authentication": {"metadata": {"io.flipt.auth.github.organizations": "[\"ministryofjustice\"]", "io.flipt.auth.github.teams": "{\"ministryofjustice\":[\"a-team\",\"another-team\"]}"}}, "request": {"namespace": "a-team", "resource": "namespace", "subject": "namespace", "action": action, "status": "success"}}
+	not flipt.allow with input as github_input_in_env("a-team", "update", "{\"ministryofjustice\":[\"a-team\",\"another-team\"]}", "prod")
+}
+
+test_prod_token_namespace_read_allowed if {
+	flipt.allow with input as token_input_in_env("a-team", "read", "a-team", "prod")
+}
+
+test_prod_token_namespace_update_not_allowed if {
+	not flipt.allow with input as token_input_in_env("a-team", "update", "a-team", "prod")
+}
+
+test_prod_admin_read_allowed if {
+	# regal ignore: line-length
+	flipt.allow with input as github_input_in_env("random-namespace", "read", "{\"ministryofjustice\":[\"hmpps-feature-flag-admins\"]}", "prod")
+}
+
+test_prod_admin_update_not_allowed if {
+	# regal ignore: line-length
+	not flipt.allow with input as github_input_in_env("random-namespace", "update", "{\"ministryofjustice\":[\"hmpps-feature-flag-admins\"]}", "prod")
+}
+
+test_production_team_namespace_read_allowed if {
+	# regal ignore: line-length
+	flipt.allow with input as github_input_in_env("a-team", "read", "{\"ministryofjustice\":[\"a-team\",\"another-team\"]}", "Production")
+}
+
+test_production_team_namespace_update_not_allowed if {
+	# regal ignore: line-length
+	not flipt.allow with input as github_input_in_env("a-team", "update", "{\"ministryofjustice\":[\"a-team\",\"another-team\"]}", "Production")
+}
+
+test_viewable_namespaces_admin if {
+	# regal ignore: line-length
+	flipt.viewable_namespaces("dev") == ["*"] with input as github_input("ignored", "read", "{\"ministryofjustice\":[\"hmpps-feature-flag-admins\"]}")
+}
+
+test_viewable_namespaces_team_includes_direct_and_legacy if {
+	# regal ignore: line-length
+	namespaces := flipt.viewable_namespaces("dev") with input as github_input("ignored", "read", "{\"ministryofjustice\":[\"a-team\",\"hmpps-probation-in-court\"]}")
+	"a-team" in namespaces
+	"ProbationInCourt" in namespaces
 }

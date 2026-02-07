@@ -45,11 +45,10 @@ default allow := false
 
 # METADATA
 # entrypoint: true
-# TODO: Re-enable admin team rule
-# allow if {
-# 	"hmpps-feature-flag-admins" in teams
-# 	not is_prod_mutation
-# }
+allow if {
+	"hmpps-feature-flag-admins" in teams
+	not is_prod_mutation
+}
 
 allow if {
 	input.request.scope == "namespace"
@@ -64,7 +63,14 @@ allow if {
 	not is_prod_mutation
 }
 
+viewable_namespaces(_env) := ["*"] if {
+	"hmpps-feature-flag-admins" in teams
+}
+
 viewable_namespaces(_env) := namespaces if {
+	# regal ignore: external-reference
+	not "hmpps-feature-flag-admins" in teams
+
 	# regal ignore: external-reference
 	direct_teams := [t | some t in teams]
 	legacy_namespaces := [ns |

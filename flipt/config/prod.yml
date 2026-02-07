@@ -29,10 +29,10 @@ authorization:
   local:
     policy:
       path: "/etc/flipt/policies/namespace.rego"
-      poll_interval: "30s"
+      poll_interval: "15s"
     data:
       path: "/var/opt/flipt/acl-data.json"
-      poll_interval: "30s"
+      poll_interval: "15s"
 
 credentials:
   github:

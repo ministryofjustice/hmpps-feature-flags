@@ -32,8 +32,7 @@ opa-lint: ## Runs the Regal linter on OPA policies.
 	regal lint .
 
 generate-acl: ## Generates ACL data from access.yml files.
-	bash flipt/scripts/generate-acl-data.sh ./flags /tmp/acl-data.json
-	@cat /tmp/acl-data.json
+	docker compose ${COMPOSE_FILES} run --rm --entrypoint sh ${SERVICE_NAME} -c 'generate-acl-data /workspace/flags /tmp/acl-data.json && cat /tmp/acl-data.json'
 
 clean: ## Stops and removes all project containers and images.
 	docker compose ${COMPOSE_FILES} down

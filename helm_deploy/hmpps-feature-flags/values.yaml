@@ -37,36 +37,12 @@ generic-service:
     runAsUser: 100 # flipt
 
   env:
-    FLIPT_AUTHENTICATION_REQUIRED: true
-    FLIPT_AUTHENTICATION_SESSION_SECURE: true
-    FLIPT_AUTHENTICATION_METHODS_TOKEN_ENABLED: true
-    FLIPT_AUTHENTICATION_METHODS_GITHUB_ENABLED: true
-    FLIPT_AUTHENTICATION_METHODS_GITHUB_SCOPES: user:email read:user read:org
-    FLIPT_META_TELEMETRY_ENABLED: false
-    FLIPT_AUTHORIZATION_REQUIRED: true
-    FLIPT_AUTHORIZATION_BACKEND: local
-    FLIPT_AUTHORIZATION_LOCAL_POLICY_PATH: /mnt/opa_authorisations/namespace.rego
     FLIPT_LOG_LEVEL: debug
-
-  volumeMounts:
-    - name: opa-authorisations
-      mountPath: /mnt/opa_authorisations
-      readOnly: true
-    - name: flipt-config
-      mountPath: /etc/flipt/config
-      readOnly: true
-  volumes:
-    - name: opa-authorisations
-      configMap:
-        name: authorisation-policies
-    - name: flipt-config
-      configMap:
-        name: flipt-config
 
   namespace_secrets:
     flipt-github-app:
-      FLIPT_AUTHENTICATION_METHODS_GITHUB_CLIENT_ID: CLIENT_ID
-      FLIPT_AUTHENTICATION_METHODS_GITHUB_CLIENT_SECRET: CLIENT_SECRET
+      FLIPT_GITHUB_CLIENT_ID: CLIENT_ID
+      FLIPT_GITHUB_CLIENT_SECRET: CLIENT_SECRET
     flipt-git-token:
       FLIPT_GIT_ACCESS_TOKEN: TOKEN
 
@@ -80,9 +56,3 @@ generic-service:
 
 generic-prometheus-alerts:
   targetApplication: hmpps-feature-flags
-
-fliptEnvironment:
-  name: "default"
-  displayName: "Default"
-  directory: "flags/default"
-  fetchPolicy: "lenient"

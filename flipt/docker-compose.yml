@@ -1,17 +1,18 @@
 services:
   flipt:
-    image: ghcr.io/flipt-io/flipt:v2.5.0
-    command: ["/flipt", "server"]
+    build:
+      context: ..
+      dockerfile: flipt/Dockerfile
     user: root
     ports:
       - "8080:8080"
     volumes:
-      - ./:/workspace
+      - ../:/workspace
       - ./config/local.yml:/etc/flipt/config/default.yml:ro
-      - ./config/local-namespace.rego:/etc/flipt/policies/local-namespace.rego:ro
     environment:
+      - FLIPT_GIT_REPO_PATH=/workspace
+      - FLIPT_AUTHORIZATION_LOCAL_DATA_PATH=/var/opt/flipt/acl-data.json
       - FLIPT_LOG_LEVEL=debug
       - FLIPT_LOCAL_ADMIN_TOKEN=local-admin-token
-      - FLIPT_LOCAL_CAR_TOKEN=local-car-token
       - FLIPT_LOCAL_GITHUB_CLIENT_ID=${FLIPT_LOCAL_GITHUB_CLIENT_ID:-change-me}
       - FLIPT_LOCAL_GITHUB_CLIENT_SECRET=${FLIPT_LOCAL_GITHUB_CLIENT_SECRET:-change-me}

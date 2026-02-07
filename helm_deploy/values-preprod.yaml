@@ -9,14 +9,7 @@ generic-service:
     enabled: true
 
   env:
-    FLIPT_AUTHENTICATION_SESSION_DOMAIN: feature-toggles-preprod.hmpps.service.justice.gov.uk
-    FLIPT_AUTHENTICATION_METHODS_GITHUB_REDIRECT_ADDRESS: https://feature-toggles-preprod.hmpps.service.justice.gov.uk
-
-fliptEnvironment:
-  name: "preprod"
-  displayName: "Pre-Production"
-  directory: "flags/preprod"
-  fetchPolicy: "lenient"
+    FLIPT_CONFIG_FILE: /etc/flipt/config/preprod.yml
 
 generic-prometheus-alerts:
   alertSeverity: NON_PROD_ALERTS_SEVERITY_LABEL

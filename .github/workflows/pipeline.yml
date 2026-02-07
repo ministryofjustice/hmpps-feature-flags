@@ -49,7 +49,7 @@ jobs:
         run: |
           curl -L -o opa https://openpolicyagent.org/downloads/latest/opa_linux_amd64
           chmod 755 ./opa
-          ./opa test . -v
+          ./opa test flipt/policies/ -v
   opa_lint:
     runs-on: ubuntu-latest
     steps:
@@ -70,6 +70,7 @@ jobs:
       additional_docker_tag: ${{ inputs.additional_docker_tag }}
       push: ${{ inputs.push || true }}
       docker_multiplatform: false
+      file: flipt/Dockerfile
   deploy_dev:
     name: Deploy to the development environment
     needs:

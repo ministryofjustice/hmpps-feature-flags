@@ -16,10 +16,6 @@ authentication:
             credential: "${env:FLIPT_LOCAL_ADMIN_TOKEN}"
             metadata:
               github_teams: "{\"ministryofjustice\":[\"hmpps-feature-flag-admins\"]}"
-          local-car:
-            credential: "${env:FLIPT_LOCAL_CAR_TOKEN}"
-            metadata:
-              token_namespace: "consider-a-recall"
     github:
       enabled: true
       client_id: "${env:FLIPT_LOCAL_GITHUB_CLIENT_ID}"
@@ -36,7 +32,10 @@ authorization:
   required: true
   local:
     policy:
-      path: "/etc/flipt/policies/local-namespace.rego"
+      path: "/etc/flipt/policies/namespace.rego"
+      poll_interval: "10s"
+    data:
+      path: "/var/opt/flipt/acl-data.json"
       poll_interval: "10s"
 
 storage:
@@ -51,7 +50,3 @@ environments:
     storage: "main"
     default: true
     directory: "flags/dev"
-  prod:
-    name: "Production"
-    storage: "main"
-    directory: "flags/prod"

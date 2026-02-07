@@ -1,0 +1,58 @@
+version: "2.0"
+
+meta:
+  telemetry:
+    enabled: false
+
+authentication:
+  required: true
+  session:
+    domain: "feature-toggles-preprod.hmpps.service.justice.gov.uk"
+    secure: true
+  methods:
+    token:
+      enabled: true
+    github:
+      enabled: true
+      client_id: "${env:FLIPT_GITHUB_CLIENT_ID}"
+      client_secret: "${env:FLIPT_GITHUB_CLIENT_SECRET}"
+      redirect_address: "https://feature-toggles-preprod.hmpps.service.justice.gov.uk"
+      scopes:
+        - "user:email"
+        - "read:user"
+        - "read:org"
+      allowed_organizations:
+        - "ministryofjustice"
+
+authorization:
+  required: true
+  local:
+    policy:
+      path: "/etc/flipt/policies/namespace.rego"
+      poll_interval: "30s"
+    data:
+      path: "/var/opt/flipt/acl-data.json"
+      poll_interval: "30s"
+
+credentials:
+  github:
+    type: access_token
+    access_token: "${env:FLIPT_GIT_ACCESS_TOKEN}"
+
+storage:
+  main:
+    remote: "https://github.com/ministryofjustice/hmpps-feature-flags.git"
+    branch: "main"
+    poll_interval: "30s"
+    fetch_policy: "lenient"
+    credentials: "github"
+    backend:
+      type: local
+      path: "/var/opt/flipt/repo"
+
+environments:
+  preprod:
+    name: "Pre-Production"
+    storage: "main"
+    default: true
+    directory: "flags/preprod"

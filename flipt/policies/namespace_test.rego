@@ -44,11 +44,27 @@ test_legacy_mapping_allowed[action] if {
 
 	# regal ignore: line-length
 	flipt.allow with input as github_input("ProbationInCourt", action, "{\"ministryofjustice\":[\"hmpps-probation-in-court\"]}")
+		with data.namespace_team_access as {"ProbationInCourt": ["hmpps-probation-in-court"]} # regal ignore: unresolved-reference,line-length
 }
 
 test_legacy_mapping_delete_not_allowed if {
 	# regal ignore: line-length
 	not flipt.allow with input as github_input("ProbationInCourt", "delete", "{\"ministryofjustice\":[\"hmpps-probation-in-court\"]}")
+		with data.namespace_team_access as {"ProbationInCourt": ["hmpps-probation-in-court"]} # regal ignore: unresolved-reference,line-length
+}
+
+test_explicit_mapping_hyphenated_namespace_allowed[action] if {
+	some action in ["create", "update", "read"]
+
+	# regal ignore: line-length
+	flipt.allow with input as github_input("community-accommodation", action, "{\"ministryofjustice\":[\"hmpps-community-accommodation\"]}")
+		with data.namespace_team_access as {"community-accommodation": ["hmpps-community-accommodation"]} # regal ignore: unresolved-reference,line-length
+}
+
+test_explicit_mapping_hyphenated_namespace_delete_not_allowed if {
+	# regal ignore: line-length
+	not flipt.allow with input as github_input("community-accommodation", "delete", "{\"ministryofjustice\":[\"hmpps-community-accommodation\"]}")
+		with data.namespace_team_access as {"community-accommodation": ["hmpps-community-accommodation"]} # regal ignore: unresolved-reference,line-length
 }
 
 test_token_namespace_allowed[action] if {
@@ -118,6 +134,7 @@ test_viewable_namespaces_admin if {
 test_viewable_namespaces_team_includes_direct_and_legacy if {
 	# regal ignore: line-length
 	namespaces := flipt.viewable_namespaces("dev") with input as github_input("ignored", "read", "{\"ministryofjustice\":[\"a-team\",\"hmpps-probation-in-court\"]}")
+		with data.namespace_team_access as {"ProbationInCourt": ["hmpps-probation-in-court"]} # regal ignore: unresolved-reference,line-length
 	"a-team" in namespaces
 	"ProbationInCourt" in namespaces
 }

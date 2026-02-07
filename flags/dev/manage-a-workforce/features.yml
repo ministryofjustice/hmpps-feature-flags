@@ -1,23 +1,20 @@
 namespace:
-  key: ManageAWorkforce
-  name: ManageAWorkforce
-  description: Manage A Workforce
-
+    key: ManageAWorkforce
+    name: ManageAWorkforce
+    description: Manage A Workforce
 flags:
-- key: Gary
-  name: Gary
-  type: BOOLEAN_FLAG_TYPE
-  enabled: true
-
-- key: GaryV
-  name: GaryV
-  type: VARIANT_FLAG_TYPE
-  enabled: false
-  variants:
-  - key: GaryV
-
-- key: Reallocations
-  name: Reallocations
-  type: BOOLEAN_FLAG_TYPE
-  description: Flag for reallocations work
-  enabled: true
+    - key: Gary
+      name: Gary
+      type: BOOLEAN_FLAG_TYPE
+      enabled: true
+    - key: GaryV
+      name: GaryV
+      type: VARIANT_FLAG_TYPE
+      enabled: false
+      variants:
+        - key: GaryV
+    - key: Reallocations
+      name: Reallocations
+      type: BOOLEAN_FLAG_TYPE
+      description: Flag for reallocations work
+      enabled: true

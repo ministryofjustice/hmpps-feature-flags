@@ -1,11 +1,10 @@
 namespace:
-  key: ManageAWorkforce
-  name: ManageAWorkforce
-  description: Manage A Workforce
-
+    key: ManageAWorkforce
+    name: ManageAWorkforce
+    description: Manage A Workforce
 flags:
-- key: Reallocations
-  name: Reallocations
-  type: BOOLEAN_FLAG_TYPE
-  description: Feature flag for reallocations work
-  enabled: false
+    - key: Reallocations
+      name: Reallocations
+      type: BOOLEAN_FLAG_TYPE
+      description: Feature flag for reallocations work
+      enabled: false

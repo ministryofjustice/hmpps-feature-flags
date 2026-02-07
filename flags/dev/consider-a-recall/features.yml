@@ -1,99 +1,94 @@
 namespace:
-  key: consider-a-recall
-  name: consider-a-recall
-  description: Consider a Recall (CaR)
-
+    key: consider-a-recall
+    name: consider-a-recall
+    description: Consider a Recall (CaR)
 flags:
-- key: FlagA
-  name: FlagA
-  type: BOOLEAN_FLAG_TYPE
-  description: Testing rollouts
-  enabled: true
-  rollouts:
-  - segment:
-      key: DateRollout
-      value: true
-
-- key: PPUD-Oct-2025-Rollout
-  name: PPUD Oct 2025 Rollout
-  type: BOOLEAN_FLAG_TYPE
-  description: For aligning with PPUD's October 2025 rollout of new changes
-  enabled: false
-  rollouts:
-  - segment:
-      key: PPUD-Oct-2025-rollout
-      value: true
-
-- key: Risk-to-Self-Jan-2026
-  name: Risk to Self Jan 2026
-  type: BOOLEAN_FLAG_TYPE
-  enabled: false
-
-- key: part-a-template-version
-  name: Part A template version
-  type: VARIANT_FLAG_TYPE
-  description: Flag indicating which template version to use when generating the Part
-    A (or Preview Part A) of a recommendation
-  enabled: true
-  variants:
-  - default: true
-    key: default
-    name: Default template
-    description: The default template should be used
-  - key: ftr48
-    name: FTR 48 template
-    description: The template with the changes to support FTR 48 should be used
-  - key: riskToSelf
-    name: Risk to Self template
-    description: The template with the changes to support the Risk to Self changes
-      should be used
-  rules:
-  - segment: RIsk-to-self-template
-    distributions:
-    - variant: riskToSelf
-      rollout: 100
-  - segment: ftr48-template
-    distributions:
-    - variant: ftr48
-      rollout: 100
-
+    - key: FlagA
+      name: FlagA
+      type: BOOLEAN_FLAG_TYPE
+      description: Testing rollouts
+      enabled: true
+      rollouts:
+        - segment:
+            keys:
+                - DateRollout
+            value: true
+    - key: PPUD-Oct-2025-Rollout
+      name: PPUD Oct 2025 Rollout
+      type: BOOLEAN_FLAG_TYPE
+      description: For aligning with PPUD's October 2025 rollout of new changes
+      enabled: false
+      rollouts:
+        - segment:
+            keys:
+                - PPUD-Oct-2025-rollout
+            value: true
+    - key: Risk-to-Self-Jan-2026
+      name: Risk to Self Jan 2026
+      type: BOOLEAN_FLAG_TYPE
+      enabled: false
+    - key: part-a-template-version
+      name: Part A template version
+      type: VARIANT_FLAG_TYPE
+      description: Flag indicating which template version to use when generating the Part A (or Preview Part A) of a recommendation
+      enabled: true
+      variants:
+        - default: true
+          key: default
+          name: Default template
+          description: The default template should be used
+        - key: ftr48
+          name: FTR 48 template
+          description: The template with the changes to support FTR 48 should be used
+        - key: riskToSelf
+          name: Risk to Self template
+          description: The template with the changes to support the Risk to Self changes should be used
+      rules:
+        - segment:
+            keys:
+                - RIsk-to-self-template
+          distributions:
+            - variant: riskToSelf
+              rollout: 100
+        - segment:
+            keys:
+                - ftr48-template
+          distributions:
+            - variant: ftr48
+              rollout: 100
 segments:
-- key: DateRollout
-  name: DateRollout
-  constraints:
-  - type: DATETIME_COMPARISON_TYPE
-    property: Time
-    operator: eq
-    value: '2025-10-09T15:00:00Z'
-  match_type: ALL_MATCH_TYPE
-
-- key: PPUD-Oct-2025-rollout
-  name: PPUD Oct 2025 rollout
-  description: For aligning with PPUD's October 2025 rollout of new changes
-  constraints:
-  - type: DATETIME_COMPARISON_TYPE
-    property: currentDateTime
-    operator: gte
-    value: '2025-10-31T14:51:00Z'
-    description: 5.32pm rollout
-  match_type: ALL_MATCH_TYPE
-
-- key: RIsk-to-self-template
-  name: RIsk to Self template
-  constraints:
-  - type: DATETIME_COMPARISON_TYPE
-    property: dateTimeOfFirstDownload
-    operator: gte
-    value: '2027-02-02T08:00:00Z'
-  match_type: ALL_MATCH_TYPE
-
-- key: ftr48-template
-  name: FTR48 template
-  constraints:
-  - type: DATETIME_COMPARISON_TYPE
-    property: dateTimeOfFirstDownload
-    operator: gte
-    value: '2025-09-01T23:00:00Z'
-    description: The switchover date-time after which the FTR48 template should be
-      used
-  match_type: ALL_MATCH_TYPE
+    - key: DateRollout
+      name: DateRollout
+      constraints:
+        - type: DATETIME_COMPARISON_TYPE
+          property: Time
+          operator: eq
+          value: "2025-10-09T15:00:00Z"
+      match_type: ALL_MATCH_TYPE
+    - key: PPUD-Oct-2025-rollout
+      name: PPUD Oct 2025 rollout
+      description: For aligning with PPUD's October 2025 rollout of new changes
+      constraints:
+        - type: DATETIME_COMPARISON_TYPE
+          property: currentDateTime
+          operator: gte
+          value: "2025-10-31T14:51:00Z"
+          description: 5.32pm rollout
+      match_type: ALL_MATCH_TYPE
+    - key: RIsk-to-self-template
+      name: RIsk to Self template
+      constraints:
+        - type: DATETIME_COMPARISON_TYPE
+          property: dateTimeOfFirstDownload
+          operator: gte
+          value: "2027-02-02T08:00:00Z"
+      match_type: ALL_MATCH_TYPE
+    - key: ftr48-template
+      name: FTR48 template
+      constraints:
+        - type: DATETIME_COMPARISON_TYPE
+          property: dateTimeOfFirstDownload
+          operator: gte
+          value: "2025-09-01T23:00:00Z"
+          description: The switchover date-time after which the FTR48 template should be used
+      match_type: ALL_MATCH_TYPE

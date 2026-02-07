@@ -1,33 +1,27 @@
 namespace:
-  key: manage-people-on-probation-ui
-  name: manage-people-on-probation-ui
-  description: 'Manage people on probation '
-
+    key: manage-people-on-probation-ui
+    name: manage-people-on-probation-ui
+    description: 'Manage people on probation '
 flags:
-- key: enableDocumentTextSearch
-  name: enableDocumentTextSearch
-  type: BOOLEAN_FLAG_TYPE
-  enabled: true
-
-- key: enableAppointmentCreate
-  name: enableAppointmentCreate
-  type: BOOLEAN_FLAG_TYPE
-  enabled: true
-
-- key: enableRepeatAppointments
-  name: enableRepeatAppointments
-  type: BOOLEAN_FLAG_TYPE
-  enabled: false
-
-- key: enableManageAppointments
-  name: enableManageAppointments
-  type: BOOLEAN_FLAG_TYPE
-  description: Flag to toggle the manage appointment.
-  enabled: true
-
-- key: enableDeleteAppointmentFile
-  name: enableDeleteAppointmentFile
-  type: BOOLEAN_FLAG_TYPE
-  description: Controls the visibility of the delete file button in the multi-file
-    upload component
-  enabled: false
+    - key: enableDocumentTextSearch
+      name: enableDocumentTextSearch
+      type: BOOLEAN_FLAG_TYPE
+      enabled: true
+    - key: enableAppointmentCreate
+      name: enableAppointmentCreate
+      type: BOOLEAN_FLAG_TYPE
+      enabled: true
+    - key: enableRepeatAppointments
+      name: enableRepeatAppointments
+      type: BOOLEAN_FLAG_TYPE
+      enabled: false
+    - key: enableManageAppointments
+      name: enableManageAppointments
+      type: BOOLEAN_FLAG_TYPE
+      description: Flag to toggle the manage appointment.
+      enabled: true
+    - key: enableDeleteAppointmentFile
+      name: enableDeleteAppointmentFile
+      type: BOOLEAN_FLAG_TYPE
+      description: Controls the visibility of the delete file button in the multi-file upload component
+      enabled: false

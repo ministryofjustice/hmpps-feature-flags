@@ -48,8 +48,8 @@ flags-lint-fix: $(GO_DIR)/go.mod ## Reformats flag files to Flipt's canonical YA
 generate-acl: $(GO_DIR)/go.mod ## Generates ACL data from access.yml files.
 	@cd $(GO_DIR) && go run generate-acl-data.go ../flags acl-data.json && cat acl-data.json
 
-new-namespace: ## Interactive wizard to scaffold a new Flipt namespace.
-	@bash scripts/new-namespace.sh
+new-namespace: $(GO_DIR)/go.mod ## Interactive wizard to scaffold a new Flipt namespace.
+	@cd $(GO_DIR) && go run new-namespace.go ../flags
 
 clean: ## Stops and removes all project containers and images.
 	docker compose ${COMPOSE_FILES} down

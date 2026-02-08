@@ -52,7 +52,7 @@ storage:
 
 environments:
   preprod:
-    name: "Pre-Production"
+    name: "preprod"
     storage: "main"
     default: true
     directory: "flags/preprod"

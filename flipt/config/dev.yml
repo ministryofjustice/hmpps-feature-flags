@@ -52,7 +52,7 @@ storage:
 
 environments:
   dev:
-    name: "Development"
+    name: "dev"
     storage: "main"
     default: true
     directory: "flags/dev"

@@ -52,7 +52,7 @@ storage:
 
 environments:
   prod:
-    name: "Production"
+    name: "prod"
     storage: "main"
     default: true
     directory: "flags/prod"

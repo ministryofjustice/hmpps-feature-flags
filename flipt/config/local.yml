@@ -2,20 +2,14 @@ version: "2.0"
 
 authentication:
   required: true
+  exclude:
+    evaluation: true
   session:
     domain: "127.0.0.1"
     secure: false
     csrf:
       secure: false
   methods:
-    token:
-      enabled: true
-      storage:
-        tokens:
-          local-admin:
-            credential: "${env:FLIPT_LOCAL_ADMIN_TOKEN}"
-            metadata:
-              github_teams: "{\"ministryofjustice\":[\"hmpps-feature-flag-admins\"]}"
     github:
       enabled: true
       client_id: "${env:FLIPT_LOCAL_GITHUB_CLIENT_ID}"

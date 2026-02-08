@@ -14,9 +14,6 @@ teams_json := object.get(auth_metadata, "io.flipt.auth.github.teams", object.get
 org_teams := json.unmarshal(teams_json)
 teams := object.get(org_teams, "ministryofjustice", [])
 
-# regal ignore: line-length
-token_namespace := object.get(auth_metadata, "io.flipt.auth.token.namespace", object.get(auth_metadata, "token_namespace", ""))
-
 has_correct_team if {
 	some team in namespace_team_access[input.request.namespace]
 	team in teams
@@ -54,12 +51,6 @@ allow if {
 	"hmpps-feature-flag-admins" in teams
 	not is_prod_mutation
 	not is_namespace_mutation
-}
-
-allow if {
-	input.request.scope == "namespace"
-	token_namespace == input.request.namespace
-	not is_prod_mutation
 }
 
 allow if {

@@ -6,12 +6,12 @@ meta:
 
 authentication:
   required: true
+  exclude:
+    evaluation: true
   session:
     domain: "feature-toggles-preprod.hmpps.service.justice.gov.uk"
     secure: true
   methods:
-    token:
-      enabled: true
     github:
       enabled: true
       client_id: "${env:FLIPT_GITHUB_CLIENT_ID}"

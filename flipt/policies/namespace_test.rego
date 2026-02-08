@@ -16,13 +16,6 @@ env_scope_input(namespace, action, teams_json) := {
 	"request": {"scope": "environment", "environment": "dev", "namespace": namespace, "action": action},
 }
 
-token_input(namespace, action, token_namespace) := token_input_in_env(namespace, action, token_namespace, "dev")
-
-token_input_in_env(namespace, action, token_namespace, environment) := {
-	"authentication": {"metadata": {"io.flipt.auth.token.namespace": token_namespace}},
-	"request": {"scope": "namespace", "environment": environment, "namespace": namespace, "action": action},
-}
-
 test_team_namespace_allowed[action] if {
 	some action in ["create", "update", "read"]
 
@@ -74,20 +67,6 @@ test_explicit_mapping_hyphenated_namespace_delete_not_allowed if {
 		with data.namespace_team_access as {"community-accommodation": ["hmpps-community-accommodation"]} # regal ignore: unresolved-reference,line-length
 }
 
-test_token_namespace_allowed[action] if {
-	some action in ["create", "update", "delete", "read"]
-
-	# regal ignore: line-length
-	flipt.allow with input as token_input("a-team", action, "a-team")
-}
-
-test_token_namespace_not_allowed[action] if {
-	some action in ["create", "update", "delete", "read"]
-
-	# regal ignore: line-length
-	not flipt.allow with input as token_input("a-team", action, "another-team")
-}
-
 test_admin_allowed[action] if {
 	some action in ["create", "update", "delete", "read"]
 
@@ -104,14 +83,6 @@ test_prod_team_namespace_read_allowed if {
 test_prod_team_namespace_update_not_allowed if {
 	# regal ignore: line-length
 	not flipt.allow with input as github_input_in_env("a-team", "update", "{\"ministryofjustice\":[\"a-team\",\"another-team\"]}", "prod")
-}
-
-test_prod_token_namespace_read_allowed if {
-	flipt.allow with input as token_input_in_env("a-team", "read", "a-team", "prod")
-}
-
-test_prod_token_namespace_update_not_allowed if {
-	not flipt.allow with input as token_input_in_env("a-team", "update", "a-team", "prod")
 }
 
 test_prod_admin_read_allowed if {
@@ -150,12 +121,6 @@ test_prod_branch_admin_allowed[action] if {
 
 	# regal ignore: line-length
 	flipt.allow with input as github_input_in_env("random-namespace", action, "{\"ministryofjustice\":[\"hmpps-feature-flag-admins\"]}", "my-prod-fix")
-}
-
-test_prod_branch_token_allowed[action] if {
-	some action in ["create", "update", "delete", "read"]
-
-	flipt.allow with input as token_input_in_env("a-team", action, "a-team", "my-prod-fix")
 }
 
 test_namespace_mutation_blocked_for_admin[action] if {

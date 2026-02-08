@@ -39,6 +39,15 @@ opa-test: ## Runs the OPA policy test suite.
 opa-lint: ## Runs the Regal linter on OPA policies.
 	@regal lint .
 
+flags-validate: ## Validates flag files using the Flipt CLI.
+	@for dir in flags/dev flags/preprod flags/prod; do \
+		if find "$$dir" -type f \( -name 'features.yaml' -o -name 'features.yml' -o -name '*.features.yaml' -o -name '*.features.yml' \) | grep -q .; then \
+			flipt validate --work-dir "$$dir"; \
+		else \
+			echo "No Flipt feature files found in $$dir, skipping."; \
+		fi; \
+	done
+
 flags-lint: $(GO_DIR)/go.mod ## Checks flag files match Flipt's canonical YAML format.
 	@cd $(GO_DIR) && go run lint-flags.go ../flags
 

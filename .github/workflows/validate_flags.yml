@@ -4,6 +4,9 @@ on:
   push:
     paths:
       - "flags/**"
+      - "flipt/scripts/lint-flags.go"
+      - "makefile"
+      - ".github/workflows/validate_flags.yml"
 
 jobs:
   validate:
@@ -15,19 +18,13 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           version: v2
-      - name: Validate flags
-        shell: bash
-        run: |
-          set -euo pipefail
-          validate_directory() {
-            local dir="$1"
-            if find "$dir" -maxdepth 1 -type f \( -name 'features.yaml' -o -name 'features.yml' -o -name '*.features.yaml' -o -name '*.features.yml' \) | grep -q .; then
-              flipt validate --work-dir "$dir"
-            else
-              echo "No Flipt feature files found in $dir, skipping."
-            fi
-          }
+      - run: make flags-validate
 
-          validate_directory flags/dev
-          validate_directory flags/preprod
-          validate_directory flags/prod
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: stable
+      - run: make flags-lint

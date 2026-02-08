@@ -136,7 +136,8 @@ FLIPT_LOCAL_GITHUB_CLIENT_SECRET=...
 | `make up` | Start/restart the local Flipt instance |
 | `make down` | Stop and remove all containers |
 | `make new-namespace` | Interactive wizard to scaffold a new namespace |
-| `make flags-lint` | Validate flag files against the expected schema and format |
+| `make flags-validate` | Validate flag files using the Flipt CLI |
+| `make flags-lint` | Check flag files match the canonical YAML format |
 | `make flags-lint-fix` | Auto-format flag files to canonical YAML |
 | `make opa-test` | Run OPA policy tests |
 | `make opa-lint` | Lint Rego policies with Regal |

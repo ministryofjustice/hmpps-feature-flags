@@ -2,6 +2,10 @@ namespace:
     key: community-accommodation
     name: Community Accommodation
 flags:
+    - key: allow-sufficient-information-request-without-confirmation
+      name: allow-sufficient-information-request-without-confirmation
+      type: BOOLEAN_FLAG_TYPE
+      enabled: false
     - key: cas1-email-use-cru-for-reply-to
       name: cas1-email-use-cru-for-reply-to
       type: BOOLEAN_FLAG_TYPE

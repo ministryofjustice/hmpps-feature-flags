@@ -7,8 +7,16 @@ PROJECT_NAME = hmpps-feature-flags
 SERVICE_NAME = flipt
 
 COMPOSE_FILES = -f flipt/docker-compose.yml
+GO_DIR = .go
+GO_SCRIPTS = flipt/scripts
 
 export COMPOSE_PROJECT_NAME=${PROJECT_NAME}
+
+# Bootstrap the local Go build directory with a go.mod if it doesn't exist.
+$(GO_DIR)/go.mod:
+	@mkdir -p $(GO_DIR)
+	@ln -sf $(CURDIR)/$(GO_SCRIPTS)/*.go $(GO_DIR)/
+	@cd $(GO_DIR) && go mod init flipt-tools && go mod tidy
 
 default: help
 
@@ -26,13 +34,22 @@ down: ## Stops and removes all containers in the project.
 	docker compose ${COMPOSE_FILES} down
 
 opa-test: ## Runs the OPA policy test suite.
-	opa test flipt/policies/ -v
+	@opa test flipt/policies/ -v
 
 opa-lint: ## Runs the Regal linter on OPA policies.
-	regal lint .
+	@regal lint .
 
-generate-acl: ## Generates ACL data from access.yml files.
-	docker compose ${COMPOSE_FILES} run --rm --entrypoint sh ${SERVICE_NAME} -c 'generate-acl-data /workspace/flags /tmp/acl-data.json && cat /tmp/acl-data.json'
+flags-lint: $(GO_DIR)/go.mod ## Checks flag files match Flipt's canonical YAML format.
+	@cd $(GO_DIR) && go run lint-flags.go ../flags
+
+flags-lint-fix: $(GO_DIR)/go.mod ## Reformats flag files to Flipt's canonical YAML format.
+	@cd $(GO_DIR) && go run lint-flags.go --fix ../flags
+
+generate-acl: $(GO_DIR)/go.mod ## Generates ACL data from access.yml files.
+	@cd $(GO_DIR) && go run generate-acl-data.go ../flags acl-data.json && cat acl-data.json
+
+new-namespace: ## Interactive wizard to scaffold a new Flipt namespace.
+	@bash scripts/new-namespace.sh
 
 clean: ## Stops and removes all project containers and images.
 	docker compose ${COMPOSE_FILES} down

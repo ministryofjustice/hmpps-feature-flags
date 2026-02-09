@@ -8,7 +8,14 @@ authentication:
     domain: "127.0.0.1"
     secure: false
     csrf:
+      key: "${env:FLIPT_SESSION_CSRF_KEY}"
       secure: false
+    storage:
+      type: redis
+      redis:
+        mode: single
+        host: "${env:FLIPT_REDIS_HOST}"
+        port: 6379
   methods:
     github:
       enabled: true

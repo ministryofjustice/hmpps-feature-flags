@@ -1,4 +1,9 @@
 services:
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
   flipt:
     build:
       context: ..
@@ -15,3 +20,8 @@ services:
       - FLIPT_LOCAL_GITHUB_CLIENT_ID=${FLIPT_LOCAL_GITHUB_CLIENT_ID:-change-me}
       - FLIPT_LOCAL_GITHUB_CLIENT_SECRET=${FLIPT_LOCAL_GITHUB_CLIENT_SECRET:-change-me}
       - FLIPT_GIT_ACCESS_TOKEN=${FLIPT_GIT_ACCESS_TOKEN}
+      - FLIPT_REDIS_HOST=redis
+      - FLIPT_REDIS_AUTH_TOKEN=
+      - FLIPT_SESSION_CSRF_KEY=local-dev-csrf-key-not-for-production
+    depends_on:
+      - redis

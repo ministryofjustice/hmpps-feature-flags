@@ -11,6 +11,16 @@ authentication:
   session:
     domain: "feature-toggles-dev.hmpps.service.justice.gov.uk"
     secure: true
+    csrf:
+      key: "${env:FLIPT_SESSION_CSRF_KEY}"
+    storage:
+      type: redis
+      redis:
+        mode: single
+        host: "${env:FLIPT_REDIS_HOST}"
+        port: 6379
+        password: "${env:FLIPT_REDIS_AUTH_TOKEN}"
+        require_tls: true
   methods:
     github:
       enabled: true
@@ -43,7 +53,7 @@ storage:
   main:
     remote: "https://github.com/ministryofjustice/hmpps-feature-flags.git"
     branch: "main"
-    poll_interval: "30s"
+    poll_interval: "15s"
     fetch_policy: "lenient"
     credentials: "github"
     backend:

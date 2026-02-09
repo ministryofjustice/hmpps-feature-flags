@@ -3,6 +3,13 @@ generic-service:
 
   ingress:
     host: feature-toggles-dev.hmpps.service.justice.gov.uk
+    annotations:
+      nginx.ingress.kubernetes.io/affinity: cookie
+      nginx.ingress.kubernetes.io/affinity-mode: balanced
+      nginx.ingress.kubernetes.io/session-cookie-name: FLIPT_AFFINITY
+      nginx.ingress.kubernetes.io/session-cookie-max-age: "3600"
+      nginx.ingress.kubernetes.io/session-cookie-samesite: Strict
+      nginx.ingress.kubernetes.io/session-cookie-secure: "true"
 
   scheduledDowntime:
     # Startup slightly earlier and shutdown slightly later than other services

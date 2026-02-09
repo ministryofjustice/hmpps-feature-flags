@@ -8,7 +8,6 @@ import (
 	"sort"
 	"time"
 
-	"github.com/fsnotify/fsnotify"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"gopkg.in/yaml.v3"
@@ -102,27 +101,9 @@ func generate(logger *zap.Logger, flagsDir string, outputPath string, msg string
 	return nil
 }
 
-// watchDirs recursively registers all directories under flagsDir with
-// the fsnotify watcher, so we detect changes at any depth (e.g. new
-// namespaces or updated access.yml files after a git pull).
-func watchDirs(watcher *fsnotify.Watcher, flagsDir string) {
-	watcher.Add(flagsDir)
-
-	filepath.Walk(flagsDir, func(path string, info os.FileInfo, err error) error {
-		if err != nil {
-			return nil
-		}
-
-		if info.IsDir() {
-			watcher.Add(path)
-		}
-
-		return nil
-	})
-}
-
 func main() {
-	watch := flag.Bool("watch", false, "watch for file changes and regenerate ACL data")
+	watch := flag.Bool("watch", false, "poll for file changes and regenerate ACL data")
+	interval := flag.Duration("interval", 15*time.Second, "poll interval when using --watch")
 	flag.Parse()
 
 	cfg := zap.NewProductionConfig()
@@ -135,7 +116,7 @@ func main() {
 
 	args := flag.Args()
 	if len(args) != 2 {
-		logger.Fatal("invalid arguments", zap.String("usage", "generate-acl-data [--watch] <flags-dir> <output-path>"))
+		logger.Fatal("invalid arguments", zap.String("usage", "generate-acl-data [--watch] [--interval 15s] <flags-dir> <output-path>"))
 	}
 
 	flagsDir := args[0]
@@ -149,52 +130,39 @@ func main() {
 		return
 	}
 
-	watcher, err := fsnotify.NewWatcher()
-	if err != nil {
-		logger.Fatal("failed to create file watcher", zap.Error(err))
-	}
-	defer watcher.Close()
+	logger.Info("polling for changes", zap.String("path", flagsDir), zap.Duration("interval", *interval))
 
-	watchDirs(watcher, flagsDir)
-	logger.Info("watching for changes", zap.String("path", flagsDir))
-
-	// Debounce: git pulls trigger many file events at once
-	var debounceTimer *time.Timer
+	var lastOutput []byte
 
 	for {
-		select {
-		case event, ok := <-watcher.Events:
-			if !ok {
-				return
-			}
+		time.Sleep(*interval)
 
-			if event.Op&(fsnotify.Write|fsnotify.Create|fsnotify.Remove|fsnotify.Rename) == 0 {
-				continue
-			}
-
-			// Watch newly created directories
-			if event.Op&fsnotify.Create != 0 {
-				if info, err := os.Stat(event.Name); err == nil && info.IsDir() {
-					watchDirs(watcher, event.Name)
-				}
-			}
-
-			if debounceTimer != nil {
-				debounceTimer.Stop()
-			}
-
-			debounceTimer = time.AfterFunc(2*time.Second, func() {
-				if err := generate(logger, flagsDir, outputPath, "refreshed ACL data"); err != nil {
-					logger.Error("failed to regenerate ACL data", zap.Error(err))
-				}
-			})
-
-		case err, ok := <-watcher.Errors:
-			if !ok {
-				return
-			}
-
-			logger.Error("file watcher error", zap.Error(err))
+		current, err := os.ReadFile(outputPath)
+		if err != nil {
+			logger.Warn("failed to read current ACL data", zap.Error(err))
 		}
+
+		// Regenerate into a temporary buffer to compare
+		matches, _ := filepath.Glob(filepath.Join(flagsDir, "*", "*", "access.yml"))
+		if len(matches) == 0 {
+			continue
+		}
+
+		if err := generate(logger, flagsDir, outputPath, "refreshed ACL data"); err != nil {
+			logger.Error("failed to regenerate ACL data", zap.Error(err))
+			continue
+		}
+
+		newOutput, _ := os.ReadFile(outputPath)
+
+		if lastOutput == nil {
+			lastOutput = current
+		}
+
+		if string(newOutput) != string(lastOutput) {
+			logger.Info("ACL data changed, written to disk", zap.String("path", outputPath))
+		}
+
+		lastOutput = newOutput
 	}
 }

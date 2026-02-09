@@ -1,0 +1,28 @@
+namespace:
+    key: community-accommodation
+    name: Community Accommodation
+flags:
+    - key: allow-sufficient-information-request-without-confirmation
+      name: allow-sufficient-information-request-without-confirmation
+      type: BOOLEAN_FLAG_TYPE
+      enabled: false
+    - key: cas1-email-use-cru-for-reply-to
+      name: cas1-email-use-cru-for-reply-to
+      type: BOOLEAN_FLAG_TYPE
+      enabled: true
+    - key: cas1-provide-offline-application-events-in-personal-timeline
+      name: cas1-provide-offline-application-events-in-personal-timeline
+      type: BOOLEAN_FLAG_TYPE
+      enabled: true
+    - key: show-both-arrival-dates
+      name: show-both-arrival-dates
+      type: BOOLEAN_FLAG_TYPE
+      enabled: true
+    - key: show-search-by-CRN-timeline-navigation
+      name: show-search-by-CRN-timeline-navigation
+      type: BOOLEAN_FLAG_TYPE
+      enabled: true
+    - key: test-flag
+      name: test-flag
+      type: BOOLEAN_FLAG_TYPE
+      enabled: false

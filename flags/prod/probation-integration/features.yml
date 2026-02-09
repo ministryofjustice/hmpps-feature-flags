@@ -1,0 +1,33 @@
+namespace:
+    key: probation-integration
+    name: probation-integration
+    description: Probation Integration Team
+flags:
+    - key: common-platform-record-creation-toggle
+      name: common-platform-record-creation-toggle
+      type: BOOLEAN_FLAG_TYPE
+      description: Toggles whether the common-platform-and-delius service will create records to the database (enabled), or just log to telemetry (disabled).
+      enabled: false
+    - key: hdc-release-type
+      name: HDC Release Type
+      type: BOOLEAN_FLAG_TYPE
+      description: HDC specific release type
+      enabled: false
+    - key: prison-identifiers-use-db-search
+      name: prison-identifiers-use-db-search
+      type: BOOLEAN_FLAG_TYPE
+      description: Turns off the probation search /match endpoint and uses DB queries to match the offender
+      enabled: false
+    - key: semantic-contact-search
+      name: semantic-contact-search
+      type: BOOLEAN_FLAG_TYPE
+      description: Use semantic contact search
+      enabled: true
+    - key: assessment-summary_update-risk-registrations-in-place
+      name: Assessment Summary - SR32 Registration Changes
+      type: BOOLEAN_FLAG_TYPE
+      enabled: true
+    - key: delius-ogrs4-support
+      name: Assessment Summary / Risk Assessment Scores - OGRS4 changes
+      type: BOOLEAN_FLAG_TYPE
+      enabled: false

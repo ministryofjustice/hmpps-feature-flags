@@ -1,0 +1,17 @@
+services:
+  flipt:
+    build:
+      context: ..
+      dockerfile: flipt/Dockerfile
+    user: root
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./config/local.yml:/etc/flipt/config/default.yml:ro
+    environment:
+      - FLIPT_AUTHORIZATION_LOCAL_DATA_PATH=/var/opt/flipt/acl-data.json
+      - FLIPT_LOG_LEVEL=debug
+      - FLIPT_LOCAL_ADMIN_TOKEN=local-admin-token
+      - FLIPT_LOCAL_GITHUB_CLIENT_ID=${FLIPT_LOCAL_GITHUB_CLIENT_ID:-change-me}
+      - FLIPT_LOCAL_GITHUB_CLIENT_SECRET=${FLIPT_LOCAL_GITHUB_CLIENT_SECRET:-change-me}
+      - FLIPT_GIT_ACCESS_TOKEN=${FLIPT_GIT_ACCESS_TOKEN}

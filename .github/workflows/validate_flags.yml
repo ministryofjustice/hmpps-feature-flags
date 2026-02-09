@@ -1,0 +1,30 @@
+name: Validate Flags
+
+on:
+  push:
+    paths:
+      - "flags/**"
+      - "flipt/scripts/lint-flags.go"
+      - "makefile"
+      - ".github/workflows/validate_flags.yml"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Flipt CLI
+        uses: flipt-io/setup-action@v0.5.0
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          version: v2
+      - run: make flags-validate
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: stable
+      - run: make flags-lint

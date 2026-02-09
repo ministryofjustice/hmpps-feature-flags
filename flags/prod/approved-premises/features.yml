@@ -1,0 +1,8 @@
+namespace:
+    key: approved-premises-ui
+    name: Approved Premises UI
+flags:
+    - key: test-flag
+      name: test-flag
+      type: BOOLEAN_FLAG_TYPE
+      enabled: false

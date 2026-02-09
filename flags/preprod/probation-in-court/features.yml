@@ -1,0 +1,47 @@
+namespace:
+    key: ProbationInCourt
+    name: ProbationInCourt
+    description: Probation In Court
+flags:
+    - key: prepare-a-case-v2
+      name: prepare-a-case-v2
+      type: BOOLEAN_FLAG_TYPE
+      description: Toggle for Prepare a Case version 2
+      enabled: false
+      rollouts:
+        - segment:
+            key: pac-v2-courts
+            value: true
+    - key: prepare-a-case-auto-hearing-outcomes
+      name: prepare-a-case-auto-hearing-outcomes
+      type: BOOLEAN_FLAG_TYPE
+      description: Toggle for Prepare a Case auto hearing outcomes
+      enabled: false
+      rollouts:
+        - segment:
+            key: pac-auto-hearing-outcomes-courts
+            value: true
+    - key: prepare-a-case-all-courts
+      name: prepare-a-case-all-courts
+      type: BOOLEAN_FLAG_TYPE
+      description: Toggle for Prepare a Case all courts
+      enabled: false
+segments:
+    - key: pac-v2-courts
+      name: pac-v2-courts
+      description: Courts on Prepare a Case version 2
+      constraints:
+        - type: STRING_COMPARISON_TYPE
+          property: code
+          operator: isoneof
+          value: '["B20BL","B44BA","B21DA","B46DB","B20EB","B20EY","B43LV","B46FO","B45GC","B22GR","B43OX","B44JK","B22HM","B23HS","B46IR","B46IU","B46DH","B43JC","B21JI","B43KB","B44KM","B43KQ","B22KS","B46LN","B45MH","B22MZ","B20NQ","B44MA","B20OQ","C20WO","B22OS"]'
+      match_type: ANY_MATCH_TYPE
+    - key: pac-auto-hearing-outcomes-courts
+      name: pac-auto-hearing-outcomes-courts
+      description: Courts with auto-hearing outcomes on Prepare a Case
+      constraints:
+        - type: STRING_COMPARISON_TYPE
+          property: code
+          operator: isoneof
+          value: '["B20EB","B23HS","B43KB","B21DA"]'
+      match_type: ANY_MATCH_TYPE

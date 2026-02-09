@@ -22,6 +22,8 @@ COPY flags/ /var/opt/flipt/repo/flags/
 
 RUN generate-acl-data /var/opt/flipt/repo/flags /var/opt/flipt/acl-data.json
 
+RUN chown -R flipt:flipt /var/opt/flipt
+
 USER flipt
 
 ENTRYPOINT ["entrypoint"]

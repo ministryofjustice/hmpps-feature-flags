@@ -81,7 +81,7 @@ segments:
         - type: DATETIME_COMPARISON_TYPE
           property: dateTimeOfFirstDownload
           operator: gte
-          value: "2027-02-02T08:00:00Z"
+          value: "2026-02-02T08:00:00Z"
       match_type: ALL_MATCH_TYPE
     - key: ftr48-template
       name: FTR48 template

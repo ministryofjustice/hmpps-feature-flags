@@ -148,7 +148,7 @@ flags:
       name: streamingDownloadEnabled
       type: BOOLEAN_FLAG_TYPE
       description: If set to true enables streaming downloads of async reports.
-      enabled: false
+      enabled: true
     - key: barChartsEnabled
       name: barChartsEnabled
       type: BOOLEAN_FLAG_TYPE

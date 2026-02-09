@@ -144,7 +144,6 @@ flags:
             - PBI
             - TSI
             - RHI
-            - TES
     - key: streamingDownloadEnabled
       name: streamingDownloadEnabled
       type: BOOLEAN_FLAG_TYPE

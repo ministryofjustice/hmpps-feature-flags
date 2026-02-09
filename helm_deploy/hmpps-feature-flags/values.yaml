@@ -45,6 +45,11 @@ generic-service:
       FLIPT_GITHUB_CLIENT_SECRET: CLIENT_SECRET
     flipt-git-token:
       FLIPT_GIT_ACCESS_TOKEN: TOKEN
+    elasticache-redis:
+      FLIPT_REDIS_HOST: primary_endpoint_address
+      FLIPT_REDIS_AUTH_TOKEN: auth_token
+    flipt-session:
+      FLIPT_SESSION_CSRF_KEY: CSRF_KEY
 
   allowlist:
     groups:

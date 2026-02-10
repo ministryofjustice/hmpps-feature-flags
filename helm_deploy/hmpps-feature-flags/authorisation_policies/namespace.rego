@@ -8,7 +8,7 @@ import rego.v1
 # has_flipt_namespace_in_teams does
 allowed_teams := {
 	"ProbationInCourt": ["hmpps-probation-in-court"],
-	"ManageAWorkforce": ["manage-a-workforce"],
+	"ManageAWorkforce": ["hmpps-manage-a-workforce-devs", "hmpps-manage-a-workforce-live"],
 	"community-accomodation": ["hmpps-community-accommodation"],
 	"probation-integration": ["probation-integration"],
 	"manage-people-on-probation": ["hmpps-manage-people-on-probation"],

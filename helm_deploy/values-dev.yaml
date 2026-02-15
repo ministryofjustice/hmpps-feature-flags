@@ -3,6 +3,13 @@ generic-service:
 
   ingress:
     host: feature-toggles-dev.hmpps.service.justice.gov.uk
+    annotations:
+      nginx.ingress.kubernetes.io/affinity: cookie
+      nginx.ingress.kubernetes.io/affinity-mode: balanced
+      nginx.ingress.kubernetes.io/session-cookie-name: FLIPT_AFFINITY
+      nginx.ingress.kubernetes.io/session-cookie-max-age: "3600"
+      nginx.ingress.kubernetes.io/session-cookie-samesite: Strict
+      nginx.ingress.kubernetes.io/session-cookie-secure: "true"
 
   scheduledDowntime:
     # Startup slightly earlier and shutdown slightly later than other services
@@ -11,8 +18,7 @@ generic-service:
     enabled: true
 
   env:
-    FLIPT_AUTHENTICATION_SESSION_DOMAIN: feature-toggles-dev.hmpps.service.justice.gov.uk
-    FLIPT_AUTHENTICATION_METHODS_GITHUB_REDIRECT_ADDRESS: https://feature-toggles-dev.hmpps.service.justice.gov.uk
+    FLIPT_CONFIG_FILE: /etc/flipt/config/dev.yml
 
 generic-prometheus-alerts:
   alertSeverity: NON_PROD_ALERTS_SEVERITY_LABEL

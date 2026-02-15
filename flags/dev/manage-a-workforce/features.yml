@@ -1,0 +1,35 @@
+namespace:
+    key: ManageAWorkforce
+    name: ManageAWorkforce
+    description: Manage A Workforce
+flags:
+    - key: Gary
+      name: Gary
+      type: BOOLEAN_FLAG_TYPE
+      enabled: true
+    - key: GaryV
+      name: GaryV
+      type: VARIANT_FLAG_TYPE
+      enabled: false
+      variants:
+        - key: GaryV
+    - key: Reallocations
+      name: Reallocations
+      type: BOOLEAN_FLAG_TYPE
+      description: Flag for reallocations work
+      enabled: false
+      rollouts:
+        - segment:
+            keys:
+                - Region
+            value: true
+segments:
+    - key: Region
+      name: Region
+      description: Region rollout for reallocations flag
+      constraints:
+        - type: STRING_COMPARISON_TYPE
+          property: regionCode
+          operator: eq
+          value: N03
+      match_type: ANY_MATCH_TYPE

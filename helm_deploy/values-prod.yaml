@@ -3,8 +3,7 @@ generic-service:
     host: feature-toggles.hmpps.service.justice.gov.uk
 
   env:
-    FLIPT_AUTHENTICATION_SESSION_DOMAIN: feature-toggles.hmpps.service.justice.gov.uk
-    FLIPT_AUTHENTICATION_METHODS_GITHUB_REDIRECT_ADDRESS: https://feature-toggles.hmpps.service.justice.gov.uk
+    FLIPT_CONFIG_FILE: /etc/flipt/config/prod.yml
 
 generic-prometheus-alerts:
   alertSeverity: PROD_ALERTS_SEVERITY_LABEL

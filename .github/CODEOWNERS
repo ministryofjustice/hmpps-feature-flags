@@ -1,0 +1,14 @@
+# Default: admins own everything
+* @ministryofjustice/hmpps-feature-flag-admins
+
+# Namespace flag ownership
+# Each team owns their flags across all environments (dev, preprod, prod)
+
+flags/*/ManageAWorkforce/               @ministryofjustice/hmpps-manage-a-workforce-devs
+flags/*/ProbationInCourt/               @ministryofjustice/hmpps-probation-in-court
+flags/*/approved-premises-ui/           @ministryofjustice/approved-premises-team
+flags/*/community-accommodation/        @ministryofjustice/hmpps-community-accommodation
+flags/*/consider-a-recall/              @ministryofjustice/making-recall-decision
+flags/*/hmpps-digital-prison-reporting/ @ministryofjustice/hmpps-digital-prison-reporting
+flags/*/manage-people-on-probation-ui/  @ministryofjustice/hmpps-manage-people-on-probation-dev
+flags/*/probation-integration/          @ministryofjustice/probation-integration

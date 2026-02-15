@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: authorisation-policies
-  labels:
-    app.kubernetes.io/name: hmpps-feature-flags
-data:
-  namespace.rego: |
-{{ .Files.Get "authorisation_policies/namespace.rego" | nindent 4 }}

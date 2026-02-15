@@ -87,18 +87,76 @@ go through a Git PR:
 
 ## Evaluating flags
 
-The evaluation API is unauthenticated — services can evaluate flags without any tokens or credentials. Flipt is accessible only within the VPN/internal allowlist, and flag definitions are public in this repository.
+The recommended approach is to use 
+[`@flipt-io/flipt-client-js`](https://github.com/flipt-io/flipt-client-sdks/tree/main/flipt-client-js), 
+which fetches flag state from Flipt and evaluates locally in-memory. This is faster 
+than making API calls per evaluation and has no authentication requirement.
 
-Use the Flipt SDKs to evaluate flags from your services:
+### Installation
 
-- [Client SDKs](https://github.com/flipt-io/flipt-client-sdks) — fetch flag state and evaluate locally in-memory (faster, recommended)
-- [Server SDKs](https://github.com/flipt-io/flipt-server-sdks) — evaluate flags via API calls to the Flipt server
+```sh
+npm install @flipt-io/flipt-client-js
+```
 
-See the [Flipt docs](https://docs.flipt.io/introduction) for full API documentation.
+### Setup
+
+```typescript
+import { FliptClient } from '@flipt-io/flipt-client-js';
+
+const client = await FliptClient.init({
+  url: 'https://feature-toggles.hmpps.service.justice.gov.uk',
+  namespace: 'your-namespace',
+  updateInterval: 120, // refresh flag state every 120 seconds
+});
+```
+
+> [!NOTE]
+> Due to Flipt being accessible only within the VPN/internal allowlist, and 
+> flag states being public (as part of this repository), no `authentication` 
+> option is needed — the evaluation API is open. Replace the URL with the 
+> appropriate environment (see table above).
+
+### Boolean flag evaluation
+
+```typescript
+const result = client.evaluateBoolean({
+  flagKey: 'my-feature-flag',
+  entityId: 'user-123',
+  context: { region: 'north-west' },
+});
+
+if (result.enabled) {
+  // feature is on for this user/context
+}
+```
+
+### Variant flag evaluation
+
+```typescript
+const result = client.evaluateVariant({
+  flagKey: 'template-version',
+  entityId: 'user-123',
+  context: { role: 'admin' },
+});
+
+console.log(result.variantKey); // e.g. "v2"
+```
+
+### Cleanup
+
+In long-running Node.js services, call `close()` when shutting down to stop the 
+background refresh timer:
+
+```typescript
+client.close();
+```
+
+For full SDK documentation, see the [Flipt client SDK docs](https://docs.flipt.io/integration/client) and [API reference](https://docs.flipt.io/introduction).
 
 ## Authentication and authorization
 
-**Authentication** for the Flipt management UI is via GitHub SSO. The evaluation API is excluded from authentication so services can read flags without credentials.
+**Authentication** for the Flipt management UI is via GitHub SSO. The evaluation 
+API is excluded from authentication so services can read flags without credentials.
 
 **Authorization** is enforced by OPA policies (`flipt/policies/namespace.rego`):
 
@@ -172,6 +230,9 @@ flipt/
 helm_deploy/              # Kubernetes Helm charts and per-environment values
 ```
 
-Deployments are automated via GitHub Actions (`.github/workflows/pipeline.yml`). Pushing to `main` triggers a sequential rollout: dev -> preprod -> prod.
+Deployments are automated via GitHub Actions (`.github/workflows/pipeline.yml`). 
+Pushing to `main` triggers a sequential rollout: dev -> preprod -> prod.
 
-Each environment has its own Flipt config (`flipt/config/{dev,preprod,prod}.yml`) baked into the Docker image and selected via the `FLIPT_CONFIG_FILE` environment variable.
+Each environment has its own Flipt config (`flipt/config/{dev,preprod,prod}.yml`) 
+baked into the Docker image and selected via the `FLIPT_CONFIG_FILE` environment 
+variable.

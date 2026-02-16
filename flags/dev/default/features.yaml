@@ -1,0 +1,10 @@
+version: "1.5"
+namespace:
+    key: default
+    name: Default
+flags:
+    - key: test-flag
+      name: Test Flag
+      type: BOOLEAN_FLAG_TYPE
+      description: A test flag in the default namespace
+      enabled: false

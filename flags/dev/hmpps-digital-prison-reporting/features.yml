@@ -144,8 +144,6 @@ flags:
             - PBI
             - TSI
             - RHI
-            - FOO
-            - BAR
     - key: streamingDownloadEnabled
       name: streamingDownloadEnabled
       type: BOOLEAN_FLAG_TYPE

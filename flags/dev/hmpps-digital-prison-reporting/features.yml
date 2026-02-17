@@ -185,4 +185,9 @@ segments:
       match_type: ALL_MATCH_TYPE
     - key: otherseg
       name: otherseg
+      constraints:
+        - type: STRING_COMPARISON_TYPE
+          property: appName
+          operator: eq
+          value: tools-ui
       match_type: ALL_MATCH_TYPE

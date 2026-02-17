@@ -164,3 +164,7 @@ flags:
       name: systemTokenEnabled
       type: BOOLEAN_FLAG_TYPE
       enabled: false
+segments:
+    - key: testseg
+      name: testseg
+      match_type: ALL_MATCH_TYPE

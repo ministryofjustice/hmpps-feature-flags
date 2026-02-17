@@ -177,6 +177,11 @@ flags:
 segments:
     - key: testseg
       name: testseg
+      constraints:
+        - type: STRING_COMPARISON_TYPE
+          property: appName
+          operator: eq
+          value: mi-ui
       match_type: ALL_MATCH_TYPE
     - key: otherseg
       name: otherseg

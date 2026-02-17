@@ -155,3 +155,8 @@ flags:
       enabled: true
       metadata:
         dashboardFeature: true
+    - key: system-token-enabled
+      name: System Token Enabled
+      type: BOOLEAN_FLAG_TYPE
+      description: Flag to enable the retrieval of system tokens and passing system token to the backend
+      enabled: false

@@ -163,6 +163,7 @@ flags:
     - key: systemtokenenabled
       name: systemTokenEnabled
       type: BOOLEAN_FLAG_TYPE
+      description: Flag to enable the retrieval of system tokens and passing system token to the backend
       enabled: false
       rollouts:
         - segment:

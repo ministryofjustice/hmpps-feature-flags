@@ -168,3 +168,6 @@ segments:
     - key: testseg
       name: testseg
       match_type: ALL_MATCH_TYPE
+    - key: otherseg
+      name: otherseg
+      match_type: ALL_MATCH_TYPE

@@ -164,6 +164,16 @@ flags:
       name: systemTokenEnabled
       type: BOOLEAN_FLAG_TYPE
       enabled: false
+      rollouts:
+        - segment:
+            keys:
+                - testseg
+            operator: OR_SEGMENT_OPERATOR
+            value: true
+        - segment:
+            keys:
+                - otherseg
+            operator: OR_SEGMENT_OPERATOR
 segments:
     - key: testseg
       name: testseg

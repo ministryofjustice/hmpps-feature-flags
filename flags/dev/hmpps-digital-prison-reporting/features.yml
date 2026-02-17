@@ -152,7 +152,7 @@ flags:
     - key: barChartsEnabled
       name: barChartsEnabled
       type: BOOLEAN_FLAG_TYPE
-      enabled: false
+      enabled: true
       metadata:
         dashboardFeature: true
     - key: system-token-enabled

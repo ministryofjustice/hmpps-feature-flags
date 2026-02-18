@@ -187,6 +187,12 @@ flags:
       enabled: false
       metadata:
         dashboardfeature: true
+    - key: scorecardchartsenabled
+      name: scorecardChartsEnabled
+      type: BOOLEAN_FLAG_TYPE
+      enabled: false
+      metadata:
+        dashboardfeature: true
 segments:
     - key: testseg
       name: testseg

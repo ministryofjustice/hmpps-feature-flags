@@ -205,6 +205,12 @@ flags:
       enabled: false
       metadata:
         dashboardfeature: true
+    - key: bartimeserieschartsenabled
+      name: bartimeseriesChartsEnabled
+      type: BOOLEAN_FLAG_TYPE
+      enabled: false
+      metadata:
+        dashboardfeature: true
 segments:
     - key: testseg
       name: testseg

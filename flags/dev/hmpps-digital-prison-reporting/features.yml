@@ -175,6 +175,12 @@ flags:
             keys:
                 - otherseg
             operator: OR_SEGMENT_OPERATOR
+    - key: linechartsenabled
+      name: lineChartsEnabled
+      type: BOOLEAN_FLAG_TYPE
+      enabled: false
+      metadata:
+        dashboardfeature: true
 segments:
     - key: testseg
       name: testseg

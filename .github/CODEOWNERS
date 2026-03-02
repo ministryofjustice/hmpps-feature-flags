@@ -6,7 +6,7 @@
 
 flags/*/ManageAWorkforce/               @ministryofjustice/hmpps-manage-a-workforce-devs
 flags/*/ProbationInCourt/               @ministryofjustice/hmpps-probation-in-court
-flags/*/aap-sentence-plan/              @ministryofjustice/hmpps-assessments-devs
+flags/*/hmpps-arns-assessment-platform/ @ministryofjustice/hmpps-assessments-devs
 flags/*/approved-premises-ui/           @ministryofjustice/approved-premises-team
 flags/*/community-accommodation/        @ministryofjustice/hmpps-community-accommodation
 flags/*/consider-a-recall/              @ministryofjustice/making-recall-decision

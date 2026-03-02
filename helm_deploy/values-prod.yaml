@@ -4,6 +4,7 @@ generic-service:
 
   env:
     FLIPT_CONFIG_FILE: /etc/flipt/config/prod.yml
+    FLIPT_DEFAULT_ENVIRONMENT: prod
 
 generic-prometheus-alerts:
   alertSeverity: PROD_ALERTS_SEVERITY_LABEL

@@ -10,6 +10,7 @@ generic-service:
 
   env:
     FLIPT_CONFIG_FILE: /etc/flipt/config/preprod.yml
+    FLIPT_DEFAULT_ENVIRONMENT: preprod
 
 generic-prometheus-alerts:
   alertSeverity: NON_PROD_ALERTS_SEVERITY_LABEL

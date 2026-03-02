@@ -3,14 +3,16 @@ package flipt.authz.v2
 
 import rego.v1
 
-default namespace_team_access := {}
+default acl_by_environment := {}
 
-namespace_team_access := data.namespace_team_access # regal ignore: unresolved-reference
-default_environment := canonical_environment(data.authz_config.default_environment) if { # regal ignore: unresolved-reference
+acl_by_environment := data.namespace_team_access # regal ignore: unresolved-reference
+
+default configured_default_environment := ""
+
+# regal ignore: line-length
+configured_default_environment := canonical_environment(data.authz_config.default_environment) if { # regal ignore: unresolved-reference
 	data.authz_config.default_environment # regal ignore: unresolved-reference
 }
-
-default default_environment := ""
 
 auth_metadata := object.get(input.authentication, "metadata", {})
 
@@ -32,11 +34,11 @@ canonical_environment(environment) := lower(environment) if {
 # - ACL checks therefore fall back to the instance's configured default environment
 #   when the request environment is not one of the generated ACL keys.
 has_acl_environment(environment) if {
-	object.get(namespace_team_access, canonical_environment(environment), null) != null
+	object.get(acl_by_environment, canonical_environment(environment), null) != null
 }
 
 environment_namespace_team_access(environment) := object.get(
-	namespace_team_access,
+	acl_by_environment,
 	canonical_environment(environment),
 	{},
 ) if {
@@ -44,17 +46,17 @@ environment_namespace_team_access(environment) := object.get(
 }
 
 environment_namespace_team_access(environment) := object.get(
-	namespace_team_access,
-	default_environment,
+	acl_by_environment,
+	configured_default_environment,
 	{},
 ) if {
 	not has_acl_environment(environment)
-	default_environment != ""
+	configured_default_environment != ""
 }
 
 environment_namespace_team_access(environment) := {} if {
 	not has_acl_environment(environment)
-	default_environment == ""
+	configured_default_environment == ""
 }
 
 namespace_writer_teams := object.get(
@@ -69,9 +71,13 @@ has_correct_team if {
 }
 
 has_any_namespace_access(environment) if {
-	some _, mapped_teams in environment_namespace_team_access(environment)
+	some namespace, mapped_teams in environment_namespace_team_access(environment)
 	some team in mapped_teams
 	team in teams
+}
+
+is_admin if {
+	"hmpps-feature-flag-admins" in teams
 }
 
 # Prod guardrail:
@@ -103,7 +109,7 @@ default allow := false
 # METADATA
 # entrypoint: true
 allow if {
-	"hmpps-feature-flag-admins" in teams
+	is_admin
 	not is_prod_mutation
 	not is_namespace_mutation
 }
@@ -121,13 +127,19 @@ allow if {
 	not is_prod_mutation
 }
 
-viewable_namespaces(env) := namespaces if {
-	namespaces := [ns |
-		# regal ignore: external-reference
-		some ns, mapped_teams in environment_namespace_team_access(env)
-		some t in mapped_teams
-
-		# regal ignore: external-reference
-		t in teams
-	]
+viewable_namespaces(env) := ["*"] if {
+	# regal ignore: external-reference
+	is_admin
 }
+
+else := [ns |
+	# regal ignore: external-reference
+	not is_admin
+
+	# regal ignore: external-reference
+	some ns, mapped_teams in environment_namespace_team_access(env)
+	some t in mapped_teams
+
+	# regal ignore: external-reference
+	t in teams
+]

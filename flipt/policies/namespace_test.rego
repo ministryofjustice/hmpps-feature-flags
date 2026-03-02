@@ -21,13 +21,13 @@ test_team_namespace_allowed[action] if {
 
 	# regal ignore: line-length
 	flipt.allow with input as github_input("a-team", action, "{\"ministryofjustice\":[\"a-team\",\"another-team\"]}")
-		with data.namespace_team_access as {"a-team": ["a-team"]} # regal ignore: unresolved-reference,line-length
+		with data.namespace_team_access as {"dev": {"a-team": ["a-team"]}} # regal ignore: unresolved-reference,line-length
 }
 
 test_team_namespace_delete_not_allowed if {
 	# regal ignore: line-length
 	not flipt.allow with input as github_input("a-team", "delete", "{\"ministryofjustice\":[\"a-team\",\"another-team\"]}")
-		with data.namespace_team_access as {"a-team": ["a-team"]} # regal ignore: unresolved-reference,line-length
+		with data.namespace_team_access as {"dev": {"a-team": ["a-team"]}} # regal ignore: unresolved-reference,line-length
 }
 
 test_team_namespace_not_allowed[resource_action] if {
@@ -44,13 +44,13 @@ test_legacy_mapping_allowed[action] if {
 
 	# regal ignore: line-length
 	flipt.allow with input as github_input("ProbationInCourt", action, "{\"ministryofjustice\":[\"hmpps-probation-in-court\"]}")
-		with data.namespace_team_access as {"ProbationInCourt": ["hmpps-probation-in-court"]} # regal ignore: unresolved-reference,line-length
+		with data.namespace_team_access as {"dev": {"ProbationInCourt": ["hmpps-probation-in-court"]}} # regal ignore: unresolved-reference,line-length
 }
 
 test_legacy_mapping_delete_not_allowed if {
 	# regal ignore: line-length
 	not flipt.allow with input as github_input("ProbationInCourt", "delete", "{\"ministryofjustice\":[\"hmpps-probation-in-court\"]}")
-		with data.namespace_team_access as {"ProbationInCourt": ["hmpps-probation-in-court"]} # regal ignore: unresolved-reference,line-length
+		with data.namespace_team_access as {"dev": {"ProbationInCourt": ["hmpps-probation-in-court"]}} # regal ignore: unresolved-reference,line-length
 }
 
 test_explicit_mapping_hyphenated_namespace_allowed[action] if {
@@ -58,13 +58,13 @@ test_explicit_mapping_hyphenated_namespace_allowed[action] if {
 
 	# regal ignore: line-length
 	flipt.allow with input as github_input("community-accommodation", action, "{\"ministryofjustice\":[\"hmpps-community-accommodation\"]}")
-		with data.namespace_team_access as {"community-accommodation": ["hmpps-community-accommodation"]} # regal ignore: unresolved-reference,line-length
+		with data.namespace_team_access as {"dev": {"community-accommodation": ["hmpps-community-accommodation"]}} # regal ignore: unresolved-reference,line-length
 }
 
 test_explicit_mapping_hyphenated_namespace_delete_not_allowed if {
 	# regal ignore: line-length
 	not flipt.allow with input as github_input("community-accommodation", "delete", "{\"ministryofjustice\":[\"hmpps-community-accommodation\"]}")
-		with data.namespace_team_access as {"community-accommodation": ["hmpps-community-accommodation"]} # regal ignore: unresolved-reference,line-length
+		with data.namespace_team_access as {"dev": {"community-accommodation": ["hmpps-community-accommodation"]}} # regal ignore: unresolved-reference,line-length
 }
 
 test_admin_allowed[action] if {
@@ -77,7 +77,7 @@ test_admin_allowed[action] if {
 test_prod_team_namespace_read_allowed if {
 	# regal ignore: line-length
 	flipt.allow with input as github_input_in_env("a-team", "read", "{\"ministryofjustice\":[\"a-team\",\"another-team\"]}", "prod")
-		with data.namespace_team_access as {"a-team": ["a-team"]} # regal ignore: unresolved-reference,line-length
+		with data.namespace_team_access as {"prod": {"a-team": ["a-team"]}} # regal ignore: unresolved-reference,line-length
 }
 
 test_prod_team_namespace_update_not_allowed if {
@@ -98,7 +98,7 @@ test_prod_admin_update_not_allowed if {
 test_production_team_namespace_read_allowed if {
 	# regal ignore: line-length
 	flipt.allow with input as github_input_in_env("a-team", "read", "{\"ministryofjustice\":[\"a-team\",\"another-team\"]}", "Production")
-		with data.namespace_team_access as {"a-team": ["a-team"]} # regal ignore: unresolved-reference,line-length
+		with data.namespace_team_access as {"prod": {"a-team": ["a-team"]}} # regal ignore: unresolved-reference,line-length
 }
 
 test_production_team_namespace_update_not_allowed if {
@@ -113,7 +113,8 @@ test_prod_branch_team_allowed[action] if {
 
 	# regal ignore: line-length
 	flipt.allow with input as github_input_in_env("a-team", action, "{\"ministryofjustice\":[\"a-team\",\"another-team\"]}", "my-prod-fix")
-		with data.namespace_team_access as {"a-team": ["a-team"]} # regal ignore: unresolved-reference,line-length
+		with data.namespace_team_access as {"prod": {"a-team": ["a-team"]}} # regal ignore: unresolved-reference,line-length
+		with data.authz_config.default_environment as "prod" # regal ignore: unresolved-reference
 }
 
 test_prod_branch_admin_allowed[action] if {
@@ -150,7 +151,7 @@ test_viewable_namespaces_admin if {
 test_viewable_namespaces_team_uses_access_mapping if {
 	# regal ignore: line-length
 	namespaces := flipt.viewable_namespaces("dev") with input as github_input("ignored", "read", "{\"ministryofjustice\":[\"a-team\",\"hmpps-probation-in-court\"]}")
-		with data.namespace_team_access as {"a-team-ns": ["a-team"], "ProbationInCourt": ["hmpps-probation-in-court"]} # regal ignore: unresolved-reference,line-length
+		with data.namespace_team_access as {"dev": {"a-team-ns": ["a-team"], "ProbationInCourt": ["hmpps-probation-in-court"]}} # regal ignore: unresolved-reference,line-length
 	"a-team-ns" in namespaces
 	"ProbationInCourt" in namespaces
 }

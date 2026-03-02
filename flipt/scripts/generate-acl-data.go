@@ -6,6 +6,7 @@ import (
 	"os"
 	"path/filepath"
 	"sort"
+	"strings"
 	"time"
 
 	"go.uber.org/zap"
@@ -24,7 +25,23 @@ type accessFile struct {
 }
 
 type aclData struct {
-	NamespaceTeamAccess map[string][]string `json:"namespace_team_access"`
+	AuthzConfig         authzConfig                    `json:"authz_config,omitempty"`
+	NamespaceTeamAccess map[string]map[string][]string `json:"namespace_team_access"`
+}
+
+type authzConfig struct {
+	DefaultEnvironment string `json:"default_environment,omitempty"`
+}
+
+func canonicalEnvironmentName(environment string) string {
+	switch strings.ToLower(strings.TrimSpace(environment)) {
+	case "prod", "production":
+		return "prod"
+	case "preprod", "pre-prod", "pre-production":
+		return "preprod"
+	default:
+		return strings.ToLower(strings.TrimSpace(environment))
+	}
 }
 
 // readNamespaceKey looks for a features.yml/yaml in the given directory and
@@ -49,25 +66,33 @@ func readNamespaceKey(nsDir string) string {
 }
 
 // generate reads all access.yml files under flags/<env>/<namespace>/,
-// builds a JSON map of namespace → writer teams, and writes it atomically
-// to outputPath. This JSON is consumed by Flipt's OPA authorization policy
-// to determine which GitHub teams can write to which namespaces.
+// builds a JSON map of environment → namespace → writer teams, and writes it
+// atomically to outputPath. This JSON is consumed by Flipt's OPA authorization
+// policy to determine which GitHub teams can write to which namespaces in each
+// environment.
 func generate(logger *zap.Logger, flagsDir string, outputPath string, msg string) error {
 	matches, _ := filepath.Glob(filepath.Join(flagsDir, "*", "*", "access.yml"))
 	sort.Strings(matches)
 
-	result := aclData{NamespaceTeamAccess: make(map[string][]string)}
+	result := aclData{
+		AuthzConfig: authzConfig{
+			DefaultEnvironment: canonicalEnvironmentName(os.Getenv("FLIPT_DEFAULT_ENVIRONMENT")),
+		},
+		NamespaceTeamAccess: make(map[string]map[string][]string),
+	}
 
 	for _, accessPath := range matches {
 		nsDir := filepath.Dir(accessPath)
+		envDir := filepath.Dir(nsDir)
+		environment := canonicalEnvironmentName(filepath.Base(envDir))
 
 		namespace := readNamespaceKey(nsDir)
 		if namespace == "" {
 			namespace = filepath.Base(nsDir)
 		}
 
-		if _, exists := result.NamespaceTeamAccess[namespace]; exists {
-			continue
+		if _, exists := result.NamespaceTeamAccess[environment]; !exists {
+			result.NamespaceTeamAccess[environment] = make(map[string][]string)
 		}
 
 		data, err := os.ReadFile(accessPath)
@@ -82,7 +107,7 @@ func generate(logger *zap.Logger, flagsDir string, outputPath string, msg string
 			continue
 		}
 
-		result.NamespaceTeamAccess[namespace] = af.Writers
+		result.NamespaceTeamAccess[environment][namespace] = af.Writers
 	}
 
 	out, _ := json.MarshalIndent(result, "", "  ")

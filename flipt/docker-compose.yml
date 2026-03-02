@@ -15,6 +15,7 @@ services:
       - ./config/local.yml:/etc/flipt/config/default.yml:ro
     environment:
       - FLIPT_AUTHORIZATION_LOCAL_DATA_PATH=/var/opt/flipt/acl-data.json
+      - FLIPT_DEFAULT_ENVIRONMENT=dev
       - FLIPT_LOG_LEVEL=debug
       - FLIPT_LOCAL_ADMIN_TOKEN=local-admin-token
       - FLIPT_LOCAL_GITHUB_CLIENT_ID=${FLIPT_LOCAL_GITHUB_CLIENT_ID:-change-me}

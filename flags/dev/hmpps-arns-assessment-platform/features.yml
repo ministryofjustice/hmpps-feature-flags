@@ -2,3 +2,8 @@ namespace:
     key: hmpps-arns-assessment-platform
     name: hmpps-arns-assessment-platform
     description: ARNS Assessment platform
+flags:
+    - key: test-flag
+      name: test-flag
+      type: BOOLEAN_FLAG_TYPE
+      enabled: true

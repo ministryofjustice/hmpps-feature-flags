@@ -6,4 +6,4 @@ flags:
     - key: test-flag
       name: test-flag
       type: BOOLEAN_FLAG_TYPE
-      enabled: false
+      enabled: true

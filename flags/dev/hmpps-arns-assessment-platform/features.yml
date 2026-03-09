@@ -10,7 +10,7 @@ flags:
     - key: sp-enable-smart-survery-in-beta
       name: sp-enable-smart-survery-in-beta
       type: BOOLEAN_FLAG_TYPE
-      enabled: false
+      enabled: true
     - key: sp-enable-smart-survery-in-national-rollout
       name: sp-enable-smart-survery-in-national-rollout
       type: BOOLEAN_FLAG_TYPE

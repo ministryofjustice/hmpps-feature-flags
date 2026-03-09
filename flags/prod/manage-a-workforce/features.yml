@@ -8,3 +8,17 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: Feature flag for reallocations work
       enabled: false
+      rollouts:
+        - segment:
+            keys:
+                - Region
+            value: true
+segments:
+    - key: Region
+      name: Region
+      constraints:
+        - type: STRING_COMPARISON_TYPE
+          property: regionCode
+          operator: eq
+          value: N57
+      match_type: ANY_MATCH_TYPE

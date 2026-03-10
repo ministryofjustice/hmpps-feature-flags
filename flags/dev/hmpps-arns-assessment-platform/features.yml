@@ -7,11 +7,11 @@ flags:
       name: test-flag
       type: BOOLEAN_FLAG_TYPE
       enabled: true
-    - key: sp-enable-smart-survery-in-beta
-      name: sp-enable-smart-survery-in-beta
+    - key: sp-enable-smart-survey-in-private-beta
+      name: sp-enable-smart-survey-in-private-beta
       type: BOOLEAN_FLAG_TYPE
       enabled: true
-    - key: sp-enable-smart-survery-in-national-rollout
+    - key: sp-enable-smart-survey-in-national-rollout
       name: sp-enable-smart-survey-in-national-rollout
       type: BOOLEAN_FLAG_TYPE
       enabled: false

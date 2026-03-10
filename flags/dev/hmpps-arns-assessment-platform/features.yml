@@ -12,6 +12,6 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       enabled: true
     - key: sp-enable-smart-survery-in-national-rollout
-      name: sp-enable-smart-survery-in-national-rollout
+      name: sp-enable-smart-survey-in-national-rollout
       type: BOOLEAN_FLAG_TYPE
       enabled: false

@@ -6,7 +6,7 @@ flags:
     - key: test-flag
       name: test-flag
       type: BOOLEAN_FLAG_TYPE
-      enabled: true
+      enabled: false
     - key: sp-enable-smart-survey-in-private-beta
       name: sp-enable-smart-survey-in-private-beta
       type: BOOLEAN_FLAG_TYPE

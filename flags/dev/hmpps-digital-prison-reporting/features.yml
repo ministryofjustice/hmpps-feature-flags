@@ -10,7 +10,6 @@ flags:
       rollouts:
         - threshold:
             percentage: 100
-            value: true
     - key: activeEstablishments
       name: activeEstablishments
       type: VARIANT_FLAG_TYPE

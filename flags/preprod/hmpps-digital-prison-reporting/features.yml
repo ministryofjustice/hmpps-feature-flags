@@ -188,6 +188,6 @@ flags:
     - key: linetimeserieschartsenabled
       name: linetimeseriesChartsEnabled
       type: BOOLEAN_FLAG_TYPE
-      enabled: false
+      enabled: true
       metadata:
         dashboardfeature: true

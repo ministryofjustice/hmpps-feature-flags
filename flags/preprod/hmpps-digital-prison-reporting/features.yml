@@ -145,7 +145,7 @@ flags:
     - key: barchartsenabled
       name: barChartsEnabled
       type: BOOLEAN_FLAG_TYPE
-      enabled: false
+      enabled: true
       metadata:
         dashboardfeature: true
     - key: linechartsenabled

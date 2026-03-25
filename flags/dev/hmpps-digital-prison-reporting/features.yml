@@ -175,43 +175,43 @@ flags:
             keys:
                 - otherseg
             operator: OR_SEGMENT_OPERATOR
-    - key: linechartsenabled
+    - key: lineChartsEnabled
       name: lineChartsEnabled
       type: BOOLEAN_FLAG_TYPE
       enabled: false
       metadata:
         dashboardfeature: true
-    - key: donutchartsenabled
+    - key: donutChartsEnabled
       name: donutChartsEnabled
       type: BOOLEAN_FLAG_TYPE
       enabled: false
       metadata:
         dashboardfeature: true
-    - key: scorecardchartsenabled
+    - key: scorecardChartsEnabled
       name: scorecardChartsEnabled
       type: BOOLEAN_FLAG_TYPE
       enabled: false
       metadata:
         dashboardfeature: true
-    - key: scorecardgroupchartsenabled
+    - key: scorecardgroupChartsEnabled
       name: scorecardgroupChartsEnabled
       type: BOOLEAN_FLAG_TYPE
       enabled: false
       metadata:
         dashboardfeature: true
-    - key: matrixtimeserieschartsenabled
+    - key: matrixtimeseriesChartsEnabled
       name: matrixtimeseriesChartsEnabled
       type: BOOLEAN_FLAG_TYPE
       enabled: false
       metadata:
         dashboardfeature: true
-    - key: bartimeserieschartsenabled
+    - key: bartimeseriesChartsEnabled
       name: bartimeseriesChartsEnabled
       type: BOOLEAN_FLAG_TYPE
       enabled: false
       metadata:
         dashboardfeature: true
-    - key: linetimeserieschartsenabled
+    - key: linetimeseriesChartsEnabled
       name: linetimeseriesChartsEnabled
       type: BOOLEAN_FLAG_TYPE
       enabled: true

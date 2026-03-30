@@ -31,3 +31,7 @@ flags:
       name: Assessment Summary / Risk Assessment Scores - SR32 OGRS4 changes
       type: BOOLEAN_FLAG_TYPE
       enabled: true
+    - key: tier-to-delius-v3
+      name: Tier - add V3 tier to Delius
+      type: BOOLEAN_FLAG_TYPE
+      enabled: false

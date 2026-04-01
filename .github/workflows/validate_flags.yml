@@ -8,23 +8,48 @@ on:
       - "makefile"
       - ".github/workflows/validate_flags.yml"
 
+permissions:
+  contents: read
+
+env:
+  INSTALL_FLIPT_VERSION: v2.5.0
+  INSTALL_FLIPT_ARCHIVE: flipt_linux_x86_64.tar.gz
+  INSTALL_FLIPT_SHA256: 34b331659a64449cf7072ff9c427b3a2ef955766f66ab80a61a6abe158119ba8
+  GO_VERSION: 1.24.5
+
 jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Setup Flipt CLI
-        uses: flipt-io/setup-action@v0.5.0
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          version: v2
+          persist-credentials: false
+      - name: Install Flipt CLI
+        run: |
+          set -euo pipefail
+
+          release_url="https://github.com/flipt-io/flipt/releases/download/${INSTALL_FLIPT_VERSION}"
+
+          curl --fail --show-error --silent --location \
+            --output "${INSTALL_FLIPT_ARCHIVE}" \
+            "${release_url}/${INSTALL_FLIPT_ARCHIVE}"
+
+          echo "${INSTALL_FLIPT_SHA256}  ${INSTALL_FLIPT_ARCHIVE}" | sha256sum --check --
+
+          mkdir -p "${RUNNER_TEMP}/bin"
+          extract_dir="$(mktemp -d)"
+          tar --extract --gzip --directory "${extract_dir}" --file "${INSTALL_FLIPT_ARCHIVE}" flipt
+          install -m 0755 "${extract_dir}/flipt" "${RUNNER_TEMP}/bin/flipt"
+          echo "${RUNNER_TEMP}/bin" >> "${GITHUB_PATH}"
       - run: make flags-validate
 
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
-          go-version: stable
+          persist-credentials: false
+      - uses: actions/setup-go@44694675825211faa026b3c33043df3e48a5fa00 # v6.0.0
+        with:
+          go-version: ${{ env.GO_VERSION }}
       - run: make flags-lint

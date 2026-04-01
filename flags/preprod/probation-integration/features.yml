@@ -34,4 +34,4 @@ flags:
     - key: tier-to-delius-v3
       name: Tier - add V3 tier to Delius
       type: BOOLEAN_FLAG_TYPE
-      enabled: false
+      enabled: true

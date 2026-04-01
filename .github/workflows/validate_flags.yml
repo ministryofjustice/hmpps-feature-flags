@@ -12,9 +12,9 @@ permissions:
   contents: read
 
 env:
-  FLIPT_VERSION: v2.5.0
-  FLIPT_ARCHIVE: flipt_linux_x86_64.tar.gz
-  FLIPT_SHA256: 34b331659a64449cf7072ff9c427b3a2ef955766f66ab80a61a6abe158119ba8
+  INSTALL_FLIPT_VERSION: v2.5.0
+  INSTALL_FLIPT_ARCHIVE: flipt_linux_x86_64.tar.gz
+  INSTALL_FLIPT_SHA256: 34b331659a64449cf7072ff9c427b3a2ef955766f66ab80a61a6abe158119ba8
   GO_VERSION: 1.24.5
 
 jobs:
@@ -28,17 +28,18 @@ jobs:
         run: |
           set -euo pipefail
 
-          release_url="https://github.com/flipt-io/flipt/releases/download/${FLIPT_VERSION}"
+          release_url="https://github.com/flipt-io/flipt/releases/download/${INSTALL_FLIPT_VERSION}"
 
           curl --fail --show-error --silent --location \
-            --output "${FLIPT_ARCHIVE}" \
-            "${release_url}/${FLIPT_ARCHIVE}"
+            --output "${INSTALL_FLIPT_ARCHIVE}" \
+            "${release_url}/${INSTALL_FLIPT_ARCHIVE}"
 
-          echo "${FLIPT_SHA256}  ${FLIPT_ARCHIVE}" | sha256sum --check --
+          echo "${INSTALL_FLIPT_SHA256}  ${INSTALL_FLIPT_ARCHIVE}" | sha256sum --check --
 
           mkdir -p "${RUNNER_TEMP}/bin"
-          tar --extract --gzip --file "${FLIPT_ARCHIVE}" flipt
-          install -m 0755 flipt "${RUNNER_TEMP}/bin/flipt"
+          extract_dir="$(mktemp -d)"
+          tar --extract --gzip --directory "${extract_dir}" --file "${INSTALL_FLIPT_ARCHIVE}" flipt
+          install -m 0755 "${extract_dir}/flipt" "${RUNNER_TEMP}/bin/flipt"
           echo "${RUNNER_TEMP}/bin" >> "${GITHUB_PATH}"
       - run: make flags-validate
 

@@ -39,3 +39,7 @@ flags:
       name: Tier V3 UI
       type: BOOLEAN_FLAG_TYPE
       enabled: false
+segments:
+    - key: tier-v3-testers
+      name: Tier V3 Testers
+      match_type: ALL_MATCH_TYPE

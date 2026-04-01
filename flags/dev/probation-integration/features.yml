@@ -39,6 +39,12 @@ flags:
       name: Tier V3 UI
       type: BOOLEAN_FLAG_TYPE
       enabled: false
+      rollouts:
+        - segment:
+            keys:
+                - tier-to-delius-v3-test-users
+            operator: OR_SEGMENT_OPERATOR
+            value: true
 segments:
     - key: tier-to-delius-v3-test-users
       name: Tier V3 Testers

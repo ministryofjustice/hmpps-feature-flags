@@ -42,4 +42,9 @@ flags:
 segments:
     - key: tier-v3-testers
       name: Tier V3 Testers
+      constraints:
+        - type: STRING_COMPARISON_TYPE
+          property: username
+          operator: isoneof
+          value: '["MARCUSASPIN"]'
       match_type: ALL_MATCH_TYPE

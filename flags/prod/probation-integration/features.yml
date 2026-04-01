@@ -35,3 +35,22 @@ flags:
       name: Tier - add V3 tier to Delius
       type: BOOLEAN_FLAG_TYPE
       enabled: false
+    - key: tier-v3-ui
+      name: Tier V3 UI
+      type: BOOLEAN_FLAG_TYPE
+      enabled: false
+      rollouts:
+        - segment:
+            keys:
+                - tier-v3-testers
+            operator: OR_SEGMENT_OPERATOR
+            value: true
+segments:
+    - key: tier-v3-testers
+      name: Tier V3 Testers
+      constraints:
+        - type: STRING_COMPARISON_TYPE
+          property: username
+          operator: isoneof
+          value: '["MARCUSASPIN"]'
+      match_type: ALL_MATCH_TYPE

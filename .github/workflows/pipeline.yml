@@ -21,7 +21,6 @@ on:
 
 permissions:
   contents: read
-  packages: write
 
 concurrency:
   # Only cancel in progress when on a branch - use SHA on main to ensure uniqueness.
@@ -30,6 +29,12 @@ concurrency:
   # a namespace, as the second one will not be able to get a lock as a deploy will be in progress.
   group: ${{ github.workflow }}-${{ github.ref == 'refs/heads/main' && github.sha || github.ref }}
   cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+env:
+  OPA_VERSION: v1.15.1
+  OPA_SHA256: 5c45f14a926b4b4b9e54d919fb76f9acb299ea1fdd1b204217a4eda5ba741ed1
+  REGAL_VERSION: v0.39.0
+  REGAL_SHA256: b4fd48ae33a85dc59352b32c34aaea104605d25a43680454f987682751595db9
 
 jobs:
   helm_lint:
@@ -44,25 +49,44 @@ jobs:
   opa_test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
       - shell: bash
         run: |
-          curl -L -o opa https://openpolicyagent.org/downloads/latest/opa_linux_amd64
+          set -euo pipefail
+
+          curl --fail --show-error --silent --location \
+            --output opa \
+            "https://github.com/open-policy-agent/opa/releases/download/${OPA_VERSION}/opa_linux_amd64"
+
+          echo "${OPA_SHA256}  opa" | sha256sum --check --
           chmod 755 ./opa
           ./opa test flipt/policies/ -v
   opa_lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
       - shell: bash
         run: |
-          curl -L -o regal "https://github.com/open-policy-agent/regal/releases/latest/download/regal_Linux_x86_64"
+          set -euo pipefail
+
+          curl --fail --show-error --silent --location \
+            --output regal \
+            "https://github.com/open-policy-agent/regal/releases/download/${REGAL_VERSION}/regal_Linux_x86_64"
+
+          echo "${REGAL_SHA256}  regal" | sha256sum --check --
           chmod +x regal
           ./regal lint .
 
   build:
     name: Build docker image from hmpps-github-actions
     if: github.ref == 'refs/heads/main'
+    permissions:
+      contents: read
+      packages: write
     uses: ministryofjustice/hmpps-github-actions/.github/workflows/docker_build.yml@v2 # WORKFLOW_VERSION
     with:
       docker_registry: "ghcr.io"

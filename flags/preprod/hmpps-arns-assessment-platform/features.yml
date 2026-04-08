@@ -2,3 +2,12 @@ namespace:
     key: hmpps-arns-assessment-platform
     name: hmpps-arns-assessment-platform
     description: ARNS Assessment platform
+flags:
+    - key: sp-enable-smart-survey-in-private-beta
+      name: sp-enable-smart-survey-in-private-beta
+      type: BOOLEAN_FLAG_TYPE
+      enabled: true
+    - key: sp-enable-smart-survey-in-national-rollout
+      name: sp-enable-smart-survey-in-national-rollout
+      type: BOOLEAN_FLAG_TYPE
+      enabled: false

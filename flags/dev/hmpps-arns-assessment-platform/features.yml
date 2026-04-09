@@ -14,4 +14,4 @@ flags:
     - key: sp-enable-teams-report-problem-link
       name: sp-enable-teams-report-problem-link
       type: BOOLEAN_FLAG_TYPE
-      enabled: false
+      enabled: true

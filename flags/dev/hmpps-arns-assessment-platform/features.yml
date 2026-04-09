@@ -11,3 +11,7 @@ flags:
       name: sp-enable-smart-survey-in-national-rollout
       type: BOOLEAN_FLAG_TYPE
       enabled: false
+    - key: sp-enable-teams-report-problem-link
+      name: sp-enable-teams-report-problem-link
+      type: BOOLEAN_FLAG_TYPE
+      enabled: true

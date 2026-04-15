@@ -33,3 +33,7 @@ segments:
           operator: eq
           value: N03
       match_type: ANY_MATCH_TYPE
+    - key: northeast
+      name: NorthEast
+      description: North East region rollout for email list flag
+      match_type: ANY_MATCH_TYPE

@@ -38,7 +38,7 @@ flags:
       name: Email
       type: BOOLEAN_FLAG_TYPE
       description: 'Flag for rollout of email list '
-      enabled: false
+      enabled: true
       rollouts:
         - segment:
             keys:

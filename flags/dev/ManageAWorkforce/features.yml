@@ -23,6 +23,11 @@ flags:
             keys:
                 - Region
             value: true
+    - key: email-list
+      name: email-list
+      type: BOOLEAN_FLAG_TYPE
+      description: Flag for rollout of email list
+      enabled: false
 segments:
     - key: Region
       name: Region

@@ -37,3 +37,7 @@ segments:
       name: RegionNE
       description: North East region rollout for email list flag
       match_type: ANY_MATCH_TYPE
+    - key: email-list-region
+      name: email-list-region
+      description: Region rollout for email list flag
+      match_type: ANY_MATCH_TYPE

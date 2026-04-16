@@ -21,7 +21,7 @@ flags:
       rollouts:
         - segment:
             keys:
-              - email-list-region
+                - email-list-region
             value: true
 segments:
     - key: Region

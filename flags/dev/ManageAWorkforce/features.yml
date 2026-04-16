@@ -45,6 +45,11 @@ flags:
                 - email-list-region
             operator: OR_SEGMENT_OPERATOR
             value: true
+    - key: enableemaillist
+      name: enableEmailList
+      type: BOOLEAN_FLAG_TYPE
+      description: Flag for rollout of email list changes
+      enabled: false
 segments:
     - key: Region
       name: Region

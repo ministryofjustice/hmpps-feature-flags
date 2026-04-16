@@ -13,6 +13,16 @@ flags:
             keys:
                 - Region
             value: true
+    - key: enableEmailList
+      name: enableEmailList
+      type: BOOLEAN_FLAG_TYPE
+      description: Flag for rollout of email list changes
+      enabled: false
+      rollouts:
+        - segment:
+            keys:
+              - email-list-region
+            value: true
 segments:
     - key: Region
       name: Region

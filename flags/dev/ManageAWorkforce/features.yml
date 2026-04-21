@@ -3,16 +3,6 @@ namespace:
     name: ManageAWorkforce
     description: Manage A Workforce
 flags:
-    - key: Gary
-      name: Gary
-      type: BOOLEAN_FLAG_TYPE
-      enabled: true
-    - key: GaryV
-      name: GaryV
-      type: VARIANT_FLAG_TYPE
-      enabled: false
-      variants:
-        - key: GaryV
     - key: Reallocations
       name: Reallocations
       type: BOOLEAN_FLAG_TYPE
@@ -23,33 +13,16 @@ flags:
             keys:
                 - Region
             value: true
-    - key: email-list
-      name: email-list
-      type: BOOLEAN_FLAG_TYPE
-      description: Flag for rollout of email list
-      enabled: false
-      rollouts:
-        - segment:
-            keys:
-                - email-list-region
-            operator: OR_SEGMENT_OPERATOR
-            value: true
-    - key: email
-      name: Email
-      type: BOOLEAN_FLAG_TYPE
-      description: 'Flag for rollout of email list '
-      enabled: true
-      rollouts:
-        - segment:
-            keys:
-                - email-list-region
-            operator: OR_SEGMENT_OPERATOR
-            value: true
-    - key: enableemaillist
+    - key: enableEmailList
       name: enableEmailList
       type: BOOLEAN_FLAG_TYPE
       description: Flag for rollout of email list changes
       enabled: false
+      rollouts:
+        - segment:
+            keys:
+                - email-list-region
+            value: true
 segments:
     - key: Region
       name: Region
@@ -59,10 +32,6 @@ segments:
           property: regionCode
           operator: eq
           value: N03
-      match_type: ANY_MATCH_TYPE
-    - key: northeast
-      name: RegionNE
-      description: North East region rollout for email list flag
       match_type: ANY_MATCH_TYPE
     - key: email-list-region
       name: email-list-region

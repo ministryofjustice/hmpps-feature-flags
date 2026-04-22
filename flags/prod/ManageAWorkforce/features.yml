@@ -7,12 +7,7 @@ flags:
       name: Reallocations
       type: BOOLEAN_FLAG_TYPE
       description: Feature flag for reallocations work
-      enabled: false
-      rollouts:
-        - segment:
-            keys:
-                - Region
-            value: true
+      enabled: true
 segments:
     - key: Region
       name: Region

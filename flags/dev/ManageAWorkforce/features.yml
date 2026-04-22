@@ -7,12 +7,7 @@ flags:
       name: Reallocations
       type: BOOLEAN_FLAG_TYPE
       description: Flag for reallocations work
-      enabled: false
-      rollouts:
-        - segment:
-            keys:
-                - Region
-            value: true
+      enabled: true
     - key: enableEmailList
       name: enableEmailList
       type: BOOLEAN_FLAG_TYPE

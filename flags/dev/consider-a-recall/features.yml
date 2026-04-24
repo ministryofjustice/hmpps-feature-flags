@@ -60,7 +60,7 @@ flags:
       name: FinTest
       type: BOOLEAN_FLAG_TYPE
       description: Test flag for testing
-      enabled: true
+      enabled: false
       rollouts:
         - segment:
             keys:

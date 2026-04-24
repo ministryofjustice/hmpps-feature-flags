@@ -38,6 +38,7 @@ flags:
     - key: tier-v3-ui
       name: Tier V3 UI
       type: BOOLEAN_FLAG_TYPE
+      description: Whether to grant access to the V3 UI
       enabled: false
       rollouts:
         - segment:
@@ -45,6 +46,11 @@ flags:
                 - tier-v3-testers
             operator: OR_SEGMENT_OPERATOR
             value: true
+    - key: tier-v3-calculation
+      name: Tier V3 Calculation
+      type: BOOLEAN_FLAG_TYPE
+      description: Whether to store V3 calculations
+      enabled: false
 segments:
     - key: tier-v3-testers
       name: Tier V3 Testers

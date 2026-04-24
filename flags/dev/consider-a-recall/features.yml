@@ -59,7 +59,7 @@ flags:
     - key: fintest
       name: FinTest
       type: BOOLEAN_FLAG_TYPE
-      description: Test flag for testing
+      description: Test flag for testing dasdsadsa
       enabled: false
       rollouts:
         - segment:

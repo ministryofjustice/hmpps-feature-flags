@@ -61,6 +61,12 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: Test flag for testing
       enabled: false
+      rollouts:
+        - segment:
+            keys:
+                - DateRollout
+            operator: OR_SEGMENT_OPERATOR
+            value: true
 segments:
     - key: DateRollout
       name: DateRollout

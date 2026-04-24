@@ -56,6 +56,13 @@ flags:
           distributions:
             - variant: ftr48
               rollout: 100
+    - key: fintest
+      name: FinTest
+      type: BOOLEAN_FLAG_TYPE
+      description: Test flag for testing
+      enabled: false
+      metadata:
+        ui: true
 segments:
     - key: DateRollout
       name: DateRollout

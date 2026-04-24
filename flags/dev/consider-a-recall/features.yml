@@ -73,8 +73,8 @@ segments:
       constraints:
         - type: DATETIME_COMPARISON_TYPE
           property: Time
-          operator: eq
-          value: "2025-10-09T15:00:00Z"
+          operator: gte
+          value: "2025-10-09T16:00:00+01:00"
       match_type: ALL_MATCH_TYPE
     - key: PPUD-Oct-2025-rollout
       name: PPUD Oct 2025 rollout

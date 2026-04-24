@@ -45,6 +45,11 @@ flags:
                 - tier-to-delius-v3-test-users
             operator: OR_SEGMENT_OPERATOR
             value: true
+    - key: tier-v3-calculation
+      name: Tier V3 Calculation
+      type: BOOLEAN_FLAG_TYPE
+      description: Whether to store V3 calculations
+      enabled: true
 segments:
     - key: tier-to-delius-v3-test-users
       name: Tier V3 Testers

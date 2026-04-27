@@ -65,7 +65,7 @@ flags:
       name: '[UI] FTR 56 Features'
       type: BOOLEAN_FLAG_TYPE
       description: For managing FTR56 features
-      enabled: false
+      enabled: true
 segments:
     - key: DateRollout
       name: DateRollout

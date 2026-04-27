@@ -67,6 +67,11 @@ flags:
                 - DateRollout
             operator: OR_SEGMENT_OPERATOR
             value: true
+    - key: ui-another-test-flag
+      name: Another test flag
+      type: BOOLEAN_FLAG_TYPE
+      description: here's a brief description
+      enabled: false
 segments:
     - key: DateRollout
       name: DateRollout

@@ -202,7 +202,7 @@ flags:
     - key: matrixtimeseriesChartsEnabled
       name: matrixtimeseriesChartsEnabled
       type: BOOLEAN_FLAG_TYPE
-      enabled: false
+      enabled: true
       metadata:
         dashboardfeature: true
     - key: bartimeseriesChartsEnabled

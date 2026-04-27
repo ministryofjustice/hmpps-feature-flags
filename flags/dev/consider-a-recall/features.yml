@@ -59,18 +59,22 @@ flags:
     - key: fintest
       name: FinTest
       type: BOOLEAN_FLAG_TYPE
-      description: Test flag for testing
-      enabled: false
-      metadata:
-        ui: true
+      description: Test flag for testing dasdsadsa
+      enabled: true
+      rollouts:
+        - segment:
+            keys:
+                - DateRollout
+            operator: OR_SEGMENT_OPERATOR
+            value: true
 segments:
     - key: DateRollout
       name: DateRollout
       constraints:
         - type: DATETIME_COMPARISON_TYPE
           property: Time
-          operator: eq
-          value: "2025-10-09T15:00:00Z"
+          operator: gte
+          value: "2025-10-09T16:00:00+01:00"
       match_type: ALL_MATCH_TYPE
     - key: PPUD-Oct-2025-rollout
       name: PPUD Oct 2025 rollout

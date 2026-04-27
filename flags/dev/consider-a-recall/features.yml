@@ -60,7 +60,7 @@ flags:
       name: FinTest
       type: BOOLEAN_FLAG_TYPE
       description: Test flag for testing dasdsadsa
-      enabled: false
+      enabled: true
       rollouts:
         - segment:
             keys:

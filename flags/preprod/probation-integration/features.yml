@@ -49,7 +49,7 @@ flags:
       name: Tier V3 Calculation
       type: BOOLEAN_FLAG_TYPE
       description: Whether to store V3 calculations
-      enabled: false
+      enabled: true
 segments:
     - key: tier-v3-testers
       name: Tier V3 Testers

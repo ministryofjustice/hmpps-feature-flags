@@ -110,4 +110,9 @@ segments:
       match_type: ALL_MATCH_TYPE
     - key: test-date-segment
       name: test-date-segment
+      constraints:
+        - type: DATETIME_COMPARISON_TYPE
+          property: Time
+          operator: eq
+          value: "2026-04-29T16:00:00+01:00"
       match_type: ALL_MATCH_TYPE

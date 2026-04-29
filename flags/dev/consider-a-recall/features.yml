@@ -64,7 +64,7 @@ flags:
       rollouts:
         - segment:
             keys:
-                - DateRollout
+                - test-date-segment
             operator: OR_SEGMENT_OPERATOR
             value: true
     - key: ui-flagFTR56Enabled

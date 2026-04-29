@@ -108,3 +108,6 @@ segments:
           value: "2025-09-01T23:00:00Z"
           description: The switchover date-time after which the FTR48 template should be used
       match_type: ALL_MATCH_TYPE
+    - key: test-date-segment
+      name: test-date-segment
+      match_type: ALL_MATCH_TYPE

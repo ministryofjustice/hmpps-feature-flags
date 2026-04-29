@@ -61,6 +61,12 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: here's a brief description
       enabled: false
+      rollouts:
+        - segment:
+            keys:
+                - DateRollout
+            operator: OR_SEGMENT_OPERATOR
+            value: true
     - key: ui-flagFTR56Enabled
       name: '[UI] FTR 56 Features'
       type: BOOLEAN_FLAG_TYPE

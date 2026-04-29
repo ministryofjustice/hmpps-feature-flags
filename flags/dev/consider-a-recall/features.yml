@@ -115,4 +115,4 @@ segments:
           property: Time
           operator: gte
           value: "2026-04-28T15:00:00+01:00"
-      match_type: ALL_MATCH_TYPE
+      match_type: ANY_MATCH_TYPE

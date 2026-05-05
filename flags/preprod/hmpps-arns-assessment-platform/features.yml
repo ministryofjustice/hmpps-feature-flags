@@ -11,4 +11,3 @@ flags:
       name: sp-enable-smart-survey-in-national-rollout
       type: BOOLEAN_FLAG_TYPE
       enabled: false
-

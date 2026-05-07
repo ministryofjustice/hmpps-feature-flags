@@ -34,6 +34,6 @@ segments:
       constraints:
         - type: STRING_COMPARISON_TYPE
           property: regionCode
-          operator: eq
-          value: N54
+          operator: isoneof
+          value: '["N03","N54"]'
       match_type: ANY_MATCH_TYPE

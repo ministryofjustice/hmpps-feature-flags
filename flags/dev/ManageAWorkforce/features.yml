@@ -35,5 +35,5 @@ segments:
         - type: STRING_COMPARISON_TYPE
           property: regionCode
           operator: isoneof
-          value: '["N03","N54"]'
+          value: '["N54","N03"]'
       match_type: ANY_MATCH_TYPE

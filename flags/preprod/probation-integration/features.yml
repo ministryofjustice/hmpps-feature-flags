@@ -50,6 +50,11 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: Whether to store V3 calculations
       enabled: true
+    - key: dps_lao_restriction
+      name: DPS_LAO_RESTRICTION
+      type: BOOLEAN_FLAG_TYPE
+      description: Turns on the logic for lao restrictions in DPS and Delius
+      enabled: false
 segments:
     - key: tier-v3-testers
       name: Tier V3 Testers

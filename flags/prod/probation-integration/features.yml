@@ -56,6 +56,11 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: Whether to store V3 calculations
       enabled: false
+    - key: tier-v3-events
+      name: Tier V3 Events
+      type: BOOLEAN_FLAG_TYPE
+      description: Whether to emit v3 or v2 domain events
+      enabled: false
 segments:
     - key: tier-v3-testers
       name: Tier V3 Testers

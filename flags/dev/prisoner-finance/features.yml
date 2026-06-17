@@ -1,0 +1,10 @@
+namespace:
+    key: prisoner-finance
+    name: prisoner-finance
+    description: prisoner finance UI
+flags:
+    - key: GrantABonusCard
+      name: GrantABonusCard
+      type: BOOLEAN_FLAG_TYPE
+      description: Hide the Grant A bonus card
+      enabled: true

@@ -2,3 +2,9 @@ namespace:
     key: prisoner-finance
     name: prisoner-finance
     description: prisoner finance UI
+flags:
+    - key: grant-bonus-to-prisoners-enabled
+      name: grant-bonus-to-prisoners-enabled
+      type: BOOLEAN_FLAG_TYPE
+      description: Enable grant bonus to prisoners functionality
+      enabled: false

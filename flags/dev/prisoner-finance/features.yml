@@ -3,8 +3,8 @@ namespace:
     name: prisoner-finance
     description: prisoner finance UI
 flags:
-    - key: GrantABonusCard
-      name: GrantABonusCard
+    - key: grant-bonus-to-prisoners-enabled
+      name: grant-bonus-to-prisoners-enabled
       type: BOOLEAN_FLAG_TYPE
-      description: Hide the Grant A bonus card
+      description: Enable grant bonus to prisoners functionality
       enabled: true

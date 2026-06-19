@@ -13,3 +13,8 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: Allow credit account functionality
       enabled: true
+    - key: data-warning-banner-enabled
+      name: data-warning-banner-enabled
+      type: BOOLEAN_FLAG_TYPE
+      description: Banner warning that any data entered will not be processed
+      enabled: true

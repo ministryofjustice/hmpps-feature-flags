@@ -8,7 +8,7 @@ RUN go mod init flipt-tools && go mod tidy \
     && go build -o generate-acl-data generate-acl-data.go \
     && go build -o lint-flags lint-flags.go
 
-FROM ghcr.io/flipt-io/flipt:v2.5.0
+FROM ghcr.io/flipt-io/flipt:v2.10.0
 USER root
 RUN apk upgrade --no-cache && apk add --no-cache git
 

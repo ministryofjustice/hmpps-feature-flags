@@ -7,7 +7,7 @@ flags:
       name: grant-bonus-to-prisoners-enabled
       type: BOOLEAN_FLAG_TYPE
       description: Enable grant bonus to prisoners functionality
-      enabled: true
+      enabled: false
     - key: credit-account-enabled
       name: credit-account-enabled
       type: BOOLEAN_FLAG_TYPE

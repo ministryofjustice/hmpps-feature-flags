@@ -12,4 +12,4 @@ flags:
       name: credit-account-enabled
       type: BOOLEAN_FLAG_TYPE
       description: Allow credit account functionality
-      enabled: false
+      enabled: true

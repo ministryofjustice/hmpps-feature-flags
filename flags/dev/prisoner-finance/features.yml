@@ -12,7 +12,7 @@ flags:
       name: credit-account-enabled
       type: BOOLEAN_FLAG_TYPE
       description: Allow credit account functionality
-      enabled: false
+      enabled: true
     - key: data-warning-banner-enabled
       name: data-warning-banner-enabled
       type: BOOLEAN_FLAG_TYPE

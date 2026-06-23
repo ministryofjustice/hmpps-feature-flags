@@ -67,5 +67,5 @@ segments:
         - type: STRING_COMPARISON_TYPE
           property: username
           operator: isoneof
-          value: '["MARCUSASPIN"]'
+          value: '["MARCUSASPIN","DAVID.BACKHOLER"]'
       match_type: ALL_MATCH_TYPE

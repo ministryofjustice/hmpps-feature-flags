@@ -1,0 +1,13 @@
+namespace:
+    key: hmpps-electronic-monitoring-data-insights
+    name: hmpps-electronic-monitoring-data-insights
+    description: Feature flags for EMDI
+flags:
+    - key: enable-heatmap
+      name: enable-heatmap
+      type: BOOLEAN_FLAG_TYPE
+      enabled: false
+    - key: enable-ping-card-navigation
+      name: enable-ping-card-navigation
+      type: BOOLEAN_FLAG_TYPE
+      enabled: false

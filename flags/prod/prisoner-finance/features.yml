@@ -8,3 +8,13 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: Enable grant bonus to prisoners functionality
       enabled: false
+    - key: credit-account-enabled
+      name: credit-account-enabled
+      type: BOOLEAN_FLAG_TYPE
+      description: Allow credit account functionality
+      enabled: false
+    - key: data-warning-banner-enabled
+      name: data-warning-banner-enabled
+      type: BOOLEAN_FLAG_TYPE
+      description: Banner warning that any data entered will not be processed
+      enabled: true

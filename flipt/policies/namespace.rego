@@ -123,7 +123,6 @@ allow if {
 allow if {
 	input.request.scope == "namespace"
 	has_correct_team
-	input.request.action != "delete"
 	not is_prod_mutation
 }
 

@@ -4,13 +4,14 @@
 # Namespace flag ownership
 # Each team owns their flags across all environments (dev, preprod, prod)
 
-flags/*/ManageAWorkforce/               @ministryofjustice/hmpps-manage-a-workforce-devs
-flags/*/ProbationInCourt/               @ministryofjustice/hmpps-probation-in-court
-flags/*/approved-premises-ui/           @ministryofjustice/approved-premises-team
-flags/*/community-accommodation/        @ministryofjustice/hmpps-community-accommodation
-flags/*/consider-a-recall/              @ministryofjustice/making-recall-decision
-flags/*/hmpps-arns-assessment-platform/ @ministryofjustice/hmpps-assessments-devs
-flags/*/hmpps-digital-prison-reporting/ @ministryofjustice/hmpps-digital-prison-reporting
-flags/*/manage-people-on-probation-ui/  @ministryofjustice/hmpps-manage-people-on-probation-dev
-flags/*/prisoner-finance/               @ministryofjustice/hmpps-prisoner-finance-dev
-flags/*/probation-integration/          @ministryofjustice/probation-integration
+flags/*/ManageAWorkforce/                          @ministryofjustice/hmpps-manage-a-workforce-devs
+flags/*/ProbationInCourt/                          @ministryofjustice/hmpps-probation-in-court
+flags/*/approved-premises-ui/                      @ministryofjustice/approved-premises-team
+flags/*/community-accommodation/                   @ministryofjustice/hmpps-community-accommodation
+flags/*/consider-a-recall/                         @ministryofjustice/making-recall-decision
+flags/*/hmpps-arns-assessment-platform/            @ministryofjustice/hmpps-assessments-devs
+flags/*/hmpps-digital-prison-reporting/            @ministryofjustice/hmpps-digital-prison-reporting
+flags/*/hmpps-electronic-monitoring-data-insights/ @ministryofjustice/hmpps-em-probation-devs @ministryofjustice/hmpps-em-probation-live
+flags/*/manage-people-on-probation-ui/             @ministryofjustice/hmpps-manage-people-on-probation-dev
+flags/*/prisoner-finance/                          @ministryofjustice/hmpps-prisoner-finance-dev
+flags/*/probation-integration/                     @ministryofjustice/probation-integration

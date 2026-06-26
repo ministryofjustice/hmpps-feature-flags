@@ -17,4 +17,4 @@ flags:
       name: data-warning-banner-enabled
       type: BOOLEAN_FLAG_TYPE
       description: Banner warning that any data entered will not be processed
-      enabled: true
+      enabled: false

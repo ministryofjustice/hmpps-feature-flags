@@ -50,7 +50,7 @@ flags:
       name: Tier V3 Calculation
       type: BOOLEAN_FLAG_TYPE
       description: Whether to store V3 calculations
-      enabled: false
+      enabled: true
     - key: tier-v3-events
       name: Tier V3 Events
       type: BOOLEAN_FLAG_TYPE

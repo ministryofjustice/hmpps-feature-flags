@@ -104,6 +104,10 @@ flags:
           name: Risk to Self template
           description: The template with the changes to support the Risk to Self changes should be used
           attachment: {}
+        - key: ftr56
+          name: FTR56 template
+          description: The template with the changes to support FTR56 should be used
+          attachment: {}
 segments:
     - key: DateRollout
       name: DateRollout

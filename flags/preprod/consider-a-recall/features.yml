@@ -46,3 +46,7 @@ segments:
       name: '[API] Risk to Self template'
       description: Marks the cutoff date & time after which the Risk to Self template should be used, barring segments for templates with a later cutoff date & time
       match_type: ALL_MATCH_TYPE
+    - key: api-ftr56-template
+      name: '[API] FTR56 template'
+      description: Marks the cutoff date & time after which the FTR56 template should be used, barring segments for templates with a later cutoff date & time
+      match_type: ALL_MATCH_TYPE

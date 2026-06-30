@@ -29,7 +29,7 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       enabled: false
     - key: part-a-template-version
-      name: Part A template version
+      name: '[API] Part A template version'
       type: VARIANT_FLAG_TYPE
       description: Flag indicating which template version to use when generating the Part A (or Preview Part A) of a recommendation
       enabled: true

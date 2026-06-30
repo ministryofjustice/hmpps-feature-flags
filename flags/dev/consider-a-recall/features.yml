@@ -39,21 +39,35 @@ flags:
           name: Default template
           description: The default template should be used
         - key: ftr48
-          name: FTR 48 template
-          description: The template with the changes to support FTR 48 should be used
+          name: FTR48 template
+          description: The template with the changes to support FTR48 should be used
+          attachment: {}
         - key: riskToSelf
           name: Risk to Self template
           description: The template with the changes to support the Risk to Self changes should be used
+        - key: ftr56
+          name: FTR56 template
+          description: The template with the changes to support FTR56 should be used
+          attachment: {}
       rules:
         - segment:
             keys:
+                - FTR56-template
+            operator: OR_SEGMENT_OPERATOR
+          distributions:
+            - variant: ftr56
+              rollout: 100
+        - segment:
+            keys:
                 - RIsk-to-self-template
+            operator: OR_SEGMENT_OPERATOR
           distributions:
             - variant: riskToSelf
               rollout: 100
         - segment:
             keys:
                 - ftr48-template
+            operator: OR_SEGMENT_OPERATOR
           distributions:
             - variant: ftr48
               rollout: 100

@@ -92,7 +92,8 @@ flags:
       description: Flag indicating which template version to use when generating the Part A (or Preview Part A) of a recommendation
       enabled: false
       variants:
-        - key: default
+        - default: true
+          key: default
           name: Default template
           description: The default template should be used
           attachment: {}
@@ -108,6 +109,28 @@ flags:
           name: FTR56 template
           description: The template with the changes to support FTR56 should be used
           attachment: {}
+      rules:
+        - segment:
+            keys:
+                - FTR56-template
+            operator: OR_SEGMENT_OPERATOR
+          distributions:
+            - variant: ftr56
+              rollout: 100
+        - segment:
+            keys:
+                - RIsk-to-self-template
+            operator: OR_SEGMENT_OPERATOR
+          distributions:
+            - variant: riskToSelf
+              rollout: 100
+        - segment:
+            keys:
+                - ftr48-template
+            operator: OR_SEGMENT_OPERATOR
+          distributions:
+            - variant: ftr48
+              rollout: 100
 segments:
     - key: DateRollout
       name: DateRollout

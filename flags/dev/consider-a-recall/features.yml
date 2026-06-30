@@ -151,7 +151,8 @@ segments:
           description: 5.32pm rollout
       match_type: ALL_MATCH_TYPE
     - key: RIsk-to-self-template
-      name: Risk to Self template
+      name: '[API] Risk to Self template'
+      description: Marks the cutoff date & time after which the Risk to Self template should be used, barring segments for templates with a later cutoff date & time
       constraints:
         - type: DATETIME_COMPARISON_TYPE
           property: dateTimeOfFirstDownload

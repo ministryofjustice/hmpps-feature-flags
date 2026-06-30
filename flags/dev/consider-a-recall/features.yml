@@ -106,7 +106,7 @@ segments:
           description: 5.32pm rollout
       match_type: ALL_MATCH_TYPE
     - key: RIsk-to-self-template
-      name: RIsk to Self template
+      name: Risk to Self template
       constraints:
         - type: DATETIME_COMPARISON_TYPE
           property: dateTimeOfFirstDownload

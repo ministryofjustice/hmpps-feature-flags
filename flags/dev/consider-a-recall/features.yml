@@ -160,7 +160,8 @@ segments:
           value: "2026-02-02T08:00:00Z"
       match_type: ALL_MATCH_TYPE
     - key: ftr48-template
-      name: FTR48 template
+      name: '[API] FTR48 template'
+      description: Marks the cutoff date & time after which the FTR48 template should be used, barring segments for templates with a later cutoff date & time
       constraints:
         - type: DATETIME_COMPARISON_TYPE
           property: dateTimeOfFirstDownload

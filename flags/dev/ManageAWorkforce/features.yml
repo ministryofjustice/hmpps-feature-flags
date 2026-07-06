@@ -37,4 +37,4 @@ segments:
           property: regionCode
           operator: eq
           value: N54
-      match_type: ANY_MATCH_TYPE
+      match_type: ALL_MATCH_TYPE

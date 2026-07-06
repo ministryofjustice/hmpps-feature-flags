@@ -12,11 +12,12 @@ flags:
       name: enableEmailList
       type: BOOLEAN_FLAG_TYPE
       description: Flag for rollout of email list changes
-      enabled: false
+      enabled: true
       rollouts:
         - segment:
             keys:
                 - email-list-region
+            operator: OR_SEGMENT_OPERATOR
             value: true
 segments:
     - key: email-list-region

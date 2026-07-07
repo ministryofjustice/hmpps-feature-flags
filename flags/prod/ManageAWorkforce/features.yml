@@ -12,21 +12,12 @@ flags:
       name: enableEmailList
       type: BOOLEAN_FLAG_TYPE
       description: Flag for rollout of email list changes
-      enabled: true
+      enabled: false
       rollouts:
         - segment:
-            keys:
-                - email-list-region
+            key: email-list-region
             value: true
 segments:
-    - key: Region
-      name: Region
-      constraints:
-        - type: STRING_COMPARISON_TYPE
-          property: regionCode
-          operator: eq
-          value: N57
-      match_type: ANY_MATCH_TYPE
     - key: email-list-region
       name: email-list-region
       description: Region rollout for email list flag

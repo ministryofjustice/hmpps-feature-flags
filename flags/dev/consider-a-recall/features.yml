@@ -131,6 +131,11 @@ flags:
           distributions:
             - variant: ftr48
               rollout: 100
+    - key: ppud-automation-sentenced-as-youth
+      name: ppud-automation-sentenced-as-youth
+      type: BOOLEAN_FLAG_TYPE
+      description: PPUD Automation flag for enabling sentenced-as-youth logic
+      enabled: true
 segments:
     - key: DateRollout
       name: DateRollout

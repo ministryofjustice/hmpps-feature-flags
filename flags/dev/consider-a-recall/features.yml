@@ -131,6 +131,11 @@ flags:
           distributions:
             - variant: ftr48
               rollout: 100
+    - key: ppud-automation-sentenced-as-youth
+      name: 'PPUD Automation Sentenced as Youth '
+      type: VARIANT_FLAG_TYPE
+      description: For populating the 'Sentenced as Youth' dropdown on the PPUD side
+      enabled: false
 segments:
     - key: DateRollout
       name: DateRollout

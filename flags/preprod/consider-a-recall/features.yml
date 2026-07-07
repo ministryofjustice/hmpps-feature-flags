@@ -33,6 +33,11 @@ flags:
       type: VARIANT_FLAG_TYPE
       description: Flag indicating which template version to use when generating the Part A (or Preview Part A) of a recommendation
       enabled: false
+    - key: ppud-automation-sentenced-as-youth
+      name: ppud-automation-sentenced-as-youth
+      type: BOOLEAN_FLAG_TYPE
+      description: PPUD Automation flag for enabling sentenced-as-youth logic
+      enabled: true
 segments:
     - key: PPUD-Oct-2025-rollout
       name: PPUD Oct 2025 rollout

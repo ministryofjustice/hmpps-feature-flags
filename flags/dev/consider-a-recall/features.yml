@@ -136,6 +136,10 @@ flags:
       type: VARIANT_FLAG_TYPE
       description: For populating the 'Sentenced as Youth' dropdown on the PPUD side
       enabled: false
+      variants:
+        - default: true
+          key: ppud-automation-sentenced-as-youth
+          attachment: {}
 segments:
     - key: DateRollout
       name: DateRollout

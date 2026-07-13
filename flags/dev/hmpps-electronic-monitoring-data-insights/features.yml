@@ -11,3 +11,8 @@ flags:
       name: enable-ping-card-navigation
       type: BOOLEAN_FLAG_TYPE
       enabled: false
+    - key: enable-ping-card-v1
+      name: enable-ping-card-v1
+      type: BOOLEAN_FLAG_TYPE
+      description: Ping Cards with arrows
+      enabled: false

@@ -66,6 +66,11 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: Update the offender.v3_tier_id column
       enabled: true
+    - key: tier-v3-delius-phase-2
+      name: Tier V3 Delius Phase 2
+      type: BOOLEAN_FLAG_TYPE
+      description: (post-September) set v3 tier in the offender.current_tier column and create the management_tier history record
+      enabled: false
 segments:
     - key: tier-to-delius-v3-test-users
       name: Tier V3 Testers

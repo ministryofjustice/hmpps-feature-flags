@@ -15,4 +15,4 @@ flags:
       name: enable-ping-card-v1
       type: BOOLEAN_FLAG_TYPE
       description: Ping Cards with arrows
-      enabled: false
+      enabled: true

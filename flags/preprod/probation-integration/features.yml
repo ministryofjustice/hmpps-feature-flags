@@ -60,6 +60,11 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: Whether to emit v3 or v2 domain events
       enabled: true
+    - key: tier-v3-delius-phase-1
+      name: Tier V3 Delius Phase 1
+      type: BOOLEAN_FLAG_TYPE
+      description: Update the offender.v3_tier_id column
+      enabled: false
 segments:
     - key: tier-v3-testers
       name: Tier V3 Testers

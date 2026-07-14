@@ -16,6 +16,12 @@ flags:
       type: VARIANT_FLAG_TYPE
       description: Is used to determine which navigation design is shown
       enabled: false
-      metadata:
-        arrows: arrows
-        numbers: numbers
+      variants:
+        - key: arrows
+          name: arrows
+          description: arrows vairant
+          attachment: {}
+        - key: numbers
+          name: numbers
+          description: numbers variant
+          attachment: {}

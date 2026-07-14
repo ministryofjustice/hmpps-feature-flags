@@ -16,8 +16,3 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: Ping Cards with arrows
       enabled: true
-    - key: enable-ping-card-v2
-      name: enable-ping-card-v2
-      type: BOOLEAN_FLAG_TYPE
-      description: Ping Cards with numbers navigation
-      enabled: false

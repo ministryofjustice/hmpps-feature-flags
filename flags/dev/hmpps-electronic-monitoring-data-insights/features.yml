@@ -11,3 +11,11 @@ flags:
       name: enable-ping-card-navigation
       type: BOOLEAN_FLAG_TYPE
       enabled: false
+    - key: ping-card-navigation-variant
+      name: ping-card-navigation-variant
+      type: VARIANT_FLAG_TYPE
+      description: Is used to determine which navigation design is shown
+      enabled: false
+      metadata:
+        arrows: arrows
+        numbers: numbers

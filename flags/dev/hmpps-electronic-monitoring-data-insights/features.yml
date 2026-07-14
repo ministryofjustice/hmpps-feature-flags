@@ -17,7 +17,8 @@ flags:
       description: Is used to determine which navigation design is shown
       enabled: false
       variants:
-        - key: arrows
+        - default: true
+          key: arrows
           name: arrows
           description: arrows vairant
           attachment: {}

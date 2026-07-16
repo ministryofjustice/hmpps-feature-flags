@@ -17,12 +17,12 @@ flags:
       description: Is used to determine which navigation design is shown
       enabled: true
       variants:
-        - key: arrows
+        - default: true
+          key: arrows
           name: arrows
           description: arrows vairant
           attachment: {}
-        - default: true
-          key: numbers
+        - key: numbers
           name: numbers
           description: numbers variant
           attachment: {}

@@ -66,3 +66,6 @@ environments:
     storage: "main"
     default: true
     directory: "flags/dev"
+
+evaluation:
+  include_flag_metadata: true

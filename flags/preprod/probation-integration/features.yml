@@ -64,7 +64,7 @@ flags:
       name: Tier V3 Delius Phase 1
       type: BOOLEAN_FLAG_TYPE
       description: (pre-September) Update the offender.v3_tier_id column
-      enabled: true
+      enabled: false
     - key: tier-v3-delius-phase-2
       name: Tier V3 Delius Phase 2
       type: BOOLEAN_FLAG_TYPE

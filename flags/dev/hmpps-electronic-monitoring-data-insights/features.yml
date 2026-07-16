@@ -15,7 +15,7 @@ flags:
       name: ping-card-navigation-variant
       type: VARIANT_FLAG_TYPE
       description: Is used to determine which navigation design is shown
-      enabled: false
+      enabled: true
       variants:
         - default: true
           key: arrows

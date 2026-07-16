@@ -131,7 +131,7 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: PPUD Automation flag for enabling sentenced-as-youth logic
       enabled: true
-    - key: ui-flagftr56SentenceConviction
+    - key: ui-ftr56SentenceConviction
       name: '[UI] Flag FTR56SentenceConviction'
       type: BOOLEAN_FLAG_TYPE
       description: Enables the updated version of the suitability question regarding new offences for Adult SDS sentences.

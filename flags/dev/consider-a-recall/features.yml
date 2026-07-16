@@ -71,11 +71,6 @@ flags:
           distributions:
             - variant: ftr48
               rollout: 100
-    - key: ui-flagFTR56Enabled
-      name: '[UI] FTR 56 Features'
-      type: BOOLEAN_FLAG_TYPE
-      description: For managing FTR56 features
-      enabled: true
     - key: ui-flagRecommendationsPage
       name: '[UI] Recommendations tab'
       type: BOOLEAN_FLAG_TYPE
@@ -136,6 +131,17 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: PPUD Automation flag for enabling sentenced-as-youth logic
       enabled: true
+    - key: ui-flagftr56SentenceConviction
+      name: '[UI] Flag FTR56SentenceConviction'
+      type: BOOLEAN_FLAG_TYPE
+      description: Enables the updated version of the suitability question regarding new offences for Adult SDS sentences.
+      enabled: false
+      rollouts:
+        - segment:
+            keys:
+                - FTR56-SentenceConvictionDateRollout
+            operator: OR_SEGMENT_OPERATOR
+            value: true
 segments:
     - key: DateRollout
       name: DateRollout
@@ -192,3 +198,12 @@ segments:
           value: "2026-03-31T00:00:00+01:00"
           description: The switchover date-time after which the FTR56 template should be used
       match_type: ALL_MATCH_TYPE
+    - key: FTR56-SentenceConvictionDateRollout
+      name: FTR56-SentenceConvictionDateRollout
+      constraints:
+        - type: DATETIME_COMPARISON_TYPE
+          property: Time
+          operator: gte
+          value: "2026-07-28T23:00:00Z"
+      match_type: ALL_MATCH_TYPE
+

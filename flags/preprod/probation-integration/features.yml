@@ -70,6 +70,11 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: (post-September) set v3 tier in the offender.current_tier column and create the management_tier history record
       enabled: false
+    - key: sds-plus-flag-enabled
+      name: Enable SDS+ processing of keydates
+      type: BOOLEAN_FLAG_TYPE
+      description: Enables creation of Final Third (FTHRD) and Electronic Monitoring End Date (EMED) key dates and updating the SDS+ flag on Delius disposal records.
+      enabled: false
 segments:
     - key: tier-v3-testers
       name: Tier V3 Testers

@@ -11,3 +11,7 @@ flags:
       name: sp-enable-smart-survey-in-national-rollout
       type: BOOLEAN_FLAG_TYPE
       enabled: false
+    - key: sp-enable-print-and-share
+      name: sp-enable-print-and-share
+      type: BOOLEAN_FLAG_TYPE
+      enabled: true

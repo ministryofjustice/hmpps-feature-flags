@@ -75,7 +75,7 @@ flags:
       name: '[UI] Recommendations tab'
       type: BOOLEAN_FLAG_TYPE
       description: Shows a "Recommendations" tab in Case summary, with a list of all recommendations that have been created for that CRN
-      enabled: true
+      enabled: false
     - key: ui-flagDeleteRecommendation
       name: '[UI] Allow deletion of a recommendation'
       type: BOOLEAN_FLAG_TYPE

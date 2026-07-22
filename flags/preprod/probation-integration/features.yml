@@ -74,7 +74,7 @@ flags:
       name: Enable SDS+ processing of keydates
       type: BOOLEAN_FLAG_TYPE
       description: Enables creation of Final Third (FTHRD) and Electronic Monitoring End Date (EMED) key dates and updating the SDS+ flag on Delius disposal records.
-      enabled: false
+      enabled: true
 segments:
     - key: tier-v3-testers
       name: Tier V3 Testers

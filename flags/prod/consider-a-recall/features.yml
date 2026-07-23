@@ -32,6 +32,17 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: PPUD Automation flag for enabling sentenced-as-youth logic
       enabled: false
+    - key: ui-ftr56SentenceConviction
+      name: '[UI] FTR56SentenceConviction'
+      type: BOOLEAN_FLAG_TYPE
+      description: Enables the updated version of the suitability question regarding new offences for Adult SDS sentences.
+      enabled: false
+      rollouts:
+        - segment:
+            keys:
+                - FTR56-SentenceConvictionDateRollout
+            operator: OR_SEGMENT_OPERATOR
+            value: true
 segments:
     - key: PPUD-Oct-2025-rollout
       name: PPUD Oct 2025 rollout
@@ -41,4 +52,12 @@ segments:
           property: currentDateTime
           operator: gte
           value: '2025-10-31T00:00:00Z'
+      match_type: ALL_MATCH_TYPE
+    - key: FTR56-SentenceConvictionDateRollout
+      name: FTR56-SentenceConvictionDateRollout
+      constraints:
+        - type: DATETIME_COMPARISON_TYPE
+          property: Time
+          operator: gte
+          value: "2026-07-28T23:00:00Z"
       match_type: ALL_MATCH_TYPE

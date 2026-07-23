@@ -14,4 +14,4 @@ flags:
     - key: sp-enable-print-and-share
       name: sp-enable-print-and-share
       type: BOOLEAN_FLAG_TYPE
-      enabled: false
+      enabled: true

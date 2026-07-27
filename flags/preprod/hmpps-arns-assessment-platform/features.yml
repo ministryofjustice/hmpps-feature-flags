@@ -15,3 +15,7 @@ flags:
       name: sp-enable-print-and-share
       type: BOOLEAN_FLAG_TYPE
       enabled: false
+    - key: sp-enable-supervision-package
+      name: sp-enable-supervision-package
+      type: BOOLEAN_FLAG_TYPE
+      enabled: false

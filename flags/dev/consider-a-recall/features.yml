@@ -209,4 +209,10 @@ segments:
     - key: FTR56-Offence-Conviction-template
       name: '[API] FTR56 Offence Conviction template'
       description: Marks the cutoff date & time after which the FTR56 Offence Conviction template should be used, barring segments for templates with a later cutoff date & time
+      constraints:
+        - type: DATETIME_COMPARISON_TYPE
+          property: dateTimeOfFirstDownload
+          operator: gte
+          value: "2026-07-29T00:00:00+01:00"
+          description: The switchover date-time after which the FTR56 Offence Conviction template should be used
       match_type: ALL_MATCH_TYPE

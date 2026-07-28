@@ -104,6 +104,10 @@ flags:
           name: FTR56 template
           description: The template with the changes to support FTR56 should be used
           attachment: {}
+        - key: ftr56OffenceConviction
+          name: FTR56 Offence Conviction template
+          description: The template with the changes to support FTR56 Offence Conviction should be used
+          attachment: {}
       rules:
         - segment:
             keys:

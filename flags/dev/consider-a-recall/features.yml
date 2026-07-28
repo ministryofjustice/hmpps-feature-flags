@@ -206,3 +206,7 @@ segments:
           operator: gte
           value: "2026-07-28T23:00:00Z"
       match_type: ALL_MATCH_TYPE
+    - key: FTR56-Offence-Conviction-template
+      name: '[API] FTR56 Offence Conviction template'
+      description: Marks the cutoff date & time after which the FTR56 Offence Conviction template should be used, barring segments for templates with a later cutoff date & time
+      match_type: ALL_MATCH_TYPE

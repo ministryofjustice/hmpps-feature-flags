@@ -111,6 +111,13 @@ flags:
       rules:
         - segment:
             keys:
+                - FTR56-Offence-Conviction-template
+            operator: OR_SEGMENT_OPERATOR
+          distributions:
+            - variant: ftr56OffenceConviction
+              rollout: 100
+        - segment:
+            keys:
                 - FTR56-template
             operator: OR_SEGMENT_OPERATOR
           distributions:

@@ -28,49 +28,6 @@ flags:
       name: Risk to Self Jan 2026
       type: BOOLEAN_FLAG_TYPE
       enabled: false
-    - key: part-a-template-version
-      name: '[API] Part A template version'
-      type: VARIANT_FLAG_TYPE
-      description: Flag indicating which template version to use when generating the Part A (or Preview Part A) of a recommendation
-      enabled: false
-      variants:
-        - default: true
-          key: default
-          name: Default template
-          description: The default template should be used
-        - key: ftr48
-          name: FTR48 template
-          description: The template with the changes to support FTR48 should be used
-          attachment: {}
-        - key: riskToSelf
-          name: Risk to Self template
-          description: The template with the changes to support the Risk to Self changes should be used
-        - key: ftr56
-          name: FTR56 template
-          description: The template with the changes to support FTR56 should be used
-          attachment: {}
-      rules:
-        - segment:
-            keys:
-                - FTR56-template
-            operator: OR_SEGMENT_OPERATOR
-          distributions:
-            - variant: ftr56
-              rollout: 100
-        - segment:
-            keys:
-                - RIsk-to-self-template
-            operator: OR_SEGMENT_OPERATOR
-          distributions:
-            - variant: riskToSelf
-              rollout: 100
-        - segment:
-            keys:
-                - ftr48-template
-            operator: OR_SEGMENT_OPERATOR
-          distributions:
-            - variant: ftr48
-              rollout: 100
     - key: ui-flagRecommendationsPage
       name: '[UI] Recommendations tab'
       type: BOOLEAN_FLAG_TYPE

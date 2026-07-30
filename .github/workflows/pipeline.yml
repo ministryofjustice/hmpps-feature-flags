@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - "**"
+    # Keep in lockstep with `paths` in smoke_test_skip.yml, which reports a
+    # passing `smoke_test` check for pushes this pipeline ignores.
     paths-ignore:
       - "flags/**"
       - ".github/CODEOWNERS"

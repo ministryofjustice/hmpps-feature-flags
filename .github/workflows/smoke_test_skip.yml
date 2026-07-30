@@ -1,0 +1,25 @@
+name: Smoke Test [skipped]
+
+# The `smoke_test` job in pipeline.yml is a required status check on main, but
+# that pipeline skips flag-only and CODEOWNERS-only pushes entirely. This twin
+# reports a passing `smoke_test` for exactly those pushes so flag PRs aren't
+# blocked waiting for a check that will never run.
+#
+# Keep `paths` here in lockstep with `paths-ignore` in pipeline.yml.
+
+on:
+  push:
+    branches:
+      - "**"
+    paths:
+      - "flags/**"
+      - ".github/CODEOWNERS"
+
+permissions:
+  contents: read
+
+jobs:
+  smoke_test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'Smoke test only runs for Flipt changes; skipping tests and returning pass result'

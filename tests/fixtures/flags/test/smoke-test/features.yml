@@ -1,0 +1,61 @@
+namespace:
+    key: smoke-test
+    name: Smoke Test
+    description: Fixture namespace for the smoke test suite - not a real service
+flags:
+    - key: always-on
+      name: Always on
+      type: BOOLEAN_FLAG_TYPE
+      description: Boolean flag that is always enabled
+      enabled: true
+    - key: always-off
+      name: Always off
+      type: BOOLEAN_FLAG_TYPE
+      description: Boolean flag that is always disabled
+      enabled: false
+    - key: segmented-flag
+      name: Segmented flag
+      type: BOOLEAN_FLAG_TYPE
+      description: Boolean flag that is only enabled for the smoke-testers segment
+      enabled: false
+      rollouts:
+        - segment:
+            keys:
+                - smoke-testers
+            value: true
+    - key: template-version
+      name: Template version
+      type: VARIANT_FLAG_TYPE
+      description: Variant flag that serves v2 to the smoke-testers segment
+      enabled: true
+      variants:
+        - default: true
+          key: v1
+          name: Version 1
+          attachment: {}
+        - key: v2
+          name: Version 2
+          attachment: {}
+      rules:
+        - segment:
+            keys:
+                - smoke-testers
+            operator: OR_SEGMENT_OPERATOR
+          distributions:
+            - variant: v2
+              rollout: 100
+    - key: mutable-flag
+      name: Mutable flag
+      type: BOOLEAN_FLAG_TYPE
+      description: Boolean flag that the smoke tests toggle via the management API
+      enabled: false
+segments:
+    - key: smoke-testers
+      name: Smoke Testers
+      description: Entities with a team property of smoke
+      constraints:
+        - type: STRING_COMPARISON_TYPE
+          property: team
+          operator: eq
+          value: smoke
+      match_type: ALL_MATCH_TYPE

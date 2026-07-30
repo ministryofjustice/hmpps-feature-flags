@@ -171,6 +171,7 @@ API is excluded from authentication so services can read flags without credentia
 - Docker
 - [OPA](https://www.openpolicyagent.org/) (`brew install opa`) - for running policy tests
 - [Regal](https://docs.styra.com/regal) (`brew install styrainc/packages/regal`) - for linting policies
+- Node.js 20+ - for running the smoke tests
 
 ### Running locally
 
@@ -186,6 +187,20 @@ FLIPT_LOCAL_GITHUB_CLIENT_ID=...
 FLIPT_LOCAL_GITHUB_CLIENT_SECRET=...
 ```
 
+### Smoke tests
+
+`make smoke-test` boots a disposable Flipt container and runs an end-to-end
+suite (`tests/`) against it using the same `@flipt-io/flipt-client-js` client
+that teams use: health, boolean/variant/segment evaluation, OPA namespace
+authorization, and a flag mutation through the management API. The same suite
+runs in CI on every push.
+
+The container uses `flipt/config/test.yml`, which deliberately has no
+`storage.remote` and no credentials: flag changes made by the tests are commits
+in a throwaway git repo inside the container and can never reach GitHub. The
+flags under test are fixtures in `tests/fixtures/` — no real namespaces are
+involved.
+
 ### Available make targets
 
 | Target | Description |
@@ -197,6 +212,7 @@ FLIPT_LOCAL_GITHUB_CLIENT_SECRET=...
 | `make flags-validate` | Validate flag files using the Flipt CLI |
 | `make flags-lint` | Check flag files match the canonical YAML format |
 | `make flags-lint-fix` | Auto-format flag files to canonical YAML |
+| `make smoke-test` | Run the smoke test suite against a disposable local Flipt instance |
 | `make opa-test` | Run OPA policy tests |
 | `make opa-lint` | Lint Rego policies with Regal |
 | `make generate-acl` | Generate ACL data from `access.yml` files |

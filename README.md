@@ -193,7 +193,7 @@ FLIPT_LOCAL_GITHUB_CLIENT_SECRET=...
 suite (`tests/`) against it using the same `@flipt-io/flipt-client-js` client
 that teams use: health, boolean/variant/segment evaluation, OPA namespace
 authorization, and a flag mutation through the management API. The same suite
-runs in CI on every push.
+runs in the CI pipeline (which skips flag-only and CODEOWNERS-only changes).
 
 The container uses `flipt/config/test.yml`, which deliberately has no
 `storage.remote` and no credentials: flag changes made by the tests are commits

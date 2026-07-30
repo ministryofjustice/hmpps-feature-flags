@@ -3,17 +3,6 @@ namespace:
     name: consider-a-recall
     description: Consider a Recall (CaR)
 flags:
-    - key: FlagA
-      name: FlagA
-      type: BOOLEAN_FLAG_TYPE
-      description: Testing rollouts
-      enabled: true
-      rollouts:
-        - segment:
-            keys:
-                - DateRollout
-            operator: OR_SEGMENT_OPERATOR
-            value: true
     - key: PPUD-Oct-2025-Rollout
       name: PPUD Oct 2025 Rollout
       type: BOOLEAN_FLAG_TYPE
@@ -24,10 +13,6 @@ flags:
             keys:
                 - PPUD-Oct-2025-rollout
             value: true
-    - key: Risk-to-Self-Jan-2026
-      name: Risk to Self Jan 2026
-      type: BOOLEAN_FLAG_TYPE
-      enabled: false
     - key: ui-flagRecommendationsPage
       name: '[UI] Recommendations tab'
       type: BOOLEAN_FLAG_TYPE
@@ -68,21 +53,21 @@ flags:
       rules:
         - segment:
             keys:
-                - FTR56-Offence-Conviction-template
+                - ftr56-offence-conviction-template
             operator: OR_SEGMENT_OPERATOR
           distributions:
             - variant: ftr56OffenceConviction
               rollout: 100
         - segment:
             keys:
-                - FTR56-template
+                - ftr56-template
             operator: OR_SEGMENT_OPERATOR
           distributions:
             - variant: ftr56
               rollout: 100
         - segment:
             keys:
-                - RIsk-to-self-template
+                - risk-to-self-template
             operator: OR_SEGMENT_OPERATOR
           distributions:
             - variant: riskToSelf
@@ -111,14 +96,6 @@ flags:
             operator: OR_SEGMENT_OPERATOR
             value: true
 segments:
-    - key: DateRollout
-      name: DateRollout
-      constraints:
-        - type: DATETIME_COMPARISON_TYPE
-          property: Time
-          operator: gte
-          value: "2025-10-09T16:00:00+01:00"
-      match_type: ALL_MATCH_TYPE
     - key: PPUD-Oct-2025-rollout
       name: PPUD Oct 2025 rollout
       description: For aligning with PPUD's October 2025 rollout of new changes
@@ -128,15 +105,6 @@ segments:
           operator: gte
           value: "2025-10-31T14:51:00Z"
           description: 5.32pm rollout
-      match_type: ALL_MATCH_TYPE
-    - key: RIsk-to-self-template
-      name: '[API] Risk to Self template'
-      description: Marks the cutoff date & time after which the Risk to Self template should be used, barring segments for templates with a later cutoff date & time
-      constraints:
-        - type: DATETIME_COMPARISON_TYPE
-          property: dateTimeOfFirstDownload
-          operator: gte
-          value: "2026-02-02T08:00:00Z"
       match_type: ALL_MATCH_TYPE
     - key: ftr48-template
       name: '[API] FTR48 template'
@@ -148,15 +116,16 @@ segments:
           value: "2025-09-01T23:00:00Z"
           description: The switchover date-time after which the FTR48 template should be used
       match_type: ALL_MATCH_TYPE
-    - key: test-date-segment
-      name: test-date-segment
+    - key: risk-to-self-template
+      name: '[API] Risk to Self template'
+      description: Marks the cutoff date & time after which the Risk to Self template should be used, barring segments for templates with a later cutoff date & time
       constraints:
         - type: DATETIME_COMPARISON_TYPE
-          property: Time
+          property: dateTimeOfFirstDownload
           operator: gte
-          value: "2026-05-28T15:00:00+01:00"
-      match_type: ANY_MATCH_TYPE
-    - key: FTR56-template
+          value: "2026-02-02T08:00:00Z"
+      match_type: ALL_MATCH_TYPE
+    - key: ftr56-template
       name: '[API] FTR56 template'
       description: Marks the cutoff date & time after which the FTR56 template should be used, barring segments for templates with a later cutoff date & time
       constraints:
@@ -174,7 +143,7 @@ segments:
           operator: gte
           value: "2026-07-28T23:00:00Z"
       match_type: ALL_MATCH_TYPE
-    - key: FTR56-Offence-Conviction-template
+    - key: ftr56-offence-conviction-template
       name: '[API] FTR56 Offence Conviction template'
       description: Marks the cutoff date & time after which the FTR56 Offence Conviction template should be used, barring segments for templates with a later cutoff date & time
       constraints:

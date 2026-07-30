@@ -6,7 +6,7 @@ flags:
     - key: enable-heatmap
       name: enable-heatmap
       type: BOOLEAN_FLAG_TYPE
-      enabled: false
+      enabled: true
     - key: enable-ping-card-navigation
       name: enable-ping-card-navigation
       type: BOOLEAN_FLAG_TYPE

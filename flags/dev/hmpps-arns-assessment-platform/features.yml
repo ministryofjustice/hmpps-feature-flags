@@ -18,7 +18,7 @@ flags:
     - key: sp-enable-supervision-package
       name: sp-enable-supervision-package
       type: BOOLEAN_FLAG_TYPE
-      enabled: false
+      enabled: true
     - key: sp-downtime-notification-banner
       name: sp-downtime-notification-banner
       type: BOOLEAN_FLAG_TYPE

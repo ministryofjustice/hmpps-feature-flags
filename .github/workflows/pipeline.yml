@@ -6,6 +6,7 @@ on:
       - "**"
     paths-ignore:
       - "flags/**"
+      - ".github/CODEOWNERS"
   workflow_dispatch:
     inputs:
       additional_docker_tag:

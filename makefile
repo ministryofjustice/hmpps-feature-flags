@@ -33,6 +33,14 @@ up: ## Starts/restarts the local Flipt instance.
 down: ## Stops and removes all containers in the project.
 	docker compose ${COMPOSE_FILES} down
 
+SMOKE_COMPOSE = docker compose -p $(PROJECT_NAME)-smoke -f tests/docker-compose.yml
+
+smoke-test: ## Runs the smoke test suite against a disposable local Flipt instance.
+	$(SMOKE_COMPOSE) up --build --force-recreate --wait
+	@(cd tests && npm ci --no-audit --no-fund && npm test); status=$$?; \
+	$(SMOKE_COMPOSE) down; \
+	exit $$status
+
 opa-test: ## Runs the OPA policy test suite.
 	@opa test flipt/policies/ -v
 

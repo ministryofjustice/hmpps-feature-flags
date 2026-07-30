@@ -1,0 +1,48 @@
+# Config for the disposable smoke-test instance (tests/). Unlike the other
+# environments there is deliberately NO storage.remote and NO credentials:
+# flag mutations made by the tests can only ever touch the throwaway repo
+# inside the container, never GitHub.
+version: "2.0"
+
+meta:
+  telemetry:
+    enabled: false
+
+authentication:
+  required: true
+  exclude:
+    evaluation: true
+  methods:
+    token:
+      enabled: true
+      storage:
+        tokens:
+          smoke-test-writer:
+            credential: "smoke-test-writer-token"
+            metadata:
+              github_teams: '{"ministryofjustice":["hmpps-smoke-test-writers"]}'
+          smoke-test-outsider:
+            credential: "smoke-test-outsider-token"
+
+authorization:
+  required: true
+  local:
+    policy:
+      path: "/etc/flipt/policies/namespace.rego"
+      poll_interval: "2s"
+    data:
+      path: "/var/opt/flipt/acl-data.json"
+      poll_interval: "2s"
+
+storage:
+  main:
+    backend:
+      type: local
+      path: "/var/opt/flipt/test-repo"
+
+environments:
+  test:
+    name: "test"
+    storage: "main"
+    default: true
+    directory: "flags/test"

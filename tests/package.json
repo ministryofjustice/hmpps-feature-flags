@@ -1,0 +1,21 @@
+{
+  "name": "hmpps-feature-flags-smoke-tests",
+  "private": true,
+  "description": "Smoke tests that exercise a disposable local Flipt instance",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@flipt-io/flipt-client-js": "^0.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.2",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.10"
+  }
+}

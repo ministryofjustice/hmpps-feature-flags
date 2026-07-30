@@ -27,7 +27,7 @@ flags:
       name: '[API] Part A template version'
       type: VARIANT_FLAG_TYPE
       description: Flag indicating which template version to use when generating the Part A (or Preview Part A) of a recommendation
-      enabled: false
+      enabled: true
       variants:
         - default: true
           key: default

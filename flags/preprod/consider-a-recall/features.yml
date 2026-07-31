@@ -13,16 +13,62 @@ flags:
             keys:
                 - PPUD-Oct-2025-rollout
             value: true
-    - key: ui-flagFTR56Enabled
-      name: '[UI] FTR 56 Features'
-      type: BOOLEAN_FLAG_TYPE
-      description: For managing FTR56 features
-      enabled: true
     - key: api-part-a-template-version
       name: '[API] Part A template version'
       type: VARIANT_FLAG_TYPE
       description: Flag indicating which template version to use when generating the Part A (or Preview Part A) of a recommendation
       enabled: false
+      variants:
+        - default: true
+          key: default
+          name: Default template
+          description: The default template should be used
+          attachment: {}
+        - key: ftr48
+          name: FTR48 template
+          description: The template with the changes to support FTR48 should be used
+          attachment: {}
+        - key: riskToSelf
+          name: Risk to Self template
+          description: The template with the changes to support the Risk to Self changes should be used
+          attachment: {}
+        - key: ftr56
+          name: FTR56 template
+          description: The template with the changes to support FTR56 should be used
+          attachment: {}
+        - key: ftr56OffenceConviction
+          name: FTR56 Offence Conviction template
+          description: The template with the changes to support FTR56 Offence Conviction should be used
+          attachment: {}
+      rules:
+        - segment:
+            keys:
+                - ftr56-offence-conviction-template
+            operator: OR_SEGMENT_OPERATOR
+          distributions:
+            - variant: ftr56OffenceConviction
+              rollout: 100
+        - segment:
+            keys:
+                - ftr56-template
+            operator: OR_SEGMENT_OPERATOR
+          distributions:
+            - variant: ftr56
+              rollout: 100
+        - segment:
+            keys:
+                - risk-to-self-template
+            operator: OR_SEGMENT_OPERATOR
+          distributions:
+            - variant: riskToSelf
+              rollout: 100
+        - segment:
+            keys:
+                - ftr48-template
+            operator: OR_SEGMENT_OPERATOR
+          distributions:
+            - variant: ftr48
+              rollout: 100
     - key: ppud-automation-sentenced-as-youth
       name: ppud-automation-sentenced-as-youth
       type: BOOLEAN_FLAG_TYPE
@@ -49,17 +95,34 @@ segments:
           operator: gte
           value: "2025-10-31T00:00:00Z"
       match_type: ALL_MATCH_TYPE
-    - key: api-ftr48-template
+    - key: ftr48-template
       name: '[API] FTR48 template'
       description: Marks the cutoff date & time after which the FTR48 template should be used, barring segments for templates with a later cutoff date & time
+      constraints:
+        - type: DATETIME_COMPARISON_TYPE
+          property: dateTimeOfFirstDownload
+          operator: gte
+          value: "2025-09-01T23:00:00Z"
+          description: The switchover date-time after which the FTR48 template should be used
       match_type: ALL_MATCH_TYPE
-    - key: api-risk-to-self-template
+    - key: risk-to-self-template
       name: '[API] Risk to Self template'
       description: Marks the cutoff date & time after which the Risk to Self template should be used, barring segments for templates with a later cutoff date & time
+      constraints:
+        - type: DATETIME_COMPARISON_TYPE
+          property: dateTimeOfFirstDownload
+          operator: gte
+          value: "2026-02-02T08:00:00Z"
       match_type: ALL_MATCH_TYPE
-    - key: api-ftr56-template
+    - key: ftr56-template
       name: '[API] FTR56 template'
       description: Marks the cutoff date & time after which the FTR56 template should be used, barring segments for templates with a later cutoff date & time
+      constraints:
+        - type: DATETIME_COMPARISON_TYPE
+          property: dateTimeOfFirstDownload
+          operator: gte
+          value: "2026-03-31T00:00:00+01:00"
+          description: The switchover date-time after which the FTR56 template should be used
       match_type: ALL_MATCH_TYPE
     - key: FTR56-SentenceConvictionDateRollout
       name: FTR56-SentenceConvictionDateRollout
@@ -68,4 +131,14 @@ segments:
           property: Time
           operator: gte
           value: "2026-07-28T23:00:00Z"
+      match_type: ALL_MATCH_TYPE
+    - key: ftr56-offence-conviction-template
+      name: '[API] FTR56 Offence Conviction template'
+      description: Marks the cutoff date & time after which the FTR56 Offence Conviction template should be used, barring segments for templates with a later cutoff date & time
+      constraints:
+        - type: DATETIME_COMPARISON_TYPE
+          property: dateTimeOfFirstDownload
+          operator: gte
+          value: "2026-07-29T00:00:00+01:00"
+          description: The switchover date-time after which the FTR56 Offence Conviction template should be used
       match_type: ALL_MATCH_TYPE

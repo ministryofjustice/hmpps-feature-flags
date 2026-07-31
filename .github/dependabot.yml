@@ -1,0 +1,23 @@
+version: 2
+updates:
+  # The Flipt base image in flipt/Dockerfile.
+  - package-ecosystem: docker
+    directory: /flipt
+    schedule:
+      interval: weekly
+
+  # The smoke test suite's npm dependencies.
+  - package-ecosystem: npm
+    directory: /tests
+    schedule:
+      interval: weekly
+
+  # SHA-pinned actions in .github/workflows. The hmpps-github-actions reusable
+  # workflows are versioned by HMPPS's own WORKFLOW_VERSION process, so leave
+  # them alone.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    ignore:
+      - dependency-name: ministryofjustice/hmpps-github-actions

@@ -4,8 +4,11 @@ on:
   push:
     branches:
       - "**"
+    # Keep in lockstep with `paths` in smoke_test_skip.yml, which reports a
+    # passing `smoke_test` check for pushes this pipeline ignores.
     paths-ignore:
       - "flags/**"
+      - ".github/CODEOWNERS"
   workflow_dispatch:
     inputs:
       additional_docker_tag:
@@ -49,7 +52,7 @@ jobs:
   opa_test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           persist-credentials: false
       - shell: bash
@@ -66,7 +69,7 @@ jobs:
   opa_lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           persist-credentials: false
       - shell: bash
@@ -80,6 +83,18 @@ jobs:
           echo "${REGAL_SHA256}  regal" | sha256sum --check --
           chmod +x regal
           ./regal lint .
+
+  smoke_test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: tests/.nvmrc
+      - shell: bash
+        run: make smoke-test
 
   build:
     name: Build docker image from hmpps-github-actions
@@ -102,6 +117,7 @@ jobs:
       - helm_lint
       - opa_lint
       - opa_test
+      - smoke_test
     uses: ministryofjustice/hmpps-github-actions/.github/workflows/deploy_env.yml@v2 # WORKFLOW_VERSION
     secrets: inherit
     with:

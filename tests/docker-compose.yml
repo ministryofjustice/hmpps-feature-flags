@@ -1,0 +1,22 @@
+services:
+  flipt-smoke:
+    build:
+      context: ..
+      dockerfile: flipt/Dockerfile
+    user: root
+    ports:
+      - "8081:8080"
+    volumes:
+      - ./fixtures:/var/opt/flipt/fixtures:ro
+      - ./scripts/smoke-entrypoint.sh:/usr/local/bin/smoke-entrypoint:ro
+    entrypoint: ["smoke-entrypoint"]
+    environment:
+      - FLIPT_CONFIG_FILE=/etc/flipt/config/test.yml
+      - FLIPT_GIT_REPO_PATH=/var/opt/flipt/test-repo
+      - FLIPT_DEFAULT_ENVIRONMENT=test
+      - FLIPT_LOG_LEVEL=debug
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8080/health"]
+      interval: 2s
+      timeout: 2s
+      retries: 30

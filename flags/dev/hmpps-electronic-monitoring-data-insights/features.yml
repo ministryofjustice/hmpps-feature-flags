@@ -29,4 +29,4 @@ flags:
     - key: enable-map-exclusion-zone
       name: enable-map-exclusion-zone
       type: BOOLEAN_FLAG_TYPE
-      enabled: false
+      enabled: true

@@ -26,7 +26,7 @@ flags:
           name: numbers
           description: numbers variant
           attachment: {}
-    - key: enable-exclusion-zone
-      name: enable-exclusion-zone
+    - key: enable-exclusion-zones
+      name: enable-exclusion-zones
       type: BOOLEAN_FLAG_TYPE
       enabled: true

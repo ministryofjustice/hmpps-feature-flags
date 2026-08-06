@@ -10,7 +10,7 @@ flags:
     - key: enable-ping-card-navigation
       name: enable-ping-card-navigation
       type: BOOLEAN_FLAG_TYPE
-      enabled: false
+      enabled: true
     - key: ping-card-navigation-variant
       name: ping-card-navigation-variant
       type: VARIANT_FLAG_TYPE

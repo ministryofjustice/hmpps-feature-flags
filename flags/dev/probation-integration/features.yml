@@ -80,7 +80,7 @@ flags:
       name: Tier Delius - Active Cases Only
       type: BOOLEAN_FLAG_TYPE
       description: Disable tier updates to Delius unless the case has an active event
-      enabled: true
+      enabled: false
 segments:
     - key: tier-to-delius-v3-test-users
       name: Tier V3 Testers

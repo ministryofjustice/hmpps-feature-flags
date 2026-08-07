@@ -71,6 +71,11 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: Enables creation of Final Third (FTHRD) and Electronic Monitoring End Date (EMED) key dates and updating the SDS+ flag on Delius disposal records.
       enabled: false
+    - key: tier-delius-active-cases-only
+      name: Tier Delius - Active Cases Only
+      type: BOOLEAN_FLAG_TYPE
+      description: Disable tier updates to Delius unless the case has an active event
+      enabled: false
 segments:
     - key: tier-v3-testers
       name: Tier V3 Testers

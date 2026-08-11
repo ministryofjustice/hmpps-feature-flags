@@ -26,8 +26,7 @@ make new-namespace
 ```
 
 This will prompt you for a namespace key, display name, description, and GitHub 
-team slug(s), then scaffold all the required files across every environment 
-and update CODEOWNERS for you.
+team slug(s), then scaffold all the required files across every environment.
 
 If you'd prefer to do it manually, you need to create the following files 
 for **each environment** (dev, preprod, prod):

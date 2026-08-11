@@ -6,7 +6,6 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
-	"sort"
 	"strings"
 )
 
@@ -84,67 +83,6 @@ func promptList(label string) []string {
 		items = append(items, input)
 		info("  (press enter to finish)")
 	}
-}
-
-// updateCodeowners adds a CODEOWNERS entry for the new namespace, keeping
-// the namespace entries sorted alphabetically by path.
-func updateCodeowners(flagsDir string, nsKey string, ghTeams []string) error {
-	codeownersPath := filepath.Join(flagsDir, "..", ".github", "CODEOWNERS")
-
-	data, err := os.ReadFile(codeownersPath)
-	if err != nil {
-		return fmt.Errorf("could not read CODEOWNERS: %w", err)
-	}
-
-	// Build the new entry
-	var owners []string
-	for _, team := range ghTeams {
-		owners = append(owners, "@ministryofjustice/"+team)
-	}
-
-	newPath := "flags/*/" + nsKey + "/"
-	newEntry := newPath + " " + strings.Join(owners, " ")
-
-	// Split into header (everything before namespace entries) and namespace entries
-	lines := strings.Split(strings.TrimRight(string(data), "\n"), "\n")
-
-	var header []string
-	var entries []string
-	entryPrefix := "flags/*/"
-
-	for _, line := range lines {
-		trimmed := strings.TrimSpace(line)
-		if strings.HasPrefix(trimmed, entryPrefix) {
-			entries = append(entries, trimmed)
-		} else {
-			header = append(header, line)
-		}
-	}
-
-	entries = append(entries, newEntry)
-	sort.Strings(entries)
-
-	// Pad entries so the @ owners are column-aligned
-	maxPathLen := 0
-	for _, entry := range entries {
-		pathEnd := strings.Index(entry, "@")
-		if pathEnd > maxPathLen {
-			maxPathLen = pathEnd
-		}
-	}
-
-	var aligned []string
-	for _, entry := range entries {
-		pathEnd := strings.Index(entry, "@")
-		path := strings.TrimRight(entry[:pathEnd], " ")
-		owners := entry[pathEnd:]
-		padding := strings.Repeat(" ", maxPathLen-len(path))
-		aligned = append(aligned, path+padding+owners)
-	}
-
-	output := strings.Join(header, "\n") + "\n" + strings.Join(aligned, "\n") + "\n"
-
-	return os.WriteFile(codeownersPath, []byte(output), 0644)
 }
 
 func confirm(label string) bool {
@@ -256,15 +194,6 @@ func main() {
 
 		ok(fmt.Sprintf("  Created %s/%s/", env, nsKey))
 	}
-
-	// --- Update CODEOWNERS ---
-
-	if err := updateCodeowners(flagsDir, nsKey, ghTeams); err != nil {
-		fail(fmt.Sprintf("Failed to update CODEOWNERS: %v", err))
-		os.Exit(1)
-	}
-
-	ok("  Updated .github/CODEOWNERS")
 
 	fmt.Println()
 	ok(fmt.Sprintf("Namespace '%s' created in all environments.", nsKey))

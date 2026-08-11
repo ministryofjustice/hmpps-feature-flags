@@ -19,8 +19,8 @@ authentication:
   methods:
     github:
       enabled: true
-      client_id: "${env:FLIPT_LOCAL_GITHUB_CLIENT_ID}"
-      client_secret: "${env:FLIPT_LOCAL_GITHUB_CLIENT_SECRET}"
+      client_id: "${env:FLIPT_GITHUB_CLIENT_ID}"
+      client_secret: "${env:FLIPT_GITHUB_CLIENT_SECRET}"
       redirect_address: "http://127.0.0.1:8080"
       scopes:
         - "user:email"
@@ -41,8 +41,11 @@ authorization:
 
 credentials:
   github:
-    type: access_token
-    access_token: "${env:FLIPT_GIT_ACCESS_TOKEN}"
+    type: github_app
+    github_app:
+      client_id: "${env:FLIPT_GITHUB_CLIENT_ID}"
+      installation_id: "${env:FLIPT_GITHUB_APP_INSTALLATION_ID}"
+      private_key_bytes: "${env:FLIPT_GITHUB_APP_PRIVATE_KEY}"
 
 storage:
   main:

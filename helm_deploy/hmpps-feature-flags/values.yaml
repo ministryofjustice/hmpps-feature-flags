@@ -43,8 +43,8 @@ generic-service:
     flipt-github-app:
       FLIPT_GITHUB_CLIENT_ID: CLIENT_ID
       FLIPT_GITHUB_CLIENT_SECRET: CLIENT_SECRET
-    flipt-git-token:
-      FLIPT_GIT_ACCESS_TOKEN: TOKEN
+      FLIPT_GITHUB_APP_INSTALLATION_ID: INSTALLATION_ID
+      FLIPT_GITHUB_APP_PRIVATE_KEY: PRIVATE_KEY
     elasticache-redis:
       FLIPT_REDIS_HOST: primary_endpoint_address
       FLIPT_REDIS_AUTH_TOKEN: auth_token

@@ -70,7 +70,7 @@ flags:
       name: Tier V3 Delius Phase 2
       type: BOOLEAN_FLAG_TYPE
       description: (post-September) set v3 tier in the offender.current_tier column and create the management_tier history record
-      enabled: false
+      enabled: true
     - key: sds-plus-flag-enabled
       name: Enable SDS+ processing of keydates
       type: BOOLEAN_FLAG_TYPE

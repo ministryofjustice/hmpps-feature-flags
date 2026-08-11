@@ -3,7 +3,7 @@ namespace:
     name: hmpps-electronic-monitoring-crime-matching
     description: Feature flags for Electronic Monitoring Crime Matching service
 flags:
-    - key: enable-police-email-notifications
-      name: enable-police-email-notifications
+    - key: enable-police-confirmation-emails
+      name: enable-police-confirmation-emails
       type: BOOLEAN_FLAG_TYPE
       enabled: true

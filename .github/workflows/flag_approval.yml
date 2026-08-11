@@ -194,7 +194,6 @@ jobs:
                   ...repo,
                   pull_number: pr.number,
                   event: 'APPROVE',
-                  body: 'Flag changes match the review policy - no human review needed.',
                 })
               }
 
@@ -236,6 +235,25 @@ jobs:
               }
             }
 
+            // Summon the writers teams whenever the PR is gated - a team that
+            // already has a pending review request isn't re-pinged.
+            if (unsatisfiedGates.length > 0) {
+              const { data: requested } = await github.rest.pulls.listRequestedReviewers({
+                ...repo,
+                pull_number: pr.number,
+              })
+              const alreadyRequested = new Set(requested.teams.map((team) => team.slug))
+              const teamSlugs = [...new Set(unsatisfiedGates.flatMap((gate) => gate.writers))].filter(
+                (slug) => !alreadyRequested.has(slug),
+              )
+
+              if (teamSlugs.length > 0) {
+                await github.rest.pulls
+                  .requestReviewers({ ...repo, pull_number: pr.number, team_reviewers: teamSlugs })
+                  .catch(() => {})
+              }
+            }
+
             const comments = await github.paginate(github.rest.issues.listComments, {
               ...repo,
               issue_number: pr.number,
@@ -249,14 +267,4 @@ jobs:
               }
             } else {
               await github.rest.issues.createComment({ ...repo, issue_number: pr.number, body })
-
-              // First sight of a gated PR - ask GitHub to request the writers
-              // teams as reviewers so they get a native notification.
-              const teamSlugs = [...new Set(unsatisfiedGates.flatMap((gate) => gate.writers))]
-
-              if (teamSlugs.length > 0) {
-                await github.rest.pulls
-                  .requestReviewers({ ...repo, pull_number: pr.number, team_reviewers: teamSlugs })
-                  .catch(() => {})
-              }
             }

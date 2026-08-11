@@ -68,7 +68,9 @@ directly through the Flipt UI:
 
 Changes made through the UI are written back to the Git repository automatically. 
 This makes dev and pre-prod a good place to iterate on flag configuration 
-before promoting to production.
+before promoting to production. If you'd rather raise a PR for these 
+environments, the flag-approval bot approves it automatically - non-production 
+changes don't need a review.
 
 ### Adding new flags in PROD
 
@@ -79,11 +81,33 @@ go through a Git PR:
 2. Add or update your flags in `flags/prod/{namespace}/features.yml`
 3. Run `make flags-lint` to validate your changes
 4. Push the branch and raise a PR
-5. Get approval from your team (CODEOWNERS enforces team-level review)
+5. Get approval from someone on your namespace's `writers` list - the 
+   flag-approval bot requests and verifies this (skipped for 
+   [self-service namespaces](#flag-review-policy))
 6. Merge to `main` — the change will deploy automatically through dev -> preprod -> prod
 
 > [!TIP]
 > You don't need to edit YAML by hand. The Flipt UI has a **Create branch** feature that lets you make flag changes visually on a new branch. Once you're happy with the changes, raise a PR from that branch for your team to review.
+
+### Flag review policy
+
+Flag PRs are policed by the flag-approval bot - a required status check that 
+reads each namespace's `access.yml` from `main` and comments on every PR with 
+what it decided:
+
+- **Non-production changes** are approved by the bot automatically - no 
+  review needed
+- **Production changes** block until someone on the namespace's `writers` 
+  list approves - the bot requests the review and verifies the approver is 
+  actually on one of those teams
+- **Production changes in a self-service namespace** are approved by the bot 
+  automatically. Opt in by adding `prodSelfService: true` to 
+  `flags/prod/{namespace}/access.yml` - that change itself needs an admin 
+  review, and it's the last one that does
+
+A flag change raised by someone outside the namespace's `writers` needs a 
+writer's approval, whatever the environment. Anything else - `access.yml` 
+changes, files outside `flags/` - needs a human review through CODEOWNERS.
 
 ## Evaluating flags
 

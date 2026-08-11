@@ -180,12 +180,22 @@ make build   # Build the Docker image
 make up      # Start Flipt at http://127.0.0.1:8080
 ```
 
-GitHub OAuth requires a `.env` file with:
+GitHub OAuth and git pushes authenticate through the GitHub App, which needs a
+`.env` file with:
 
 ```
-FLIPT_LOCAL_GITHUB_CLIENT_ID=...
-FLIPT_LOCAL_GITHUB_CLIENT_SECRET=...
+FLIPT_GITHUB_CLIENT_ID=...
+FLIPT_GITHUB_CLIENT_SECRET=...
+FLIPT_GITHUB_APP_INSTALLATION_ID=...
+FLIPT_GITHUB_APP_PRIVATE_KEY_B64=...
 ```
+
+`FLIPT_GITHUB_APP_PRIVATE_KEY_B64` is the app's private key base64-encoded to a
+single line (`base64 < the-app.private-key.pem | tr -d '\n'`) — `.env` values
+can't span lines, so the container entrypoint decodes it back to the real key.
+The client ID/secret are the GitHub App's — the app must list
+`http://127.0.0.1:8080/auth/v1/method/github/callback` as a callback URL for
+local login to work.
 
 ### Smoke tests
 

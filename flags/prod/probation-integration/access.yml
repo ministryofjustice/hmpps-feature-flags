@@ -1,2 +1,3 @@
 writers:
     - probation-integration
+prodSelfService: true

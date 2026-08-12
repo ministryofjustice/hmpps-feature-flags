@@ -22,7 +22,7 @@ flags:
       name: semantic-contact-search
       type: BOOLEAN_FLAG_TYPE
       description: Use semantic contact search
-      enabled: false
+      enabled: true
     - key: assessment-summary_update-risk-registrations-in-place
       name: Assessment Summary - SR32 Registration Changes
       type: BOOLEAN_FLAG_TYPE

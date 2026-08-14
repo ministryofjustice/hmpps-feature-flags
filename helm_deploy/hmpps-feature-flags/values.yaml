@@ -54,6 +54,7 @@ generic-service:
   allowlist:
     groups:
       - internal
+      - unilink_staff
 
   custommetrics:
     enabled: true

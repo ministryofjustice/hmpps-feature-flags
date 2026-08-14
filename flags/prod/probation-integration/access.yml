@@ -1,3 +1,4 @@
 writers:
     - probation-integration
+    - probation-integration-prod-flags
 prodSelfService: true

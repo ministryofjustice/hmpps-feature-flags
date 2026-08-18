@@ -160,4 +160,9 @@ segments:
       match_type: ALL_MATCH_TYPE
     - key: PPCS-Indeterminate-Journey-Rollout
       name: PPCS Indeterminate Journey Rollout
+      constraints:
+        - type: DATETIME_COMPARISON_TYPE
+          property: Time
+          operator: gte
+          value: "2036-09-30T00:00:00+01:00"
       match_type: ALL_MATCH_TYPE

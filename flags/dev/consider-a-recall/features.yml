@@ -95,6 +95,11 @@ flags:
                 - FTR56-SentenceConvictionDateRollout
             operator: OR_SEGMENT_OPERATOR
             value: true
+    - key: ui-ppcsIndeterminateJourney
+      name: '[UI] PPCS Indeterminate Journey'
+      type: BOOLEAN_FLAG_TYPE
+      description: Enables the PPCS journey for processing recalls for PoPs on Indeterminate sentences
+      enabled: false
 segments:
     - key: PPUD-Oct-2025-rollout
       name: PPUD Oct 2025 rollout

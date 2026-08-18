@@ -158,3 +158,6 @@ segments:
           value: "2026-07-29T00:00:00+01:00"
           description: The switchover date-time after which the FTR56 Offence Conviction template should be used
       match_type: ALL_MATCH_TYPE
+    - key: PPCS-Indeterminate-Journey-Rollout
+      name: PPCS Indeterminate Journey Rollout
+      match_type: ALL_MATCH_TYPE

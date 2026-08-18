@@ -100,6 +100,12 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: Enables the PPCS journey for processing recalls for PoPs on Indeterminate sentences
       enabled: false
+      rollouts:
+        - segment:
+            keys:
+                - PPCS-Indeterminate-Journey-Rollout
+            operator: OR_SEGMENT_OPERATOR
+            value: true
 segments:
     - key: PPUD-Oct-2025-rollout
       name: PPUD Oct 2025 rollout

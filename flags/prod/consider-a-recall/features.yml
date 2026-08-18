@@ -72,7 +72,7 @@ flags:
       name: ppud-automation-sentenced-as-youth
       type: BOOLEAN_FLAG_TYPE
       description: PPUD Automation flag for enabling sentenced-as-youth logic
-      enabled: false
+      enabled: true
     - key: ui-ftr56SentenceConviction
       name: '[UI] FTR56SentenceConviction'
       type: BOOLEAN_FLAG_TYPE

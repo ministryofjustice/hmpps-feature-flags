@@ -85,6 +85,17 @@ flags:
                 - FTR56-SentenceConvictionDateRollout
             operator: OR_SEGMENT_OPERATOR
             value: true
+    - key: ui-ppcsIndeterminateJourney
+      name: '[UI] PPCS Indeterminate Journey'
+      type: BOOLEAN_FLAG_TYPE
+      description: Enables the PPCS journey for processing recalls for PoPs on Indeterminate sentences
+      enabled: false
+      rollouts:
+        - segment:
+            keys:
+                - PPCS-Indeterminate-Journey-Rollout
+            operator: OR_SEGMENT_OPERATOR
+            value: true
 segments:
     - key: PPUD-Oct-2025-rollout
       name: PPUD Oct 2025 rollout
@@ -141,4 +152,12 @@ segments:
           operator: gte
           value: "2026-07-29T00:00:00+01:00"
           description: The switchover date-time after which the FTR56 Offence Conviction template should be used
+      match_type: ALL_MATCH_TYPE
+    - key: PPCS-Indeterminate-Journey-Rollout
+      name: PPCS Indeterminate Journey Rollout
+      constraints:
+        - type: DATETIME_COMPARISON_TYPE
+          property: Time
+          operator: gte
+          value: "2036-09-30T00:00:00+01:00"
       match_type: ALL_MATCH_TYPE

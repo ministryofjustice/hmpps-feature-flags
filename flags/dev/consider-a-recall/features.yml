@@ -99,7 +99,7 @@ flags:
       name: '[UI] PPCS Indeterminate Journey'
       type: BOOLEAN_FLAG_TYPE
       description: Enables the PPCS journey for processing recalls for PoPs on Indeterminate sentences
-      enabled: false
+      enabled: true
       rollouts:
         - segment:
             keys:

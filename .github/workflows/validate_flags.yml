@@ -2,19 +2,16 @@ name: Validate Flags
 
 on:
   pull_request:
-    paths:
-      - "flags/**"
-      - "flipt/scripts/lint-flags.go"
-      - "makefile"
-      - ".github/workflows/validate_flags.yml"
 
 permissions:
   contents: read
 
 env:
-  INSTALL_FLIPT_VERSION: v2.10.0
+  # Must match the image version in flipt/Dockerfile — the "Check Flipt version"
+  # step fails the build if they drift.
+  INSTALL_FLIPT_VERSION: v2.11.0
   INSTALL_FLIPT_ARCHIVE: flipt_linux_x86_64.tar.gz
-  INSTALL_FLIPT_SHA256: 157f200d8ef5db5ef58df586a6aeb2e669b6536afb7c3aa4547846684f97ef8a
+  INSTALL_FLIPT_SHA256: e65f52d1ab599530df6feb9acd987d2b2b9d059b90538c654a7eabe95dafeae4
   GO_VERSION: 1.24.5
 
 jobs:
@@ -24,6 +21,17 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+      - name: Check Flipt version matches the deployed image
+        run: |
+          set -euo pipefail
+
+          dockerfile_version="$(sed -n 's|^FROM ghcr.io/flipt-io/flipt:\(v[0-9][0-9.]*\)$|\1|p' flipt/Dockerfile)"
+
+          if [ "${dockerfile_version}" != "${INSTALL_FLIPT_VERSION}" ]; then
+            echo "INSTALL_FLIPT_VERSION (${INSTALL_FLIPT_VERSION}) does not match flipt/Dockerfile (${dockerfile_version})." >&2
+            echo "Update INSTALL_FLIPT_VERSION and INSTALL_FLIPT_SHA256 in this workflow so flags are validated with the version that will be deployed." >&2
+            exit 1
+          fi
       - name: Install Flipt CLI
         run: |
           set -euo pipefail

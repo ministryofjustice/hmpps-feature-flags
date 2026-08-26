@@ -1,4 +1,4 @@
-version: "1.5"
+version: "1.6"
 namespace:
     key: hmpps-arns-assessment-platform
     name: hmpps-arns-assessment-platform
@@ -23,7 +23,7 @@ flags:
     - key: sp-downtime-notification-banner
       name: sp-downtime-notification-banner
       type: BOOLEAN_FLAG_TYPE
-      enabled: false
+      enabled: true
     - key: sp-enable-mpop-assessment-info
       name: sp-enable-mpop-assessment-info
       type: BOOLEAN_FLAG_TYPE

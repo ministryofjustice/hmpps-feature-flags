@@ -1,3 +1,4 @@
+version: "1.5"
 namespace:
     key: hmpps-electronic-monitoring-data-insights
     name: hmpps-electronic-monitoring-data-insights

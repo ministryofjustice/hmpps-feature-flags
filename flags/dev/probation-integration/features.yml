@@ -1,3 +1,4 @@
+version: "1.5"
 namespace:
     key: probation-integration
     name: probation-integration

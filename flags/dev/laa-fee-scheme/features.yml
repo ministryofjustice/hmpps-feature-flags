@@ -8,3 +8,7 @@ flags:
       name: test
       type: BOOLEAN_FLAG_TYPE
       enabled: false
+      rollouts:
+        - threshold:
+            percentage: 50
+            value: true

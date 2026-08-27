@@ -1,0 +1,6 @@
+version: "1.6"
+namespace:
+    key: laa-fee-scheme
+    name: laa-fee-scheme
+    description: LAA Fee Scheme
+flags:

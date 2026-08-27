@@ -12,8 +12,10 @@ if [ -z "${FLIPT_GITHUB_APP_PRIVATE_KEY:-}" ] && [ -n "${FLIPT_GITHUB_APP_PRIVAT
   export FLIPT_GITHUB_APP_PRIVATE_KEY
 fi
 
-# Keep ACL data in sync as Flipt pulls repo updates
-generate-acl-data --watch "${REPO_PATH}/flags" "$ACL_DATA_PATH" &
+# Keep ACL data in sync as Flipt pulls repo updates. Flipt fetches into the
+# repo's git storage without updating the checked-out files, so the watcher
+# reads from the fetched ref rather than the filesystem.
+generate-acl-data --watch --git-ref refs/remotes/origin/main "${REPO_PATH}/flags" "$ACL_DATA_PATH" &
 
 # Start Flipt
 exec /flipt server --config "$CONFIG_FILE" "$@"

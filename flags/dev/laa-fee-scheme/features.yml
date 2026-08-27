@@ -4,3 +4,7 @@ namespace:
     name: laa-fee-scheme
     description: LAA Fee Scheme
 flags:
+    - key: test
+      name: test
+      type: BOOLEAN_FLAG_TYPE
+      enabled: false

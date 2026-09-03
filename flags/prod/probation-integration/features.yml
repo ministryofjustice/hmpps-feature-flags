@@ -1,4 +1,4 @@
-version: "1.5"
+version: "1.6"
 namespace:
     key: probation-integration
     name: probation-integration
@@ -76,7 +76,7 @@ flags:
       name: Tier Delius - Active Cases Only
       type: BOOLEAN_FLAG_TYPE
       description: Disable tier updates to Delius unless the case has an active event
-      enabled: true
+      enabled: false
 segments:
     - key: tier-v3-testers
       name: Tier V3 Testers
@@ -84,5 +84,6 @@ segments:
         - type: STRING_COMPARISON_TYPE
           property: username
           operator: isoneof
-          value: '["MARCUSASPIN"]'
+          value:
+            - MARCUSASPIN
       match_type: ALL_MATCH_TYPE

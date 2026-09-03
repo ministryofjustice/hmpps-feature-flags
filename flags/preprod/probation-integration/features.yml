@@ -1,4 +1,4 @@
-version: "1.6"
+version: "1.5"
 namespace:
     key: probation-integration
     name: probation-integration
@@ -88,8 +88,5 @@ segments:
         - type: STRING_COMPARISON_TYPE
           property: username
           operator: isoneof
-          value:
-            - DAVID.BACKHOLER
-            - JOSEPHDUNDON
-            - MARCUSASPIN
+          value: '["DAVID.BACKHOLER","JOSEPHDUNDON","MARCUSASPIN"]'
       match_type: ALL_MATCH_TYPE

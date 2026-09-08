@@ -1,0 +1,10 @@
+namespace:
+    key: hmpps-esupervision
+    name: hmpps-esupervision
+    description: Feature flags for the esupervision products
+flags:
+    - key: eligibility-refactor-toggle
+      name: eligibility-refactor-toggle
+      type: BOOLEAN_FLAG_TYPE
+      description: Toggles whether the UI can display the refactored eligibility designs
+      enabled: true

@@ -1,3 +1,4 @@
+version: "1.6"
 namespace:
     key: hmpps-esupervision
     name: hmpps-esupervision
@@ -7,4 +8,4 @@ flags:
       name: eligibility-refactor-toggle
       type: BOOLEAN_FLAG_TYPE
       description: Toggles whether the UI can display the refactored eligibility designs
-      enabled: true
+      enabled: false

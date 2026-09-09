@@ -9,3 +9,7 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: Toggles whether the UI can display the refactored eligibility designs
       enabled: false
+    - key: eligibilityFeatureToggle
+      name: eligibilityFeatureToggle
+      type: BOOLEAN_FLAG_TYPE
+      enabled: false

@@ -24,3 +24,8 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: Activate the prisoner profile action panel and its functions
       enabled: false
+    - key: holds-enabled
+      name: holds-enabled
+      type: BOOLEAN_FLAG_TYPE
+      description: Enables anything to do with hold for the prisoner
+      enabled: true

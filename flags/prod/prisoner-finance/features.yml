@@ -19,3 +19,13 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: Banner warning that any data entered will not be processed
       enabled: true
+    - key: action-panel-enabled
+      name: action-panel-enabled
+      type: BOOLEAN_FLAG_TYPE
+      description: Activate the prisoner profile action panel and its functions
+      enabled: false
+    - key: holds-enabled
+      name: holds-enabled
+      type: BOOLEAN_FLAG_TYPE
+      description: Enables anything to do with hold for the prisoner
+      enabled: false

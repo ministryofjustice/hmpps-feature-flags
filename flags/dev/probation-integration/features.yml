@@ -72,6 +72,11 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: Disable tier updates to Delius unless the case has an active event
       enabled: false
+    - key: tier-to-delius-sa2026-exclusions
+      name: Tier - SA2026 Excluded Offence Moderator
+      type: BOOLEAN_FLAG_TYPE
+      description: (1st October) Enable use of the R_OFFENCE.SA26_EXCLUDED_OFFENCE column
+      enabled: true
 segments:
     - key: tier-to-delius-v3-test-users
       name: Tier V3 Testers

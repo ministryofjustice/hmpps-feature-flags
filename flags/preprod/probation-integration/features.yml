@@ -75,4 +75,4 @@ flags:
       name: Tier - SA2026 Excluded Offence Moderator
       type: BOOLEAN_FLAG_TYPE
       description: (1st October) Enable use of the R_OFFENCE.SA26_EXCLUDED_OFFENCE column
-      enabled: false
+      enabled: true

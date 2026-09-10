@@ -1,4 +1,4 @@
-version: "1.5"
+version: "1.6"
 namespace:
     key: probation-integration
     name: probation-integration
@@ -32,10 +32,6 @@ flags:
       name: Assessment Summary / Risk Assessment Scores - SR32 OGRS4 changes
       type: BOOLEAN_FLAG_TYPE
       enabled: true
-    - key: tier-to-delius-v3
-      name: Tier - add V3 tier to Delius
-      type: BOOLEAN_FLAG_TYPE
-      enabled: false
     - key: tier-v3-ui
       name: Tier V3 UI
       type: BOOLEAN_FLAG_TYPE
@@ -89,5 +85,6 @@ segments:
         - type: STRING_COMPARISON_TYPE
           property: username
           operator: isoneof
-          value: '["MARCUSASPIN"]'
+          value:
+            - MARCUSASPIN
       match_type: ALL_MATCH_TYPE

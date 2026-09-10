@@ -76,7 +76,7 @@ flags:
     - key: tier-to-delius-sa2026-exclusions
       name: Tier - SA2026 Excluded Offence Moderator
       type: BOOLEAN_FLAG_TYPE
-      description: (1st October) Enable use of the R_OFFENCE.SA26_EXCLUDED_OFFENCE column
+      description: (23rd September) Enable use of the R_OFFENCE.SA26_EXCLUDED_OFFENCE column
       enabled: false
 segments:
     - key: tier-v3-testers

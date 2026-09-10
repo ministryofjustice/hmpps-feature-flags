@@ -28,4 +28,4 @@ flags:
       name: holds-enabled
       type: BOOLEAN_FLAG_TYPE
       description: Enables anything to do with hold for the prisoner
-      enabled: false
+      enabled: true

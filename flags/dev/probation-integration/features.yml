@@ -37,12 +37,6 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: Whether to grant access to the V3 UI
       enabled: true
-      rollouts:
-        - segment:
-            keys:
-                - tier-to-delius-v3-test-users
-            operator: OR_SEGMENT_OPERATOR
-            value: true
     - key: tier-v3-calculation
       name: Tier V3 Calculation
       type: BOOLEAN_FLAG_TYPE

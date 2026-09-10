@@ -75,15 +75,3 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: Disable tier updates to Delius unless the case has an active event
       enabled: true
-segments:
-    - key: tier-v3-testers
-      name: Tier V3 Testers
-      constraints:
-        - type: STRING_COMPARISON_TYPE
-          property: username
-          operator: isoneof
-          value:
-            - DAVID.BACKHOLER
-            - JOSEPHDUNDON
-            - MARCUSASPIN
-      match_type: ALL_MATCH_TYPE

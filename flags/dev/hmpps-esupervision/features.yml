@@ -17,4 +17,4 @@ flags:
     - key: newDesignPopHeader
       name: newDesignPopHeader
       type: BOOLEAN_FLAG_TYPE
-      enabled: true
+      enabled: false

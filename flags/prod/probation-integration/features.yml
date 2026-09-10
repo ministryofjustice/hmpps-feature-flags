@@ -63,11 +63,6 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: (1st October) set v3 tier in the offender.current_tier column and create the management_tier history record
       enabled: false
-    - key: sds-plus-flag-enabled
-      name: Enable SDS+ processing of keydates
-      type: BOOLEAN_FLAG_TYPE
-      description: Enables creation of Final Third (FTHRD) and Electronic Monitoring End Date (EMED) key dates and updating the SDS+ flag on Delius disposal records.
-      enabled: false
     - key: tier-delius-active-cases-only
       name: Tier Delius - Active Cases Only
       type: BOOLEAN_FLAG_TYPE
@@ -77,6 +72,11 @@ flags:
       name: Tier - SA2026 Excluded Offence Moderator
       type: BOOLEAN_FLAG_TYPE
       description: (23rd September) Enable use of the R_OFFENCE.SA26_EXCLUDED_OFFENCE column
+      enabled: false
+    - key: calculate-key-dates-from-delius
+      name: Calculate key dates using Delius
+      type: BOOLEAN_FLAG_TYPE
+      description: (26th September) When enabled calculates the final third date and emed date using data from delius. When disabled uses CRDS as input for calculations.
       enabled: false
 segments:
     - key: tier-v3-testers

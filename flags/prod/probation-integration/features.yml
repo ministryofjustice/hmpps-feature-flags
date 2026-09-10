@@ -51,7 +51,7 @@ flags:
     - key: tier-v3-events
       name: Tier V3 Events
       type: BOOLEAN_FLAG_TYPE
-      description: Whether to emit v3 or v2 domain events
+      description: (1st October) Whether to emit v3 or v2 domain events
       enabled: false
     - key: tier-v3-delius-phase-1
       name: Tier V3 Delius Phase 1

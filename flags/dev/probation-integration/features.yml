@@ -75,7 +75,7 @@ flags:
     - key: calculate-key-dates-from-delius
       name: Calculate key dates using Delius
       type: BOOLEAN_FLAG_TYPE
-      description: (26th September) When enabled calculates the final third date and emed date using data from delius. When disabled uses CRDS as input for calculations.
+      description: When enabled calculates the final third date and emed date using data from delius. When disabled uses CRDS as input for calculations.
       enabled: true
 segments:
     - key: tier-to-delius-v3-test-users

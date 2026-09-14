@@ -18,3 +18,8 @@ flags:
       name: newDesignPopHeader
       type: BOOLEAN_FLAG_TYPE
       enabled: true
+    - key: adhocCheckInsToggle
+      name: adhocCheckInsToggle
+      type: BOOLEAN_FLAG_TYPE
+      description: Toggle to enable the ad-hoc check ins feature
+      enabled: false

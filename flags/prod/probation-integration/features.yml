@@ -67,7 +67,7 @@ flags:
       name: Tier Delius - Active Cases Only
       type: BOOLEAN_FLAG_TYPE
       description: Disable tier updates to Delius unless the case has an active event
-      enabled: true
+      enabled: false
     - key: tier-to-delius-sa2026-exclusions
       name: Tier - SA2026 Excluded Offence Moderator
       type: BOOLEAN_FLAG_TYPE

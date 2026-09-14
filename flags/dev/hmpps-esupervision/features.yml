@@ -12,7 +12,7 @@ flags:
     - key: mockAccreditedProgrammeTiersABToggle
       name: mockAccreditedProgrammeTiersABToggle
       type: BOOLEAN_FLAG_TYPE
-      description: Turns on mock data to show the eligibility journey if a user was on an accredited programme and on Tiers A/B
+      description: Turns on mock data to show the eligibility journey if a user was on an accredited programme and on Tiers A/B. Only to be used in DEV for testing
       enabled: false
     - key: newDesignPopHeader
       name: newDesignPopHeader

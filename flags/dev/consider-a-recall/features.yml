@@ -178,3 +178,7 @@ segments:
           operator: gte
           value: "2036-09-30T00:00:00+01:00"
       match_type: ALL_MATCH_TYPE
+    - key: ui-new-standard-licence-conditions-template
+      name: '[UI] New standard licence conditions template'
+      description: Marks the cutover date and time after which the new behaviour should come in
+      match_type: ALL_MATCH_TYPE

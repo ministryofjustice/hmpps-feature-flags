@@ -107,7 +107,7 @@ flags:
                 - PPCS-Indeterminate-Journey-Rollout
             operator: OR_SEGMENT_OPERATOR
             value: true
-    - key: ui-flagNewStandardLicenceConditions
+    - key: ui-newStandardLicenceConditions
       name: '[UI] New standard licence conditions'
       type: BOOLEAN_FLAG_TYPE
       description: Enables the new set of standard licence conditions

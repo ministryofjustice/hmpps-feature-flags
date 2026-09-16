@@ -1,4 +1,4 @@
-version: "1.5"
+version: "1.6"
 namespace:
     key: consider-a-recall
     name: consider-a-recall
@@ -107,6 +107,11 @@ flags:
                 - PPCS-Indeterminate-Journey-Rollout
             operator: OR_SEGMENT_OPERATOR
             value: true
+    - key: ui-flagNewStandardLicenceConditions
+      name: '[UI] New standard licence conditions'
+      type: BOOLEAN_FLAG_TYPE
+      description: Enables the new set of standard licence conditions
+      enabled: false
 segments:
     - key: PPUD-Oct-2025-rollout
       name: PPUD Oct 2025 rollout

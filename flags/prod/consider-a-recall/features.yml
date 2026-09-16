@@ -1,4 +1,4 @@
-version: "1.5"
+version: "1.6"
 namespace:
     key: consider-a-recall
     name: consider-a-recall
@@ -11,7 +11,8 @@ flags:
       enabled: false
       rollouts:
         - segment:
-            key: PPUD-Oct-2025-rollout
+            keys:
+                - PPUD-Oct-2025-rollout
             value: true
     - key: api-part-a-template-version
       name: '[API] Part A template version'
@@ -89,11 +90,22 @@ flags:
       name: '[UI] PPCS Indeterminate Journey'
       type: BOOLEAN_FLAG_TYPE
       description: Enables the PPCS journey for processing recalls for PoPs on Indeterminate sentences
-      enabled: false
+      enabled: true
       rollouts:
         - segment:
             keys:
                 - PPCS-Indeterminate-Journey-Rollout
+            operator: OR_SEGMENT_OPERATOR
+            value: true
+    - key: ui-newStandardLicenceConditions
+      name: '[UI] New standard licence conditions'
+      type: BOOLEAN_FLAG_TYPE
+      description: Enables the new set of standard licence conditions
+      enabled: false
+      rollouts:
+        - segment:
+            keys:
+                - ui-new-standard-licence-conditions-template
             operator: OR_SEGMENT_OPERATOR
             value: true
 segments:
@@ -104,7 +116,7 @@ segments:
         - type: DATETIME_COMPARISON_TYPE
           property: currentDateTime
           operator: gte
-          value: '2025-10-31T00:00:00Z'
+          value: "2025-10-31T00:00:00Z"
       match_type: ALL_MATCH_TYPE
     - key: ftr48-template
       name: '[API] FTR48 template'
@@ -160,4 +172,13 @@ segments:
           property: Time
           operator: gte
           value: "2036-09-30T00:00:00+01:00"
+      match_type: ALL_MATCH_TYPE
+    - key: ui-new-standard-licence-conditions-template
+      name: '[UI] New standard licence conditions template'
+      description: Marks the cutover date and time after which the new behaviour should come in
+      constraints:
+        - type: DATETIME_COMPARISON_TYPE
+          property: Time
+          operator: gte
+          value: "2026-10-01T00:00:00+01:00"
       match_type: ALL_MATCH_TYPE

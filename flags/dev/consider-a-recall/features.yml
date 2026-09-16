@@ -112,6 +112,12 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: Enables the new set of standard licence conditions
       enabled: false
+      rollouts:
+        - segment:
+            keys:
+                - ui-new-standard-licence-conditions-template
+            operator: OR_SEGMENT_OPERATOR
+            value: true
 segments:
     - key: PPUD-Oct-2025-rollout
       name: PPUD Oct 2025 rollout

@@ -23,3 +23,7 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: Enables ad-hoc check in feature
       enabled: true
+    - key: enablePersonHeaderTierV3
+      name: enablePersonHeaderTierV3
+      type: BOOLEAN_FLAG_TYPE
+      enabled: true

@@ -27,3 +27,7 @@ flags:
       name: enablePersonHeaderTierV3
       type: BOOLEAN_FLAG_TYPE
       enabled: true
+segments:
+    - key: Just-James-King
+      name: Just James King
+      match_type: ALL_MATCH_TYPE

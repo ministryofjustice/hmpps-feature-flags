@@ -30,4 +30,4 @@ flags:
     - key: enable-exclusion-zones
       name: enable-exclusion-zones
       type: BOOLEAN_FLAG_TYPE
-      enabled: false
+      enabled: true

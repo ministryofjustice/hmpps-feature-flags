@@ -39,6 +39,7 @@ segments:
       constraints:
         - type: STRING_COMPARISON_TYPE
           property: email
-          operator: eq
-          value: james.king@justice.gov.uk
+          operator: isoneof
+          value:
+            - james.king@justice.gov.uk
       match_type: ANY_MATCH_TYPE

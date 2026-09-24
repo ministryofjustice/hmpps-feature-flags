@@ -35,4 +35,9 @@ flags:
 segments:
     - key: Just-James-King
       name: Just James King
+      constraints:
+        - type: STRING_COMPARISON_TYPE
+          property: email
+          operator: eq
+          value: james.king@justice.gov.uk
       match_type: ALL_MATCH_TYPE

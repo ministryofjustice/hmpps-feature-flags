@@ -23,6 +23,7 @@ flags:
             keys:
                 - Just-James-King
             operator: OR_SEGMENT_OPERATOR
+            value: true
     - key: enableAdHocCheckIns
       name: enableAdHocCheckIns
       type: BOOLEAN_FLAG_TYPE

@@ -9,9 +9,9 @@ permissions:
 env:
   # Must match the image version in flipt/Dockerfile — the "Check Flipt version"
   # step fails the build if they drift.
-  INSTALL_FLIPT_VERSION: v2.11.0
+  INSTALL_FLIPT_VERSION: v2.12.0
   INSTALL_FLIPT_ARCHIVE: flipt_linux_x86_64.tar.gz
-  INSTALL_FLIPT_SHA256: e65f52d1ab599530df6feb9acd987d2b2b9d059b90538c654a7eabe95dafeae4
+  INSTALL_FLIPT_SHA256: 90995fbe36afe16b112f0836648ba0d52340deead1f6c7bfdfed23d4e76a7cd2
   GO_VERSION: 1.24.5
 
 jobs:

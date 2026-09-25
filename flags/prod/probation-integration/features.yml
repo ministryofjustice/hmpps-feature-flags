@@ -62,7 +62,7 @@ flags:
       name: Tier V3 Delius Phase 2
       type: BOOLEAN_FLAG_TYPE
       description: (1st October) set v3 tier in the offender.current_tier column and create the management_tier history record
-      enabled: false
+      enabled: true
     - key: tier-delius-active-cases-only
       name: Tier Delius - Active Cases Only
       type: BOOLEAN_FLAG_TYPE

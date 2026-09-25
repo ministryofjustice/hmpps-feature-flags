@@ -12,3 +12,7 @@ flags:
       name: enable-ping-card-navigation
       type: BOOLEAN_FLAG_TYPE
       enabled: false
+    - key: enable-exclusion-zones
+      name: enable-exclusion-zones
+      type: BOOLEAN_FLAG_TYPE
+      enabled: false

@@ -84,6 +84,13 @@ flags:
           distributions:
             - variant: ftr48
               rollout: 100
+        - segment:
+            keys:
+                - API-New-Standard-Licence-Conditions-Template
+            operator: OR_SEGMENT_OPERATOR
+          distributions:
+            - variant: newStandardLicenceConditions
+              rollout: 100
     - key: ppud-automation-sentenced-as-youth
       name: ppud-automation-sentenced-as-youth
       type: BOOLEAN_FLAG_TYPE

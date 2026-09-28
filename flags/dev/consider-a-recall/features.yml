@@ -51,6 +51,8 @@ flags:
           name: FTR56 Offence Conviction template
           description: The template with the changes to support FTR56 Offence Conviction should be used
           attachment: {}
+        - key: newStandardLicenceConditions
+          attachment: {}
       rules:
         - segment:
             keys:

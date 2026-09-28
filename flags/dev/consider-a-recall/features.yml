@@ -30,7 +30,8 @@ flags:
       description: Flag indicating which template version to use when generating the Part A (or Preview Part A) of a recommendation
       enabled: true
       variants:
-        - key: default
+        - default: true
+          key: default
           name: Default template
           description: The default template should be used
           attachment: {}
@@ -50,8 +51,7 @@ flags:
           name: FTR56 Offence Conviction template
           description: The template with the changes to support FTR56 Offence Conviction should be used
           attachment: {}
-        - default: true
-          key: newStandardLicenceConditions
+        - key: newStandardLicenceConditions
           name: API - New Standard Licence Conditions
           description: API - New Standard Licence Conditions
           attachment: {}

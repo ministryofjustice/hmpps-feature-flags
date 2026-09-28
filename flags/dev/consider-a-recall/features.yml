@@ -52,7 +52,7 @@ flags:
           description: The template with the changes to support FTR56 Offence Conviction should be used
           attachment: {}
         - key: newStandardLicenceConditions
-          name: API - New Standard Licence Conditions
+          name: New Standard Licence Conditions Template
           description: API - New Standard Licence Conditions
           attachment: {}
       rules:

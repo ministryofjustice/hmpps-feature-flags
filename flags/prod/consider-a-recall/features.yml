@@ -41,7 +41,18 @@ flags:
           name: FTR56 Offence Conviction template
           description: The template with the changes to support FTR56 Offence Conviction should be used
           attachment: {}
+        - key: newStandardLicenceConditions
+          name: New Standard Licence Conditions Template
+          description: API - New Standard Licence Conditions
+          attachment: {}
       rules:
+        - segment:
+            keys:
+              - API-New-Standard-Licence-Conditions-Template
+            operator: OR_SEGMENT_OPERATOR
+          distributions:
+            - variant: newStandardLicenceConditions
+              rollout: 100
         - segment:
             keys:
                 - ftr56-offence-conviction-template
@@ -179,6 +190,14 @@ segments:
       constraints:
         - type: DATETIME_COMPARISON_TYPE
           property: Time
+          operator: gte
+          value: "2026-10-01T00:00:00+01:00"
+      match_type: ALL_MATCH_TYPE
+    - key: API-New-Standard-Licence-Conditions-Template
+      name: '[API] New Standard Licence Conditions Template'
+      constraints:
+        - type: DATETIME_COMPARISON_TYPE
+          property: dateTimeOfFirstDownload
           operator: gte
           value: "2026-10-01T00:00:00+01:00"
       match_type: ALL_MATCH_TYPE

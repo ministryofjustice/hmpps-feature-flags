@@ -37,12 +37,6 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: (1st October) Whether to grant access to the V3 UI
       enabled: true
-      rollouts:
-        - segment:
-            keys:
-                - tier-v3-testers
-            operator: OR_SEGMENT_OPERATOR
-            value: true
     - key: tier-v3-calculation
       name: Tier V3 Calculation
       type: BOOLEAN_FLAG_TYPE

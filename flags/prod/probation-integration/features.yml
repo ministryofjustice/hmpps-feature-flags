@@ -36,7 +36,7 @@ flags:
       name: Tier V3 UI
       type: BOOLEAN_FLAG_TYPE
       description: (1st October) Whether to grant access to the V3 UI
-      enabled: false
+      enabled: true
       rollouts:
         - segment:
             keys:

@@ -36,13 +36,7 @@ flags:
       name: Tier V3 UI
       type: BOOLEAN_FLAG_TYPE
       description: (1st October) Whether to grant access to the V3 UI
-      enabled: false
-      rollouts:
-        - segment:
-            keys:
-                - tier-v3-testers
-            operator: OR_SEGMENT_OPERATOR
-            value: true
+      enabled: true
     - key: tier-v3-calculation
       name: Tier V3 Calculation
       type: BOOLEAN_FLAG_TYPE
@@ -52,7 +46,7 @@ flags:
       name: Tier V3 Events
       type: BOOLEAN_FLAG_TYPE
       description: (1st October) Whether to emit v3 or v2 domain events
-      enabled: false
+      enabled: true
     - key: tier-v3-delius-phase-1
       name: Tier V3 Delius Phase 1
       type: BOOLEAN_FLAG_TYPE

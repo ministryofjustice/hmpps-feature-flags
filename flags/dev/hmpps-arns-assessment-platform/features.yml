@@ -23,7 +23,7 @@ flags:
     - key: sp-downtime-notification-banner
       name: sp-downtime-notification-banner
       type: BOOLEAN_FLAG_TYPE
-      enabled: true
+      enabled: false
     - key: sp-enable-mpop-assessment-info
       name: sp-enable-mpop-assessment-info
       type: BOOLEAN_FLAG_TYPE

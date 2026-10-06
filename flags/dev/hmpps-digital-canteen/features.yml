@@ -8,4 +8,4 @@ flags:
       name: view-contacts
       type: VARIANT_FLAG_TYPE
       description: prisoner within prison, can view contacts
-      enabled: false
+      enabled: true

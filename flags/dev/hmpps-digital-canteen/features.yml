@@ -15,6 +15,7 @@ flags:
             keys:
                 - Active-Prisons
             operator: OR_SEGMENT_OPERATOR
+            value: true
 segments:
     - key: Active-Prisons
       name: Active Prisons

@@ -20,4 +20,11 @@ segments:
     - key: Active-Prisons
       name: Active Prisons
       description: Prisons where prisoners can view contacts
+      constraints:
+        - type: STRING_COMPARISON_TYPE
+          property: prisonId
+          operator: isoneof
+          value:
+            - '["BWI", "CKI", "RNI", "EEI"]'
+          description: Prisons where prisoners can view contacts
       match_type: ALL_MATCH_TYPE

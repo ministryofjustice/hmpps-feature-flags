@@ -8,7 +8,7 @@ flags:
       name: view-contacts
       type: BOOLEAN_FLAG_TYPE
       description: Prisons where prisoners can view contacts
-      enabled: true
+      enabled: false
       rollouts:
         - description: Active prisons can view contacts
           segment:

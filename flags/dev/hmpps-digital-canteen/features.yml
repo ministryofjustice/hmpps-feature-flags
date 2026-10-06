@@ -9,3 +9,8 @@ flags:
       type: VARIANT_FLAG_TYPE
       description: prisoner within prison, can view contacts
       enabled: true
+segments:
+    - key: Active-Prisons
+      name: Active Prisons
+      description: Prisons where prisoners can view contacts
+      match_type: ALL_MATCH_TYPE

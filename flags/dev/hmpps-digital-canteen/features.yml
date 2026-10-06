@@ -9,6 +9,13 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: Prisons where prisoners can view contacts
       enabled: false
+      rollouts:
+        - description: Active prisons can view contacts
+          segment:
+            keys:
+                - Active-Prisons
+            operator: OR_SEGMENT_OPERATOR
+            value: true
 segments:
     - key: Active-Prisons
       name: Active Prisons

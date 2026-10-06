@@ -21,3 +21,8 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: Flag to toggle the manage appointment.
       enabled: true
+    - key: enableDraftSentencePlanAccess
+      name: enableDraftSentencePlanAccess
+      type: BOOLEAN_FLAG_TYPE
+      description: Shows the sentence plan link or text when the plan is still in DRAFT (SP2-2755)
+      enabled: false

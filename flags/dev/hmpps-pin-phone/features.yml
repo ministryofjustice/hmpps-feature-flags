@@ -7,4 +7,14 @@ segments:
     - key: view-contacts-active-prisons
       name: view-contacts-active prisons
       description: Prisons where prisoners can view contacts
+      constraints:
+        - type: STRING_COMPARISON_TYPE
+          property: prisonId
+          operator: isoneof
+          value:
+            - BWI
+            - CKI
+            - EEI
+            - RNI
+          description: Prisons where prisoners can view contacts
       match_type: ALL_MATCH_TYPE

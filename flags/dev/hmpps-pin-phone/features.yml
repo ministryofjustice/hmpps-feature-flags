@@ -29,5 +29,6 @@ segments:
             - CKI
             - EEI
             - RNI
+            - WLI
           description: Prisons where prisoners can view contacts
       match_type: ALL_MATCH_TYPE

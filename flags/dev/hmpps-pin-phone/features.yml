@@ -1,4 +1,10 @@
+version: "1.6"
 namespace:
     key: hmpps-pin-phone
     name: hmpps-pin-phone
     description: Digital pin phone service for prisoners
+segments:
+    - key: view-contacts-active-prisons
+      name: view-contacts-active prisons
+      description: Prisons where prisoners can view contacts
+      match_type: ALL_MATCH_TYPE

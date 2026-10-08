@@ -7,4 +7,4 @@ flags:
     - key: enable-police-confirmation-emails
       name: enable-police-confirmation-emails
       type: BOOLEAN_FLAG_TYPE
-      enabled: false
+      enabled: true

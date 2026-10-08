@@ -26,7 +26,6 @@ segments:
           operator: isoneof
           value:
             - BWI
-            - CKI
             - EEI
             - RNI
             - WLI

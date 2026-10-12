@@ -77,6 +77,10 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: When enabled calculates the final third date and emed date using data from delius. When disabled uses CRDS as input for calculations.
       enabled: true
+    - key: mpop-user-appointments-homepage-v2
+      name: mpop-user-appointments-homepage-v2
+      type: BOOLEAN_FLAG_TYPE
+      enabled: false
 segments:
     - key: tier-to-delius-v3-test-users
       name: Tier V3 Testers

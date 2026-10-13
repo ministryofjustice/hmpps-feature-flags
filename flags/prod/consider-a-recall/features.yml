@@ -108,6 +108,11 @@ flags:
                 - PPCS-Indeterminate-Journey-Rollout
             operator: OR_SEGMENT_OPERATOR
             value: true
+    - key: ui-bookingToolAccess
+      name: '[UI] Booking Tool Access'
+      type: BOOLEAN_FLAG_TYPE
+      description: Enables access to the booking tool for all users
+      enabled: false
 segments:
     - key: PPUD-Oct-2025-rollout
       name: PPUD Oct 2025 rollout

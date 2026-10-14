@@ -13,4 +13,4 @@ flags:
       name: enableAdHocCheckIns
       type: BOOLEAN_FLAG_TYPE
       description: Enables ad-hoc check in feature
-      enabled: false
+      enabled: true

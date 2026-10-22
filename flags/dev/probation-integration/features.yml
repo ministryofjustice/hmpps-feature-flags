@@ -81,6 +81,11 @@ flags:
       name: mpop-user-appointments-homepage-v2
       type: BOOLEAN_FLAG_TYPE
       enabled: true
+    - key: supervision-packages-no-review-for-in-flight-cases
+      name: Supervision Packages - No review required for in-flight cases
+      type: BOOLEAN_FLAG_TYPE
+      description: Removes the requirement that in-flight cases must have a completed review assessment before generating a supervision package
+      enabled: false
 segments:
     - key: tier-to-delius-v3-test-users
       name: Tier V3 Testers

@@ -72,6 +72,11 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: (26th September) When enabled calculates the final third date and emed date using data from delius. When disabled uses CRDS as input for calculations.
       enabled: true
+    - key: supervision-packages-no-review-for-in-flight-cases
+      name: Supervision Packages - No review required for in-flight cases
+      type: BOOLEAN_FLAG_TYPE
+      description: Removes the requirement that in-flight cases must have a completed review assessment before generating a supervision package
+      enabled: false
 segments:
     - key: tier-v3-testers
       name: Tier V3 Testers

@@ -1,4 +1,4 @@
-version: "1.5"
+version: "1.6"
 namespace:
     key: hmpps-digital-prison-reporting
     name: hmpps-digital-prison-reporting
@@ -191,7 +191,7 @@ flags:
     - key: scorecardChartsEnabled
       name: scorecardChartsEnabled
       type: BOOLEAN_FLAG_TYPE
-      enabled: false
+      enabled: true
       metadata:
         dashboardfeature: true
     - key: scorecardgroupChartsEnabled

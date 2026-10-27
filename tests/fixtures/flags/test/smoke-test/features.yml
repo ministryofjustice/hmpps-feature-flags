@@ -49,6 +49,11 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: Boolean flag that the smoke tests toggle via the management API
       enabled: false
+    - key: ui-mutable-flag
+      name: UI mutable flag
+      type: BOOLEAN_FLAG_TYPE
+      description: Boolean flag that the smoke tests toggle via the Flipt UI
+      enabled: false
 segments:
     - key: smoke-testers
       name: Smoke Testers

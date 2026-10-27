@@ -93,6 +93,10 @@ jobs:
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version-file: tests/.nvmrc
+      # The UI tests need Chromium's system libraries, which installing them needs sudo for.
+      - shell: bash
+        working-directory: tests
+        run: npm ci --no-audit --no-fund && npx playwright install --with-deps chromium
       - shell: bash
         run: make smoke-test
 

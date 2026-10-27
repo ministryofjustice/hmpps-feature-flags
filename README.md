@@ -225,8 +225,11 @@ local login to work.
 `make smoke-test` boots a disposable Flipt container and runs an end-to-end
 suite (`tests/`) against it using the same `@flipt-io/flipt-client-js` client
 that teams use: health, boolean/variant/segment evaluation, OPA namespace
-authorization, and a flag mutation through the management API. The same suite
-runs in the CI pipeline (which skips flag-only and CODEOWNERS-only changes).
+authorization, the calls the UI makes on load, and a flag mutation through the
+management API. A headless Chromium (installed by `make smoke-test`) also opens
+the Flipt UI, logged in by passing a static token as the session cookie, and
+toggles a flag. The same suite runs in the CI pipeline (which skips flag-only
+and CODEOWNERS-only changes).
 
 The container uses `flipt/config/test.yml`, which deliberately has no
 `storage.remote` and no credentials: flag changes made by the tests are commits

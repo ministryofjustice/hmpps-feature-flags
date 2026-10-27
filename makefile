@@ -37,7 +37,7 @@ SMOKE_COMPOSE = docker compose -p $(PROJECT_NAME)-smoke -f tests/docker-compose.
 
 smoke-test: ## Runs the smoke test suite against a disposable local Flipt instance.
 	$(SMOKE_COMPOSE) up --build --force-recreate --wait
-	@(cd tests && npm ci --no-audit --no-fund && npm test); status=$$?; \
+	@(cd tests && npm ci --no-audit --no-fund && npx playwright install chromium && npm test); status=$$?; \
 	$(SMOKE_COMPOSE) down; \
 	exit $$status
 

@@ -1,0 +1,33 @@
+version: "1.6"
+namespace:
+    key: hmpps-digital-canteen
+    name: hmpps-digital-canteen
+    description: Digital canteen service for prisoners
+flags:
+    - key: view-contacts
+      name: view-contacts
+      type: BOOLEAN_FLAG_TYPE
+      description: Prisons where prisoners can view contacts
+      enabled: false
+      rollouts:
+        - description: Active prisons can view contacts
+          segment:
+            keys:
+                - Active-Prisons
+            operator: OR_SEGMENT_OPERATOR
+            value: true
+segments:
+    - key: Active-Prisons
+      name: Active Prisons
+      description: Prisons where prisoners can view contacts
+      constraints:
+        - type: STRING_COMPARISON_TYPE
+          property: prisonId
+          operator: isoneof
+          value:
+            - BWI
+            - CKI
+            - EEI
+            - RNI
+          description: Prisons where prisoners can view contacts
+      match_type: ALL_MATCH_TYPE

@@ -11,7 +11,7 @@ flags:
     - key: sp-enable-smart-survey-in-national-rollout
       name: sp-enable-smart-survey-in-national-rollout
       type: BOOLEAN_FLAG_TYPE
-      enabled: true
+      enabled: false
     - key: sp-enable-print-and-share
       name: sp-enable-print-and-share
       type: BOOLEAN_FLAG_TYPE
@@ -19,12 +19,8 @@ flags:
     - key: sp-enable-supervision-package
       name: sp-enable-supervision-package
       type: BOOLEAN_FLAG_TYPE
-      enabled: false
+      enabled: true
     - key: sp-downtime-notification-banner
       name: sp-downtime-notification-banner
       type: BOOLEAN_FLAG_TYPE
       enabled: false
-    - key: sp-enable-mpop-assessment-info
-      name: sp-enable-mpop-assessment-info
-      type: BOOLEAN_FLAG_TYPE
-      enabled: true

@@ -126,6 +126,12 @@ allow if {
 	not is_prod_mutation
 }
 
+default viewable_environments := []
+
+viewable_environments := ["*"] if is_admin
+
+viewable_environments := ["*"] if has_any_namespace_access(configured_default_environment)
+
 viewable_namespaces(env) := ["*"] if {
 	# regal ignore: external-reference
 	is_admin

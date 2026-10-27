@@ -1,4 +1,4 @@
-version: "1.5"
+version: "1.6"
 namespace:
     key: hmpps-electronic-monitoring-crime-matching
     name: hmpps-electronic-monitoring-crime-matching
@@ -7,4 +7,4 @@ flags:
     - key: enable-police-confirmation-emails
       name: enable-police-confirmation-emails
       type: BOOLEAN_FLAG_TYPE
-      enabled: true
+      enabled: false

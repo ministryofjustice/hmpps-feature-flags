@@ -1,0 +1,4 @@
+namespace:
+    key: hmpps-pin-phone
+    name: hmpps-pin-phone
+    description: Digital pin phone service for prisoners

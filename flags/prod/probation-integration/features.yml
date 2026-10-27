@@ -36,13 +36,7 @@ flags:
       name: Tier V3 UI
       type: BOOLEAN_FLAG_TYPE
       description: (1st October) Whether to grant access to the V3 UI
-      enabled: false
-      rollouts:
-        - segment:
-            keys:
-                - tier-v3-testers
-            operator: OR_SEGMENT_OPERATOR
-            value: true
+      enabled: true
     - key: tier-v3-calculation
       name: Tier V3 Calculation
       type: BOOLEAN_FLAG_TYPE
@@ -52,7 +46,7 @@ flags:
       name: Tier V3 Events
       type: BOOLEAN_FLAG_TYPE
       description: (1st October) Whether to emit v3 or v2 domain events
-      enabled: false
+      enabled: true
     - key: tier-v3-delius-phase-1
       name: Tier V3 Delius Phase 1
       type: BOOLEAN_FLAG_TYPE
@@ -62,7 +56,7 @@ flags:
       name: Tier V3 Delius Phase 2
       type: BOOLEAN_FLAG_TYPE
       description: (1st October) set v3 tier in the offender.current_tier column and create the management_tier history record
-      enabled: false
+      enabled: true
     - key: tier-delius-active-cases-only
       name: Tier Delius - Active Cases Only
       type: BOOLEAN_FLAG_TYPE
@@ -72,11 +66,16 @@ flags:
       name: Tier - SA2026 Excluded Offence Moderator
       type: BOOLEAN_FLAG_TYPE
       description: (23rd September) Enable use of the R_OFFENCE.SA26_EXCLUDED_OFFENCE column
-      enabled: false
+      enabled: true
     - key: calculate-key-dates-from-delius
       name: Calculate key dates using Delius
       type: BOOLEAN_FLAG_TYPE
       description: (26th September) When enabled calculates the final third date and emed date using data from delius. When disabled uses CRDS as input for calculations.
+      enabled: true
+    - key: supervision-packages-no-review-for-in-flight-cases
+      name: Supervision Packages - No review required for in-flight cases
+      type: BOOLEAN_FLAG_TYPE
+      description: Removes the requirement that in-flight cases must have a completed review assessment before generating a supervision package
       enabled: false
 segments:
     - key: tier-v3-testers

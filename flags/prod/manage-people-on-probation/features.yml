@@ -20,3 +20,8 @@ flags:
       name: enableManageAppointments
       type: BOOLEAN_FLAG_TYPE
       enabled: true
+    - key: enableDraftSentencePlanAccess
+      name: enableDraftSentencePlanAccess
+      type: BOOLEAN_FLAG_TYPE
+      description: Shows the sentence plan link or text when the plan is still in DRAFT (SP2-2755)
+      enabled: false

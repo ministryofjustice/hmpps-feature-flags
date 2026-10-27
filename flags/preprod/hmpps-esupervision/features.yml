@@ -9,8 +9,3 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: Toggles whether the UI can display the refactored eligibility designs
       enabled: false
-    - key: enableAdHocCheckIns
-      name: enableAdHocCheckIns
-      type: BOOLEAN_FLAG_TYPE
-      description: Enables ad-hoc check in feature
-      enabled: false

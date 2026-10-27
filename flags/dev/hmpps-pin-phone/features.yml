@@ -1,0 +1,34 @@
+version: "1.6"
+namespace:
+    key: hmpps-pin-phone
+    name: hmpps-pin-phone
+    description: Digital pin phone service for prisoners
+flags:
+    - key: view-contacts
+      name: view-contacts
+      type: BOOLEAN_FLAG_TYPE
+      description: Prisons where prisoners can view contacts
+      enabled: false
+      rollouts:
+        - description: Prisons where prisoners can view contacts
+          segment:
+            keys:
+                - view-contacts-active-prisons
+            operator: OR_SEGMENT_OPERATOR
+            value: true
+segments:
+    - key: view-contacts-active-prisons
+      name: view-contacts-active prisons
+      description: Prisons where prisoners can view contacts
+      constraints:
+        - type: STRING_COMPARISON_TYPE
+          property: prisonId
+          operator: isoneof
+          value:
+            - BWI
+            - CKI
+            - EEI
+            - RNI
+            - WLI
+          description: Prisons where prisoners can view contacts
+      match_type: ALL_MATCH_TYPE

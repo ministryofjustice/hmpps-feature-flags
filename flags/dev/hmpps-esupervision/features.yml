@@ -18,17 +18,6 @@ flags:
       name: newDesignPopHeader
       type: BOOLEAN_FLAG_TYPE
       enabled: false
-      rollouts:
-        - segment:
-            keys:
-                - Just-James-King
-            operator: OR_SEGMENT_OPERATOR
-            value: true
-    - key: enableAdHocCheckIns
-      name: enableAdHocCheckIns
-      type: BOOLEAN_FLAG_TYPE
-      description: Enables ad-hoc check in feature
-      enabled: true
     - key: enablePersonHeaderTierV3
       name: enablePersonHeaderTierV3
       type: BOOLEAN_FLAG_TYPE
@@ -36,4 +25,10 @@ flags:
 segments:
     - key: Just-James-King
       name: Just James King
-      match_type: ALL_MATCH_TYPE
+      constraints:
+        - type: STRING_COMPARISON_TYPE
+          property: email
+          operator: isoneof
+          value:
+            - james.king@justice.gov.uk
+      match_type: ANY_MATCH_TYPE

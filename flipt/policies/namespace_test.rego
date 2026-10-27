@@ -143,3 +143,29 @@ test_viewable_namespaces_team_uses_access_mapping if {
 	"a-team-ns" in namespaces
 	"ProbationInCourt" in namespaces
 }
+
+test_viewable_environments_admin if {
+	# regal ignore: line-length
+	flipt.viewable_environments == ["*"] with input as github_input("ignored", "read", "{\"ministryofjustice\":[\"hmpps-feature-flag-admins\"]}")
+}
+
+test_viewable_environments_team_with_namespace_access if {
+	# regal ignore: line-length
+	flipt.viewable_environments == ["*"] with input as github_input("ignored", "read", "{\"ministryofjustice\":[\"a-team\"]}")
+		with data.namespace_team_access as {"dev": {"a-team-ns": ["a-team"]}} # regal ignore: unresolved-reference,line-length
+		with data.authz_config.default_environment as "dev" # regal ignore: unresolved-reference
+}
+
+test_viewable_environments_team_without_namespace_access if {
+	# regal ignore: line-length
+	flipt.viewable_environments == [] with input as github_input("ignored", "read", "{\"ministryofjustice\":[\"a-team\"]}")
+		with data.namespace_team_access as {"dev": {"other-ns": ["other-team"]}} # regal ignore: unresolved-reference,line-length
+		with data.authz_config.default_environment as "dev" # regal ignore: unresolved-reference
+}
+
+test_viewable_environments_team_with_access_only_in_other_environment if {
+	# regal ignore: line-length
+	flipt.viewable_environments == [] with input as github_input("ignored", "read", "{\"ministryofjustice\":[\"a-team\"]}")
+		with data.namespace_team_access as {"dev": {"other-ns": ["other-team"]}, "prod": {"a-team-ns": ["a-team"]}} # regal ignore: unresolved-reference,line-length
+		with data.authz_config.default_environment as "dev" # regal ignore: unresolved-reference
+}

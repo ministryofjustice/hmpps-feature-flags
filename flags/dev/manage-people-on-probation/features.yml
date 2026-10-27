@@ -26,3 +26,8 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: Controls the visibility of the delete file button in the multi-file upload component
       enabled: false
+    - key: enableDraftSentencePlanAccess
+      name: enableDraftSentencePlanAccess
+      type: BOOLEAN_FLAG_TYPE
+      description: Shows the sentence plan link or text when the plan is still in DRAFT (SP2-2755)
+      enabled: true

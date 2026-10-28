@@ -29,6 +29,11 @@ export interface FlagUpdateResult {
   revision?: string;
 }
 
+export interface ListResult<T> {
+  status: number;
+  items?: T[];
+}
+
 interface FliptManagementApiOptions {
   baseUrl: string;
   environmentKey: string;
@@ -43,12 +48,50 @@ interface ResourceResponseBody {
 
 /**
  * Minimal client for Flipt's v2 management API (the environments/resources
- * endpoints), covering just what the smoke tests need: reading a flag and
- * updating it. Expected failures (401/403/404) come back as a bare status
- * rather than a throw so tests can assert on them.
+ * endpoints), covering just what the smoke tests need: the listing calls the
+ * UI makes on load, reading a flag and updating it. Expected failures
+ * (401/403/404) come back as a bare status rather than a throw so tests can
+ * assert on them.
  */
 export class FliptManagementApi {
   constructor(private readonly options: FliptManagementApiOptions) {}
+
+  async listEnvironmentKeys(): Promise<ListResult<string>> {
+    const response = await this.request({ method: 'GET', url: `${this.options.baseUrl}/api/v2/environments` });
+
+    if (!response.ok) {
+      return { status: response.status };
+    }
+
+    const body = (await response.json()) as { environments: { key: string }[] };
+
+    return { status: response.status, items: body.environments.map(environment => environment.key) };
+  }
+
+  async listNamespaceKeys(): Promise<ListResult<string>> {
+    const { baseUrl, environmentKey } = this.options;
+    const response = await this.request({ method: 'GET', url: `${baseUrl}/api/v2/environments/${environmentKey}/namespaces` });
+
+    if (!response.ok) {
+      return { status: response.status };
+    }
+
+    const body = (await response.json()) as { items: { key: string }[] };
+
+    return { status: response.status, items: body.items.map(namespace => namespace.key) };
+  }
+
+  async listFlagKeys(): Promise<ListResult<string>> {
+    const response = await this.request({ method: 'GET', url: `${this.resourcesUrl()}/flipt.core.Flag` });
+
+    if (!response.ok) {
+      return { status: response.status };
+    }
+
+    const body = (await response.json()) as { resources: FlagResource[] };
+
+    return { status: response.status, items: body.resources.map(resource => resource.key) };
+  }
 
   async getFlag(flagKey: string): Promise<FlagReadResult> {
     const response = await this.request({ method: 'GET', url: `${this.resourcesUrl()}/flipt.core.Flag/${flagKey}` });

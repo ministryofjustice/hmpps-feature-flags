@@ -101,6 +101,57 @@ describe('Flipt smoke test', () => {
     });
   });
 
+  // The calls the UI makes on load, in order. Flipt sends some of these to the
+  // policy without a namespace or environment, so they need their own coverage.
+  describe('UI load sequence', () => {
+    it('should list environments when the token has namespace access', async () => {
+      // Act
+      const result = await writerApi.listEnvironmentKeys();
+
+      // Assert
+      expect(result.status).toBe(200);
+      expect(result.items).toContain('test');
+    });
+
+    it('should list namespaces when the token has namespace access', async () => {
+      // Act
+      const result = await writerApi.listNamespaceKeys();
+
+      // Assert
+      expect(result.status).toBe(200);
+      expect(result.items).toContain('smoke-test');
+    });
+
+    it('should list flags when the token has namespace access', async () => {
+      // Act
+      const result = await writerApi.listFlagKeys();
+
+      // Assert
+      expect(result.status).toBe(200);
+      expect(result.items).toContain('always-on');
+    });
+
+    // Depending on which policy rule decides, Flipt either denies these listings
+    // or filters them down to nothing. Either way the outsider must see nothing.
+    it('should show no environments when the token has no namespace access', async () => {
+      // Act
+      const result = await outsiderApi.listEnvironmentKeys();
+
+      // Assert
+      expect([200, 403]).toContain(result.status);
+      expect(result.items ?? []).toEqual([]);
+    });
+
+    it('should show no namespaces when the token has no namespace access', async () => {
+      // Act
+      const result = await outsiderApi.listNamespaceKeys();
+
+      // Assert
+      expect([200, 403]).toContain(result.status);
+      expect(result.items ?? []).toEqual([]);
+    });
+  });
+
   describe('management API authorization', () => {
     it('should reject flag reads when the token has no namespace access', async () => {
       // Act

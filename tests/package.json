@@ -7,7 +7,7 @@
     "node": ">=20"
   },
   "scripts": {
-    "test": "vitest run",
+    "test": "vitest run --no-file-parallelism",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "@types/node": "^26.6.5",
+    "playwright": "^1.64.0",
     "typescript": "^7.0.2",
     "vitest": "^5.0.5"
   }

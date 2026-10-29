@@ -34,4 +34,4 @@ flags:
     - key: enable-ping-cards-update
       name: enable-ping-cards-update
       type: BOOLEAN_FLAG_TYPE
-      enabled: true
+      enabled: false

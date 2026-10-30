@@ -36,6 +36,7 @@ segments:
           property: username
           operator: isoneof
           value:
+            - JAMES.KING
             - james.king
             - james.king@justice.gov.uk
       match_type: ALL_MATCH_TYPE

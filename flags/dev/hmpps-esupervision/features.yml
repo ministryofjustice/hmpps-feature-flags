@@ -37,4 +37,4 @@ segments:
           operator: isoneof
           value:
             - james.king@justice.gov.uk
-      match_type: ANY_MATCH_TYPE
+      match_type: ALL_MATCH_TYPE

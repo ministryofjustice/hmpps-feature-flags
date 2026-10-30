@@ -33,8 +33,9 @@ segments:
       name: Just James King
       constraints:
         - type: STRING_COMPARISON_TYPE
-          property: email
+          property: username
           operator: isoneof
           value:
+            - james.king
             - james.king@justice.gov.uk
       match_type: ALL_MATCH_TYPE

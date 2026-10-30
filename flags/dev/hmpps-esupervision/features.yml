@@ -23,7 +23,6 @@ flags:
             keys:
                 - Just-James-King
             operator: OR_SEGMENT_OPERATOR
-            value: true
     - key: enablePersonHeaderTierV3
       name: enablePersonHeaderTierV3
       type: BOOLEAN_FLAG_TYPE

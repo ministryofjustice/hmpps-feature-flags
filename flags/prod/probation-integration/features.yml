@@ -8,7 +8,7 @@ flags:
       name: common-platform-record-creation-toggle
       type: BOOLEAN_FLAG_TYPE
       description: Toggles whether the common-platform-and-delius service will create records to the database (enabled), or just log to telemetry (disabled).
-      enabled: false
+      enabled: true
     - key: hdc-release-type
       name: HDC Release Type
       type: BOOLEAN_FLAG_TYPE

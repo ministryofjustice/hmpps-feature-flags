@@ -218,6 +218,12 @@ flags:
       enabled: true
       metadata:
         dashboardfeature: true
+    - key: boxPlotChartsEnabled
+      name: boxPlotChartsEnabled
+      type: BOOLEAN_FLAG_TYPE
+      enabled: true
+      metadata:
+        dashboardfeature: true
 segments:
     - key: testseg
       name: testseg

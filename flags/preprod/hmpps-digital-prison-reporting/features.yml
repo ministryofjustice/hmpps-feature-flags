@@ -153,13 +153,13 @@ flags:
     - key: lineChartsEnabled
       name: lineChartsEnabled
       type: BOOLEAN_FLAG_TYPE
-      enabled: false
+      enabled: true
       metadata:
         dashboardfeature: true
     - key: donutChartsEnabled
       name: donutChartsEnabled
       type: BOOLEAN_FLAG_TYPE
-      enabled: false
+      enabled: true
       metadata:
         dashboardfeature: true
     - key: scorecardChartsEnabled
@@ -188,6 +188,12 @@ flags:
         dashboardfeature: true
     - key: linetimeseriesChartsEnabled
       name: linetimeseriesChartsEnabled
+      type: BOOLEAN_FLAG_TYPE
+      enabled: true
+      metadata:
+        dashboardfeature: true
+    - key: boxPlotChartsEnabled
+      name: boxPlotChartsEnabled
       type: BOOLEAN_FLAG_TYPE
       enabled: true
       metadata:

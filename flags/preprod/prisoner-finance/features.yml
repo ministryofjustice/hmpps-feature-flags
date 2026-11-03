@@ -29,3 +29,7 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: Enables anything to do with hold for the prisoner
       enabled: true
+    - key: advances-enabled
+      name: advances-enabled
+      type: BOOLEAN_FLAG_TYPE
+      enabled: false

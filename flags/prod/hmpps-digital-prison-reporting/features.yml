@@ -165,13 +165,13 @@ flags:
     - key: scorecardChartsEnabled
       name: scorecardChartsEnabled
       type: BOOLEAN_FLAG_TYPE
-      enabled: false
+      enabled: true
       metadata:
         dashboardfeature: true
     - key: scorecardgroupChartsEnabled
       name: scorecardgroupChartsEnabled
       type: BOOLEAN_FLAG_TYPE
-      enabled: false
+      enabled: true
       metadata:
         dashboardfeature: true
     - key: matrixtimeseriesChartsEnabled
@@ -190,5 +190,11 @@ flags:
       name: linetimeseriesChartsEnabled
       type: BOOLEAN_FLAG_TYPE
       enabled: true
+      metadata:
+        dashboardfeature: true
+    - key: boxPlotChartsEnabled
+      name: boxPlotChartsEnabled
+      type: BOOLEAN_FLAG_TYPE
+      enabled: false
       metadata:
         dashboardfeature: true

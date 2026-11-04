@@ -31,7 +31,7 @@ flags:
     - key: enableSentenceSelection
       name: enableSentenceSelection
       type: BOOLEAN_FLAG_TYPE
-      enabled: false
+      enabled: true
 segments:
     - key: Just-James-King
       name: Just James King

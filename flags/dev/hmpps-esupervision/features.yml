@@ -28,6 +28,10 @@ flags:
       name: enablePersonHeaderTierV3
       type: BOOLEAN_FLAG_TYPE
       enabled: true
+    - key: enableSentenceSelection
+      name: enableSentenceSelection
+      type: BOOLEAN_FLAG_TYPE
+      enabled: false
 segments:
     - key: Just-James-King
       name: Just James King

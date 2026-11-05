@@ -123,6 +123,12 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: Enables access to the booking tool for all users
       enabled: true
+      rollouts:
+        - segment:
+            keys:
+                - ppcs-booking-tool-rollout
+            operator: OR_SEGMENT_OPERATOR
+            value: true
 segments:
     - key: PPUD-Oct-2025-rollout
       name: PPUD Oct 2025 rollout
@@ -196,4 +202,12 @@ segments:
           property: dateTimeOfFirstDownload
           operator: gte
           value: "2026-09-28T00:00:00+01:00"
+      match_type: ALL_MATCH_TYPE
+    - key: ppcs-booking-tool-rollout
+      name: '[UI] PPCS Booking Tool Rollout'
+      constraints:
+        - type: DATETIME_COMPARISON_TYPE
+          property: Time
+          operator: gte
+          value: "2026-11-09T00:00:00Z"
       match_type: ALL_MATCH_TYPE

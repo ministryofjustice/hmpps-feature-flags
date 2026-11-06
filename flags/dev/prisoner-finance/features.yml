@@ -33,3 +33,7 @@ flags:
       name: advances-enabled
       type: BOOLEAN_FLAG_TYPE
       enabled: true
+    - key: subscriptions-enabled
+      name: subscriptions-enabled
+      type: BOOLEAN_FLAG_TYPE
+      enabled: true

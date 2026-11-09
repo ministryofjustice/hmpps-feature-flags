@@ -37,4 +37,4 @@ flags:
       name: subscriptions-enabled
       type: BOOLEAN_FLAG_TYPE
       description: Enables the view subscription page
-      enabled: false
+      enabled: true

@@ -27,8 +27,10 @@ flags:
     - key: sp-downtime-notification-banner-content
       name: 'sp-downtime-notification-banner-content '
       type: VARIANT_FLAG_TYPE
-      description: ' Hold the heading and message for the downtime banner'
+      description: ' Holds the heading and message for the downtime banner'
       enabled: false
-      metadata:
-        heading: Planned downtime
-        message: Assess and plan will be unavailable from 6am on Thursday 12 November 2026 for 1 hour.
+      variants:
+        - key: announcement
+          attachment:
+            heading: Test maintenance announcement
+            message: This is a test of the remotely managed downtime banner.

@@ -29,3 +29,8 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: Enables anything to do with hold for the prisoner
       enabled: false
+    - key: subscriptions-enabled
+      name: subscriptions-enabled
+      type: BOOLEAN_FLAG_TYPE
+      description: Enables the view subscription page
+      enabled: false

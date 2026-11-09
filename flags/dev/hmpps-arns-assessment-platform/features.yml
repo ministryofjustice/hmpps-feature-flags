@@ -28,9 +28,10 @@ flags:
       name: 'sp-downtime-notification-banner-content '
       type: VARIANT_FLAG_TYPE
       description: ' Holds the heading and message for the downtime banner'
-      enabled: false
+      enabled: true
       variants:
-        - key: announcement
+        - default: true
+          key: announcement
           attachment:
             heading: Test maintenance announcement
             message: This is a test of the remotely managed downtime banner.

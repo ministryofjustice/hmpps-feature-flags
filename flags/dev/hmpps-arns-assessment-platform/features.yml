@@ -32,4 +32,6 @@ flags:
       variants:
         - default: true
           key: announcement
-          attachment: {}
+          attachment:
+            heading: Test maintenance announcement
+            message: This is a test of the remotely managed downtime banner.

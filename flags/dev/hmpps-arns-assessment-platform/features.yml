@@ -20,10 +20,6 @@ flags:
       name: sp-enable-supervision-package
       type: BOOLEAN_FLAG_TYPE
       enabled: true
-    - key: sp-downtime-notification-banner
-      name: sp-downtime-notification-banner
-      type: BOOLEAN_FLAG_TYPE
-      enabled: false
     - key: sp-downtime-notification-banner-content
       name: 'sp-downtime-notification-banner-content '
       type: VARIANT_FLAG_TYPE

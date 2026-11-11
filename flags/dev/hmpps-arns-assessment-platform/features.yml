@@ -28,7 +28,7 @@ flags:
       name: 'sp-downtime-notification-banner-content '
       type: VARIANT_FLAG_TYPE
       description: ' Holds the heading and message for the downtime banner'
-      enabled: false
+      enabled: true
       variants:
         - default: true
           key: announcement

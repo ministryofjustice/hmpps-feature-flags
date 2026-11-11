@@ -29,3 +29,9 @@ flags:
       type: VARIANT_FLAG_TYPE
       description: ' Holds the heading and message for the downtime banner'
       enabled: false
+      variants:
+        - key: announcement
+          description: Controls the content of the Sentence Plan downtime notification banner. The selected variant must include a JSON attachment with non-empty heading and message fields. If the flag is disabled, the banner is not shown.
+          attachment:
+            heading: Downtime Notification
+            message: This is a test notification

@@ -1,4 +1,4 @@
-version: "1.5"
+version: "1.6"
 namespace:
     key: hmpps-arns-assessment-platform
     name: hmpps-arns-assessment-platform
@@ -23,4 +23,9 @@ flags:
     - key: sp-downtime-notification-banner
       name: sp-downtime-notification-banner
       type: BOOLEAN_FLAG_TYPE
+      enabled: false
+    - key: sp-downtime-notification-banner-content
+      name: sp-downtime-notification-banner-content
+      type: VARIANT_FLAG_TYPE
+      description: ' Holds the heading and message for the downtime banner'
       enabled: false

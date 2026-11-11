@@ -34,5 +34,5 @@ flags:
           key: announcement
           description: Controls the content of the Sentence Plan downtime notification banner. The selected variant must include a JSON attachment with non-empty heading and message fields. If the flag is disabled, the banner is not shown.
           attachment:
-            heading: Downtime Notification
+            heading: lorem ipsum dolor sit amet consectetur adipiscing elit reprehenderit ullamco eiusmod tempore minim libero quis in proident atque dolor expedita voluptas non est et et qui excepteur repellendus nam animi ut nobis vel quos minim dignissimos enim vero deserunt ullamco est cumque officia provident quis consequatur accusamus quos sunt dolores
             message: '**Test Message** SP will be down for maintenance between 1pm on 11/11/26 and 2pm on 12/11/26'

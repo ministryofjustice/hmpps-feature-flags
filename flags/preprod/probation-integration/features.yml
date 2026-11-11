@@ -84,4 +84,4 @@ flags:
     - key: manage_my_community_sentence-phone_number
       name: manage_my_community_sentence.phone_number
       type: BOOLEAN_FLAG_TYPE
-      enabled: true
+      enabled: false

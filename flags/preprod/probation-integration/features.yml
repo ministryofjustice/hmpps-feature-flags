@@ -81,3 +81,7 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: Removes the requirement that in-flight cases must have a completed review assessment before generating a supervision package
       enabled: true
+    - key: manage_my_community_sentence-phone_number
+      name: manage_my_community_sentence.phone_number
+      type: BOOLEAN_FLAG_TYPE
+      enabled: true

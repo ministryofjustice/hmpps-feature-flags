@@ -179,7 +179,7 @@ flags:
     - key: lineChartsEnabled
       name: lineChartsEnabled
       type: BOOLEAN_FLAG_TYPE
-      enabled: false
+      enabled: true
       metadata:
         dashboardfeature: true
     - key: donutChartsEnabled

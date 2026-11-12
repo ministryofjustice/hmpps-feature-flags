@@ -24,11 +24,12 @@ flags:
       name: 'sp-downtime-notification-banner-content '
       type: VARIANT_FLAG_TYPE
       description: ' Holds the heading and message for the downtime banner'
-      enabled: false
+      enabled: true
       variants:
         - default: true
           key: announcement
-          description: Controls the content of the Sentence Plan downtime notification banner. The selected variant must include a JSON attachment with non-empty heading and message fields. If the flag is disabled, the banner is not shown.
+          name: Test banner
+          description: This is a test banner for verification. No action needed!
           attachment:
             heading: Sentence Plan Downtime Notification
             message: Sentence Plan will be unavailable between 8am and 10am on the 12/11/2026.

@@ -23,7 +23,7 @@ flags:
       name: action-panel-enabled
       type: BOOLEAN_FLAG_TYPE
       description: Activate the prisoner profile action panel and its functions
-      enabled: false
+      enabled: true
     - key: holds-enabled
       name: holds-enabled
       type: BOOLEAN_FLAG_TYPE

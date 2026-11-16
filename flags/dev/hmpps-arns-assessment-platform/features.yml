@@ -35,4 +35,4 @@ flags:
       name: sp-enable-draft-plan-confirmation
       type: BOOLEAN_FLAG_TYPE
       description: Temporary flag to enable the new agree/confirm plan features
-      enabled: false
+      enabled: true

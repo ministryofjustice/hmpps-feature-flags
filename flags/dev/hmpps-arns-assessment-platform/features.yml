@@ -31,8 +31,3 @@ flags:
           attachment:
             heading: Sentence Plan Downtime Notification
             message: Sentence Plan will be unavailable between 8am and 10am on the 12/11/2026.
-    - key: sp-enable-draft-plan-confirmation
-      name: sp-enable-plan-agreement-updates
-      type: BOOLEAN_FLAG_TYPE
-      description: Temporary flag to enable the updated sentence plan agreement journey
-      enabled: true

@@ -34,5 +34,5 @@ flags:
     - key: sp-enable-draft-plan-confirmation
       name: sp-enable-draft-plan-confirmation
       type: BOOLEAN_FLAG_TYPE
-      description: Temporary flag to enable the new agree/confirm plan features
+      description: Temporary flag to enable the updated sentence plan agreement journey
       enabled: false

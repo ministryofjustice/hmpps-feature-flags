@@ -8,8 +8,4 @@ flags:
       name: referral-location-use-requirement-manager
       type: BOOLEAN_FLAG_TYPE
       description: Flag to determine whether the referral location should be determined by the manager of the requirement rather than the probation practitioner
-      enabled: false
-      rollouts:
-        - threshold:
-            percentage: 100
-            value: true
+      enabled: true

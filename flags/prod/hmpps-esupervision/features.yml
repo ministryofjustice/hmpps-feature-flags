@@ -12,3 +12,8 @@ flags:
       name: enableSentenceSelection
       type: BOOLEAN_FLAG_TYPE
       enabled: true
+    - key: useEligibilityEndpoint
+      name: useEligibilityEndpoint
+      type: BOOLEAN_FLAG_TYPE
+      description: Manage online check ins eligibility journey asks the ESUP API's eligibility endpoint instead of applying its own rules
+      enabled: false

@@ -1,4 +1,11 @@
+version: "1.6"
 namespace:
     key: accredited-programmes-community
     name: accredited-programmes-community
     description: Accredited Programmes in Community (Manage and Deliver)
+flags:
+    - key: referral-location-use-requirement-manager
+      name: referral-location-use-requirement-manager
+      type: BOOLEAN_FLAG_TYPE
+      description: Flag to determine whether the referral location should be determined by the manager of the requirement rather than the probation practitioner
+      enabled: false

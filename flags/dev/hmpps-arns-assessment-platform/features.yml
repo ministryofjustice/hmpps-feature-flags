@@ -35,4 +35,4 @@ flags:
       name: sp-enable-plan-agreement-updates
       type: BOOLEAN_FLAG_TYPE
       description: Temporary flag to enable the updated sentence plan agreement journey
-      enabled: false
+      enabled: true

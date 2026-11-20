@@ -37,7 +37,21 @@ flags:
       type: BOOLEAN_FLAG_TYPE
       description: Manage online check ins eligibility journey asks the ESUP API's eligibility endpoint instead of applying its own rules
       enabled: false
+      rollouts:
+        - segment:
+            keys:
+                - test-environment
+            value: true
 segments:
+    - key: test-environment
+      name: Test environment
+      description: The test environment, which shares dev's Flipt; the manage online check ins UI sends its environment as context
+      constraints:
+        - type: STRING_COMPARISON_TYPE
+          property: environment
+          operator: eq
+          value: test
+      match_type: ALL_MATCH_TYPE
     - key: Just-James-King
       name: Just James King
       constraints:

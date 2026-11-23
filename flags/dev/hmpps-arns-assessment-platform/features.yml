@@ -30,7 +30,7 @@ flags:
           key: announcement
           attachment:
             heading: Sentence Plan Downtime Notification
-            message: The assess and plan service will be unavailable between 8am and 9am on Wednesday 25th November
+            message: The assess and plan service will be unavailable between 8am and 9am on 25th November.
     - key: sp-enable-plan-agreement-updates
       name: sp-enable-plan-agreement-updates
       type: BOOLEAN_FLAG_TYPE

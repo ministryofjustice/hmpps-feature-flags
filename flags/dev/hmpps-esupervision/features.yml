@@ -36,11 +36,12 @@ flags:
       name: useEligibilityEndpoint
       type: BOOLEAN_FLAG_TYPE
       description: Manage online check ins eligibility journey asks the ESUP API's eligibility endpoint instead of applying its own rules
-      enabled: false
+      enabled: true
       rollouts:
         - segment:
             keys:
                 - test-environment
+            operator: OR_SEGMENT_OPERATOR
             value: true
 segments:
     - key: test-environment

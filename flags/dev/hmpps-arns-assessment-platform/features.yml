@@ -29,7 +29,7 @@ flags:
         - default: true
           key: announcement
           name: Banner content
-          description: Provides the heading a message
+          description: Controls the content of the Sentence Plan downtime notification banner. The selected variant must include a JSON attachment with non-empty heading and message fields. If the flag is disabled, the banner is not shown.
           attachment:
             heading: Planned downtime
             message: Assess and plan will be unavailable from 8am on Wednesday 25 November 2026 for 1 hour.

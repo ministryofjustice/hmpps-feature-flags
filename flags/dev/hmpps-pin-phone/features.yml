@@ -16,11 +16,6 @@ flags:
                 - view-contacts-active-prisons
             operator: OR_SEGMENT_OPERATOR
             value: true
-    - key: use-payment-logic
-      name: use payment logic
-      type: BOOLEAN_FLAG_TYPE
-      description: Flag for using updated payment handling within pin phone
-      enabled: false
 segments:
     - key: view-contacts-active-prisons
       name: view-contacts-active prisons

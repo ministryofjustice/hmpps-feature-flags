@@ -1,4 +1,11 @@
+version: "1.6"
 namespace:
     key: hmpps-pin-phone
     name: hmpps-pin-phone
     description: Digital pin phone service for prisoners
+flags:
+    - key: use-updated-payment-logic
+      name: use-updated-payment-logic
+      type: BOOLEAN_FLAG_TYPE
+      description: Flag for determine whether pin phone service should use the updated payment handling approach in CRC-1036
+      enabled: false

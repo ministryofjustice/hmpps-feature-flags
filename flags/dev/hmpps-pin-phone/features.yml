@@ -20,7 +20,7 @@ flags:
       name: use updated payment logic
       type: BOOLEAN_FLAG_TYPE
       description: Flag for determine whether pin phone service should use the updated payment handling approach in CRC-1036
-      enabled: true
+      enabled: false
 segments:
     - key: view-contacts-active-prisons
       name: view-contacts-active prisons
